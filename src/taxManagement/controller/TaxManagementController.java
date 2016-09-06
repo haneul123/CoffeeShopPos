@@ -4,8 +4,6 @@ import taxManagement.dao.TaxManagementDao;
 
 public class TaxManagementController {
 
-<<<<<<< HEAD
-	
 	// variable
 	private TaxManagementDao taxManagementDao;
 	
@@ -29,8 +27,4 @@ public class TaxManagementController {
 		
 	}
 	
-	
-=======
-
->>>>>>> refs/remotes/origin/pr/1
 }
