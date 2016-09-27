@@ -16,29 +16,28 @@ public class AdminController {
 		
 	}
 	
-	
-	
+		
 	// method
-	// °ü¸®ÀÚ µî·Ï ¿äÃ»
+	// ê´€ë¦¬ì íšŒì›ê°€ì…í•˜ê¸°
 	public void requestSignUp(){
 		
 	}
 	
 	
-	// °ü¸®ÀÚ Á¶È¸ ¿äÃ»
+	// ê´€ë¦¬ì ëª©ë¡ë³´ê¸°
 	public void requestListView(){
 		
 	}
 	
 	
-	// °ü¸®ÀÚ ¼öÁ¤ ¿äÃ»
+	// ê´€ë¦¬ì ìˆ˜ì •í•˜ê¸°
 	public void requestUpdate(){
 		
 		
 	}
 	
 	
-	// °ü¸®ÀÚ »èÁ¦ ¿äÃ»
+	// ê´€ë¦¬ì ì‚­ì œí•˜ê¸°
 	public void requestDelete(){
 		
 		
