@@ -24,10 +24,21 @@ public class Admin {
 	}
 	
 	
-	// 회원가입을 위한 admin 생성
+	// 관리자 가입을 위한 admin 생성
 	public Admin(String adminId, String adminPassword, String adminName, int authority){
 		
 		this.adminId = adminId;
+		this.adminPassword = adminPassword;
+		this.adminName = adminName;
+		this.authority = authority;
+		
+	}
+	
+	
+	// 관리자 정보 수정을 위한 admin 생성
+	public Admin(int adminNumber, String adminPassword, String adminName, int authority){
+		
+		this.adminNumber = adminNumber;
 		this.adminPassword = adminPassword;
 		this.adminName = adminName;
 		this.authority = authority;

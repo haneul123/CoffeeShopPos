@@ -89,15 +89,33 @@ public class AdminController {
 
 		requestListView();
 		AdminUpdateView adminUpdateView = new AdminUpdateView();
-		adminUpdateView.adminUpdateView();
+		adminUpdateView.adminNumberView();
 		
 	}
 
-
-	// 관리자 수정 요청
-	public void requestUpdate(Admin updateAdmin){
+	
+	// 입력받은 관리자가 있는지 없는지 체크
+	public void requestCheckAdmin(int selectedAdmin) {
 		
-		boolean success = adminDao.update(updateAdmin);
+		boolean success = adminDao.checkAdmin(selectedAdmin);
+		
+		if(success){
+			
+			AdminUpdateView adminUpdateView = new AdminUpdateView();
+			adminUpdateView.adminUpdateView(selectedAdmin);
+			
+		} else {
+		
+			AlertView alertView = new AlertView();
+			alertView.alert("없는 관리자 입니다.");
+		}
+		
+	}
+	
+	// 관리자 수정 요청
+	public void requestUpdate(Admin updatedAdmin){
+		
+		boolean success = adminDao.update(updatedAdmin);
 		
 		AlertView alertView = new AlertView();
 		
