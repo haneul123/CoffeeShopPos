@@ -1,19 +1,13 @@
 package admin.vo;
 
-import java.util.Date;
-
 public class Admin {
 
-	
 	// variable
 	private int adminNumber;
 	private String adminId;
-	private String adminPw;
+	private String adminPassword;
 	private String adminName;
-	private Date loginTime;
-	private Date logoutTime;
 	private int authority;
-	
 	
 	// constructor
 	public Admin() {
@@ -21,8 +15,15 @@ public class Admin {
 		
 	}
 
+	// 로그인을 위한 admin 생성
+	public Admin(String adminId, String adminPassword){
+		
+		this.adminId = adminId;
+		this.adminPassword = adminPassword;
+		
+	}
 	
-	// getter and setter
+	// getter and setter	
 	public int getAdminNumber() {
 		return adminNumber;
 	}
@@ -39,12 +40,12 @@ public class Admin {
 		this.adminId = adminId;
 	}
 
-	public String getAdminPw() {
-		return adminPw;
+	public String getAdminPassword() {
+		return adminPassword;
 	}
 
-	public void setAdminPw(String adminPw) {
-		this.adminPw = adminPw;
+	public void setAdminPassword(String adminPassword) {
+		this.adminPassword = adminPassword;
 	}
 
 	public String getAdminName() {
@@ -55,22 +56,6 @@ public class Admin {
 		this.adminName = adminName;
 	}
 
-	public Date getLoginTime() {
-		return loginTime;
-	}
-
-	public void setLoginTime(Date loginTime) {
-		this.loginTime = loginTime;
-	}
-
-	public Date getLogoutTime() {
-		return logoutTime;
-	}
-
-	public void setLogoutTime(Date logoutTime) {
-		this.logoutTime = logoutTime;
-	}
-
 	public int getAuthority() {
 		return authority;
 	}
@@ -78,5 +63,5 @@ public class Admin {
 	public void setAuthority(int authority) {
 		this.authority = authority;
 	}
-	
+		
 }

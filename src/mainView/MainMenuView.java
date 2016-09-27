@@ -2,6 +2,8 @@ package mainView;
 
 import java.util.Scanner;
 
+import mainController.MainController;
+
 public class MainMenuView {
 	
 	private Scanner keyboard;
@@ -29,11 +31,11 @@ public class MainMenuView {
 		
 		if(selectedMenu == 1) {
 			
-			
+			MainController.getLoginController().requestLoginInfo();
 			
 		} else if(selectedMenu == 2) {
 			
-			
+			MainController.getAdminController().requestSignUp();
 			
 		} else {
 			

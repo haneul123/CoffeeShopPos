@@ -3,8 +3,8 @@ package login.vo;
 public class Login {
 	
 	
-	private String ID;
-	private String PW;
+	private String adminId;
+	private String adminPassword;
 	private int adminNumber;
 	
 	
@@ -13,29 +13,28 @@ public class Login {
 	}
 
 	
-	public Login(String ID,String PW){
+	public Login(String ID, String PW){
 		
-		this.ID = ID;
-		this.PW = PW;
-		this.adminNumber = adminNumber;
-		
+		this.adminId = ID;
+		this.adminPassword = PW;
+				
 	}
 	
 	
 	public String getID() {
-		return ID;
+		return adminId;
 	}
 
-	public void setID(String iD) {
-		ID = iD;
+	public void setID(String adminId) {
+		this.adminId = adminId;
 	}
 
 	public String getPW() {
-		return PW;
+		return adminPassword;
 	}
 
-	public void setPW(String pW) {
-		PW = pW;
+	public void setPW(String adminPassword) {
+		this.adminPassword = adminPassword;
 	}
 
 	public int getAdminNumber() {

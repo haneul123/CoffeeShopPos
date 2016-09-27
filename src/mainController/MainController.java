@@ -1,16 +1,21 @@
 package mainController;
 
+import admin.controller.AdminController;
+import login.controller.LoginController;
 import mainView.MainMenuView;
 
 public class MainController {
 	
 	private static DBcontroller dbController;
-	
+	private static AdminController adminController;
+	private static LoginController loginController;
 	
 	//구조
 	public MainController() {
 		
 		dbController = new DBcontroller();
+		adminController = new AdminController();
+		loginController = new LoginController();
 		
 	}
 
@@ -19,9 +24,14 @@ public class MainController {
 		return dbController;
 	}
 
+	
+	public static AdminController getAdminController() {
+		return adminController;
+	}
 
-	public static void setDbController(DBcontroller dbController) {
-		MainController.dbController = dbController;
+
+	public static LoginController getLoginController() {
+		return loginController;
 	}
 
 

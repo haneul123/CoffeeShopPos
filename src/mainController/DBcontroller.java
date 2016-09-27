@@ -17,8 +17,13 @@ public class DBcontroller {
 		try{
 			
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "123456");
 			
+			// 최원재
+			   conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl","csp_admin","123456");
+			
+			// 김하늘
+			// conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "123456");
+
 		}catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}catch (SQLException e) {	
