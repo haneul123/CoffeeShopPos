@@ -1,6 +1,10 @@
 package admin.controller;
 
 import admin.dao.AdminDao;
+import admin.view.AdminMainMenu;
+import admin.view.AdminSignupView;
+import admin.vo.Admin;
+import mainController.MainController;
 
 public class AdminController {
 
@@ -18,10 +22,42 @@ public class AdminController {
 	
 		
 	// method
-	// 관리자 회원가입하기
-	public void requestSignUp(){
+	// 관리자 회원가입 정보 요청
+	public void requestSignUpInfo(){
+		
+		AdminSignupView adminSignupView = new AdminSignupView();
+		adminSignupView.adminSignupView();
 		
 	}
+	
+	
+	// 관리자 회원가입 요청
+	public void requestSignUp(Admin newAdmin){
+	
+		boolean success = adminDao.signUp(newAdmin);
+		
+		if(success){
+		
+			requestMainMenuView();
+			
+		} else {
+			
+			
+			
+		}
+		
+	}
+	
+	
+	// 관리자 메인메뉴 뷰 요청
+	public void requestMainMenuView(){
+		
+		AdminMainMenu adminMainMenu = new AdminMainMenu();
+		adminMainMenu.adminMainMenu();
+				
+	}
+	
+	
 	
 	
 	// 관리자 목록보기
