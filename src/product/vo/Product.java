@@ -13,6 +13,7 @@ public class Product {
 	}
 	
 	
+	//상품등록
 	public Product(String productName, int productPrice, String productComment) {
 		
 		this.productName = productName;
@@ -21,6 +22,17 @@ public class Product {
 		
 	}
 
+	
+	//상품수정
+	public Product(int productNumber, String productName, int productPrice, String productComment) {
+		
+		this.productNumber = productNumber;
+		this.productName = productName;
+		this.productPrice = productPrice;
+		this.productComment = productComment;
+		
+	}
+	
 
 	public int getProductNumber() {
 		return productNumber;

@@ -41,11 +41,11 @@ public class ProductMainMenuView {
 					
 				} else if (seletedMainMenuNumber == 3) {
 					
-					MainController.getProductController().requestUpdate();
+					MainController.getProductController().requestUpdateView();
 					
 				} else if (seletedMainMenuNumber == 4) {
 					
-					MainController.getProductController().requestDelete();
+					MainController.getProductController().requestDeleteProductNumber();
 					
 				} else if (seletedMainMenuNumber == 5) {
 					
@@ -59,7 +59,7 @@ public class ProductMainMenuView {
 			}
 			
 		}catch(InputMismatchException e) {
-			e.printStackTrace();
+			System.out.println("잘못 입력하셨습니다.");
 			MainController.getAdminController().requestMainMenuView();
 		}
 	}
