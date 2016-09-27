@@ -39,11 +39,6 @@ public class LoginDao {
 
 			if(rs.next()){
 
-				// 아이디와 비번이 일치하지 않으면 false를 리턴
-				if(rs.wasNull()){
-					return admin;
-				}
-
 				loginAdmin = new Admin();
 				loginAdmin.setAdminNumber(rs.getInt(1));
 				loginAdmin.setAuthority(rs.getInt(2));
@@ -51,6 +46,10 @@ public class LoginDao {
 				loginAdmin.setAdminPassword(rs.getString(4));
 				loginAdmin.setAdminName(rs.getString(5));
 
+			} else {
+
+				return loginAdmin;
+				
 			}
 
 		} catch (SQLException e) {

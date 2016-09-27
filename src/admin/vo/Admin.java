@@ -23,6 +23,18 @@ public class Admin {
 		
 	}
 	
+	
+	// 회원가입을 위한 admin 생성
+	public Admin(String adminId, String adminPassword, String adminName, int authority){
+		
+		this.adminId = adminId;
+		this.adminPassword = adminPassword;
+		this.adminName = adminName;
+		this.authority = authority;
+		
+	}
+	
+	
 	// getter and setter	
 	public int getAdminNumber() {
 		return adminNumber;

@@ -1,28 +1,74 @@
 package admin.dao;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import admin.vo.Admin;
+import mainController.MainController;
+import mainView.AlertView;
+
 public class AdminDao {
 	
 	
-	// °ü¸®ÀÚ µî·Ï ¿äÃ»
-	public void signUp(){
+	// ê´€ë¦¬ì íšŒì›ê°€ì… 
+	public boolean signUp(Admin newAdmin){
 
+		boolean success = false;
+		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
+		ResultSet rs = null;
+		
+		try {
+			
+			String sql = "select * from admin_list where admin_id = ?";
+			pstmt = MainController.getDbController().getConnection().prepareStatement(sql);
+			pstmt.setString(1, newAdmin.getAdminId());
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				
+				AlertView alertView = new AlertView();
+				alertView.alert("ì´ë¯¸ ì•„ì´ë””ê°€ ìˆìŠµë‹ˆë‹¤");
+		
+			} else {
+			
+				sql = "insert into admin_list values(admin_number_seq.nextval,?,?,?,?)";
+				pstmt2 = MainController.getDbController().getConnection().prepareStatement(sql);
+				pstmt2.setInt(1, newAdmin.getAuthority());
+				pstmt2.setString(2, newAdmin.getAdminId());
+				pstmt2.setString(3, newAdmin.getAdminPassword());
+				pstmt2.setString(4, newAdmin.getAdminName());
+				pstmt2.executeUpdate();
+				success = true;
+			}
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(pstmt2 != null){try{pstmt2.close();}catch(SQLException e){e.printStackTrace();}}
+			if(rs != null){try{pstmt2.close();}catch(SQLException e){e.printStackTrace();}}
+			if(pstmt != null){try{pstmt2.close();}catch(SQLException e){e.printStackTrace();}}
+		}
+		
+		return success;
 	}
 
 
-	// °ü¸®ÀÚ Á¶È¸ ¿äÃ»
+	// ê´€ë¦¬ì ë¦¬ìŠ¤íŠ¸ ì •ë³´ 
 	public void listView(){
 
 	}
 
 
-	// °ü¸®ÀÚ ¼öÁ¤ ¿äÃ»
+	// ê´€ë¦¬ì ì •ë³´ ìˆ˜ì •
 	public void update(){
 
 
 	}
 
 
-	// °ü¸®ÀÚ »èÁ¦ ¿äÃ»
+	// ê´€ë¦¬ì ì •ë³´ ì‚­ì œ
 	public void delete(){
 
 

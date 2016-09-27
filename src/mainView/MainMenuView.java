@@ -35,7 +35,7 @@ public class MainMenuView {
 			
 		} else if(selectedMenu == 2) {
 			
-			MainController.getAdminController().requestSignUp();
+			MainController.getAdminController().requestSignUpInfo();
 			
 		} else {
 			
