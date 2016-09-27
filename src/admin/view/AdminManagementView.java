@@ -42,7 +42,7 @@ public class AdminManagementView {
 			
 		} else if(selectedMenu == 3) {
 			
-			MainController.getAdminController().requestUpdate();
+			MainController.getAdminController().requestUpdateView();
 			
 		} else if(selectedMenu == 4) {
 			
