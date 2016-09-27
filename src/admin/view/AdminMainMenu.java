@@ -11,7 +11,7 @@ public class AdminMainMenu {
 	private Scanner keyboard;
 
 
-	// contructor
+	// constructor
 	public AdminMainMenu() {
 
 		this.keyboard = new Scanner(System.in);
