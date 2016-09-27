@@ -11,7 +11,7 @@ import product.vo.Product;
 
 public class ProductDao {
 
-	
+
 	//상품리스트
 	public ArrayList<Product> productList() {
 
@@ -98,41 +98,41 @@ public class ProductDao {
 			if(pstmt != null){try {pstmt.close();} catch (SQLException e) {e.printStackTrace();}}
 
 		}
-		
+
 		return success;
-		
+
 	}
 
 
 	//상품조회
 	public Product productSearch(int searchProductNumber){
-		
+
 		Product searchProduct = new Product();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
+
 		try {
-			
+
 			String sql = "select * from product_list where product_Number = ?";
 			pstmt = MainController.getDbController().getConnection().prepareStatement(sql);
 			pstmt.setInt(1, searchProductNumber);
 			rs = pstmt.executeQuery();
-			
+
 			if(rs.next()) {
-				
+
 				searchProduct.setProductNumber(rs.getInt(1));
 				searchProduct.setProductName(rs.getString(2));
 				searchProduct.setProductPrice(rs.getInt(3));
 				searchProduct.setProductComment(rs.getString(4));
-			
+
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally{
-			
+
 			if(rs != null){try{rs.close();} catch (SQLException e){e.printStackTrace();}}
 			if(pstmt != null){try{pstmt.close();} catch (SQLException e){e.printStackTrace();}}
-			
+
 		}
 		return searchProduct;
 
@@ -140,37 +140,86 @@ public class ProductDao {
 
 
 	//상품삭제
-	public void delete(){
+	public boolean deleteProduct(int deleteProductNumber){
+		
+		boolean success = false;
+		PreparedStatement pstmt = null;
+		
+		try {
+			
+			String sql = "delete from product_list where product_number = ?";
+			pstmt = MainController.getDbController().getConnection().prepareStatement(sql);
+			pstmt.setInt(1, deleteProductNumber);
+			pstmt.executeUpdate();
+			success = true;
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			
+			if(pstmt != null){try{pstmt.close();} catch (SQLException e){e.printStackTrace();}}
+	
+		}
+	
+		return success;
 
 	}
 
 
 	//상품수정
-	public boolean productUpdate(int selecteNumber, Product updateProduct) {
-		
+	public boolean productUpdate(Product updateProduct) {
+
 		boolean success = false;
-		PreparedStatement pstmt = null;
+		PreparedStatement pstmt1 = null;
 		PreparedStatement pstmt2 = null;
-		ResultSet rs = null;
-		Product product = new Product();
-		
+		PreparedStatement pstmt3 = null;
+
 		try {
-			
-			String sql = "select * product_list where product_Number = ?";
-			pstmt = MainController.getDbController().getConnection().prepareStatement(sql);
-			pstmt.setInt(1, selecteNumber);
-			rs = pstmt.executeQuery();
-			
-			if(rs.next()) {
-				
-				
+
+			if(updateProduct.getProductName() != null){
+
+				String sql = "update product_list set product_name = ? where product_number = ?";
+				pstmt1 = MainController.getDbController().getConnection().prepareStatement(sql);
+				pstmt1.setString(1, updateProduct.getProductName());
+				pstmt1.setInt(2, updateProduct.getProductNumber());
+				pstmt1.executeUpdate();
+				success = true;
+
 			}
+
+			if(updateProduct.getProductPrice() != 0){
+
+				String sql = "update product_list set product_price = ? where product_number = ?";
+				pstmt2 = MainController.getDbController().getConnection().prepareStatement(sql);
+				pstmt2.setInt(1, updateProduct.getProductPrice());
+				pstmt2.setInt(2, updateProduct.getProductNumber());
+				pstmt2.executeUpdate();
+				success = true;
+
+			}
+
+			if(updateProduct.getProductComment() != null){
+
+				String sql = "update product_list set product_comment = ? where product_number = ?";
+				pstmt3 = MainController.getDbController().getConnection().prepareStatement(sql);
+				pstmt3.setString(1, updateProduct.getProductComment());
+				pstmt3.setInt(2, updateProduct.getProductNumber());
+				pstmt3.executeUpdate();
+				success = true;
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(pstmt3 != null){try {pstmt3.close();} catch (SQLException e) {e.printStackTrace();}}
+			if(pstmt2 != null){try {pstmt2.close();} catch (SQLException e) {e.printStackTrace();}}
+			if(pstmt1 != null){try {pstmt1.close();} catch (SQLException e) {e.printStackTrace();}}
 		}
-		
-		
-		
+
+		return success;
 
 	}
 
-
 }
+
