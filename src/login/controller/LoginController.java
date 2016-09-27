@@ -3,6 +3,7 @@ package login.controller;
 import admin.vo.Admin;
 import login.dao.LoginDao;
 import login.view.LoginView;
+import mainController.MainController;
 import mainView.AlertView;
 
 public class LoginController {
@@ -38,6 +39,7 @@ public class LoginController {
 		
 			alertView.alert("로그인에 성공하였습니다");
 			requestLoginInfoSave(loginAdmin);
+			MainController.getAdminController().requestMainMenuView();
 			
 		} else {
 			
@@ -65,7 +67,4 @@ public class LoginController {
 
 	}
 	
-	
 }
-
-
