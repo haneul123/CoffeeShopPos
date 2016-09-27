@@ -112,6 +112,7 @@ public class AdminController {
 		
 	}
 	
+	
 	// 관리자 수정 요청
 	public void requestUpdate(Admin updatedAdmin){
 		
