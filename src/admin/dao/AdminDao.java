@@ -95,8 +95,14 @@ public class AdminDao {
 
 
 	// 관리자 정보 수정
-	public void update(){
+	public boolean update(Admin updateAdmin){
 
+		boolean success = false;
+		
+		
+		
+		
+		return success;
 
 	}
 
