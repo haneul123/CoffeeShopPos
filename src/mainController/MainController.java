@@ -3,12 +3,14 @@ package mainController;
 import admin.controller.AdminController;
 import login.controller.LoginController;
 import mainView.MainMenuView;
+import product.controller.ProductController;
 
 public class MainController {
 	
 	private static DBcontroller dbController;
 	private static AdminController adminController;
 	private static LoginController loginController;
+	private static ProductController productController;
 	
 	//구조
 	public MainController() {
@@ -16,6 +18,7 @@ public class MainController {
 		dbController = new DBcontroller();
 		adminController = new AdminController();
 		loginController = new LoginController();
+		productController = new ProductController();
 		
 	}
 
@@ -32,6 +35,11 @@ public class MainController {
 
 	public static LoginController getLoginController() {
 		return loginController;
+	}
+
+
+	public static ProductController getProductController() {
+		return productController;
 	}
 
 
