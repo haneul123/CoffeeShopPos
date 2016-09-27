@@ -59,7 +59,7 @@ public class AdminMainMenu {
 
 		} catch(InputMismatchException e) {
 			e.printStackTrace();
-			MainController.getAdminController().requestMainMenu():
+			MainController.getAdminController().requestMainMenu();
 		}
 
 	}

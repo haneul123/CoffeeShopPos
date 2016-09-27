@@ -42,7 +42,8 @@ public class AdminController {
 			
 		} else {
 			
-			
+			System.out.println("회원가입에 실패하였습니다");
+			MainController.mainMenuView();
 			
 		}
 		
