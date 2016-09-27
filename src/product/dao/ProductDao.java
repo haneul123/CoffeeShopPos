@@ -118,7 +118,7 @@ public class ProductDao {
 			
 			String sql = "select * from product_list where product_Number = ?";
 			pstmt = MainController.getDbController().getConnection().prepareStatement(sql);
-			pstmt.setInt(1, searchProduct.getProductNumber());
+			pstmt.setInt(1, searchProductNumber);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
