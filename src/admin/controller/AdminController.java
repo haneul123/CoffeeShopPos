@@ -7,8 +7,10 @@ import admin.view.AdminListView;
 import admin.view.AdminMainMenu;
 import admin.view.AdminManagementView;
 import admin.view.AdminSignupView;
+import admin.view.AdminUpdateView;
 import admin.vo.Admin;
 import mainController.MainController;
+import mainView.AlertView;
 
 public class AdminController {
 
@@ -82,14 +84,32 @@ public class AdminController {
 	}
 
 
-	// 관리자 수정하기
-	public void requestUpdate(){
+	// 관리자 수정을 위한 정보요청 뷰 출력
+	public void requestUpdateView(){
 
-
+		requestListView();
+		AdminUpdateView adminUpdateView = new AdminUpdateView();
+		adminUpdateView.adminUpdateView();
 		
 	}
 
 
+	// 관리자 수정 요청
+	public void requestUpdate(Admin updateAdmin){
+		
+		boolean success = adminDao.update(updateAdmin);
+		
+		AlertView alertView = new AlertView();
+		
+		if(success){
+			alertView.alert("수정이 정상처리되었습니다");
+		} else {
+			alertView.alert("수정에 실패하였습니다");
+		}
+		
+	}
+	
+	
 	// 관리자 삭제하기
 	public void requestDelete(){
 
