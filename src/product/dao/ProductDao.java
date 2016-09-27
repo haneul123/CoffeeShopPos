@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+
 import mainController.MainController;
 import product.vo.Product;
 
@@ -61,11 +62,9 @@ public class ProductDao {
 
 		boolean success = false;
 
-		Statement stmt = null;
 		PreparedStatement pstmt = null;
 		PreparedStatement pstmt2 = null;
 		ResultSet rs = null;
-		ResultSet rs2 = null;
 
 		try {
 
@@ -95,8 +94,6 @@ public class ProductDao {
 		}finally {
 
 			if(pstmt2 != null){try {pstmt2.close();} catch (SQLException e) {e.printStackTrace();}}
-			if(rs2 != null){try {rs2.close();} catch (SQLException e) {e.printStackTrace();}}
-			if(stmt != null){try {stmt.close();} catch (SQLException e) {e.printStackTrace();}}
 			if(rs != null){try {rs.close();} catch (SQLException e) {e.printStackTrace();}}
 			if(pstmt != null){try {pstmt.close();} catch (SQLException e) {e.printStackTrace();}}
 
@@ -149,7 +146,29 @@ public class ProductDao {
 
 
 	//상품수정
-	public void update(){
+	public boolean productUpdate(int selecteNumber, Product updateProduct) {
+		
+		boolean success = false;
+		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
+		ResultSet rs = null;
+		Product product = new Product();
+		
+		try {
+			
+			String sql = "select * product_list where product_Number = ?";
+			pstmt = MainController.getDbController().getConnection().prepareStatement(sql);
+			pstmt.setInt(1, selecteNumber);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				
+				
+			}
+		}
+		
+		
+		
 
 	}
 
