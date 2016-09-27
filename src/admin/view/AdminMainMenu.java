@@ -41,7 +41,7 @@ public class AdminMainMenu {
 				if(selectedMenu == 1) {
 
 					// 상품관리 메뉴 출력
-					// MainController.getProductController().requestMainMenuView();
+					 MainController.getProductController().requestProductMainMenu();
 					
 				} else if (selectedMenu == 2) {
 

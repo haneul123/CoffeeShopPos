@@ -2,101 +2,64 @@ package product.vo;
 
 public class Product {
 	
-	
-	private int prductNumber;
+	private int productNumber;
 	private String productName;
-	private int price;
-	private int cost;
-	private String irgredient1;
-	private String irgredient2;
-	private String irgredient3;
-	private String irgredient4;
+	private int productPrice;
+	private String productComment;
 	
 	
-	public Product(){
-		
+	public Product() {
 		
 	}
 	
-	public Product(String productName, int price, int cost, String irgredient1,
-					String irgredient2, String irgredient3, String irgredient4){
+	
+	public Product(String productName, int productPrice, String productComment) {
 		
-		
-		this.prductNumber = prductNumber;
 		this.productName = productName;
-		this.price = price;
-		this.cost = cost;
-		this.irgredient1 = irgredient1;
-		this.irgredient2 = irgredient2;
-		this.irgredient3 = irgredient3;
-		this.irgredient4 = irgredient4;	
-			
+		this.productPrice = productPrice;
+		this.productComment = productComment;
+		
 	}
 
-	public int getPrductNumber() {
-		return prductNumber;
+
+	public int getProductNumber() {
+		return productNumber;
 	}
 
-	public void setPrductNumber(int prductNumber) {
-		this.prductNumber = prductNumber;
+
+	public void setProductNumber(int productNumber) {
+		this.productNumber = productNumber;
 	}
+
 
 	public String getProductName() {
 		return productName;
 	}
 
+
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
 
-	public int getPrice() {
-		return price;
+
+	public int getProductPrice() {
+		return productPrice;
 	}
 
-	public void setPrice(int price) {
-		this.price = price;
+
+	public void setProductPrice(int productPrice) {
+		this.productPrice = productPrice;
 	}
 
-	public int getCost() {
-		return cost;
+
+	public String getProductComment() {
+		return productComment;
 	}
 
-	public void setCost(int cost) {
-		this.cost = cost;
-	}
 
-	public String getIrgredient1() {
-		return irgredient1;
+	public void setProductComment(String productComment) {
+		this.productComment = productComment;
 	}
-
-	public void setIrgredient1(String irgredient1) {
-		this.irgredient1 = irgredient1;
-	}
-
-	public String getIrgredient2() {
-		return irgredient2;
-	}
-
-	public void setIrgredient2(String irgredient2) {
-		this.irgredient2 = irgredient2;
-	}
-
-	public String getIrgredient3() {
-		return irgredient3;
-	}
-
-	public void setIrgredient3(String irgredient3) {
-		this.irgredient3 = irgredient3;
-	}
-
-	public String getIrgredient4() {
-		return irgredient4;
-	}
-
-	public void setIrgredient4(String irgredient4) {
-		this.irgredient4 = irgredient4;
-	}
-	
 	
 	
 }

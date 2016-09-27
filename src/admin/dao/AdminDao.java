@@ -124,6 +124,7 @@ public class AdminDao {
 		
 	}
 
+	
 	// 관리자 정보 수정
 	public boolean update(Admin updateAdmin){
 
@@ -186,7 +187,4 @@ public class AdminDao {
 
 	}
 
-
-	
-	
 }
