@@ -1,6 +1,9 @@
 package admin.controller;
 
+import java.util.ArrayList;
+
 import admin.dao.AdminDao;
+import admin.view.AdminListView;
 import admin.view.AdminMainMenu;
 import admin.view.AdminManagementView;
 import admin.view.AdminSignupView;
@@ -72,7 +75,9 @@ public class AdminController {
 	// 관리자 목록보기
 	public void requestListView(){
 
-		
+		ArrayList<Admin> adminList = adminDao.listView();
+		AdminListView adminListView = new AdminListView();
+		adminListView.adminListView(adminList);
 		
 	}
 
