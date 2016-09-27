@@ -2,28 +2,28 @@ package ingredient.dao;
 
 public class IngredientDao {
 
-	// ¿øÀç·á Ãß°¡
+	// ì¬ê³ ê´€ë¦¬_ì›ì¬ë£Œ ë“±ë¡
 	public void addIngredient(){
 		
 		
 	}
 	
 	
-	// ¿øÀç·á Á¶È¸
+	// ì¬ê³ ê´€ë¦¬_ì›ì¬ë£Œ ì¡°íšŒ
 	public void readIngredient(){
 		
 		
 	}
 	
 	
-	// ¿øÀç·á ¼öÁ¤
+	// ì¬ê³ ê´€ë¦¬_ì›ì¬ë£Œ ìˆ˜ì •
 	public void updateIngredient(){
 	
 		
 	}
 	
 	
-	// ¿øÀç·á »èÁ¦
+	// ì¬ê³ ê´€ë¦¬_ì›ì¬ë£Œ ì‚­ì œ
 	public void deleteIngredient(){
 		
 		

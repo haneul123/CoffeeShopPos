@@ -15,28 +15,28 @@ public class IngredientController {
 	}
 	
 	// method
-	// ¿øÀç·á Ãß°¡ ¿äÃ»
+	// ì¬ê³ ë“±ë¡ìš”ì²­
 	public void requestAddIngredient(){
 		
 		
 	}
 	
 	
-	// ¿øÀç·á Á¶È¸ ¿äÃ»
+	// ì¬ê³ ë“±ë¡ ì¡°íšŒ
 	public void requestReadIngredient(){
 		
 		
 	}
 	
 	
-	// ¿øÀç·á ¼öÁ¤ ¿äÃ»
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»
 	public void requestUpdateIngredient(){
 	
 		
 	}
 	
 	
-	// ¿øÀç·á »èÁ¦ ¿äÃ»
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»
 	public void requestDeleteIngredient(){
 		
 		
