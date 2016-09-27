@@ -92,15 +92,88 @@ public class AdminDao {
 		return adminList;
 		
 	}
+	
+	
+	// 입력받은 관리자가 데이터베이스에 있는지 확인
+	public boolean checkAdmin(int selectedAdmin) {
 
+		boolean success = false;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			
+			String sql = "select * from admin_list where admin_number = ?";
+			pstmt = MainController.getDbController().getConnection().prepareStatement(sql);
+			pstmt.setInt(1, selectedAdmin);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				success = true;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(rs != null){try{rs.close();}catch(SQLException e){e.printStackTrace();}}
+			if(pstmt != null){try{pstmt.close();}catch(SQLException e){e.printStackTrace();}}
+		}
+		
+		return success;
+		
+	}
 
 	// 관리자 정보 수정
 	public boolean update(Admin updateAdmin){
 
 		boolean success = false;
+		PreparedStatement pstmt1 = null;
+		PreparedStatement pstmt2 = null;
+		PreparedStatement pstmt3 = null;
 		
-		
-		
+		try {
+			
+			if(updateAdmin.getAdminPassword() != null){
+				
+				String sql = "update admin_list set admin_pw = ? where admin_number = ?";
+				pstmt1 = MainController.getDbController().getConnection().prepareStatement(sql);
+				pstmt1.setString(1, updateAdmin.getAdminPassword());
+				pstmt1.setInt(2, updateAdmin.getAdminNumber());
+				pstmt1.executeUpdate();
+				success = true;
+				
+			}
+			
+			if(updateAdmin.getAdminName() != null){
+				
+				String sql = "update admin_list set admin_name = ? where admin_number = ?";
+				pstmt2 = MainController.getDbController().getConnection().prepareStatement(sql);
+				pstmt2.setString(1, updateAdmin.getAdminName());
+				pstmt2.setInt(2, updateAdmin.getAdminNumber());
+				pstmt2.executeUpdate();
+				success = true;
+				
+			}
+			
+			if(updateAdmin.getAuthority() != 0){
+				
+				String sql = "update admin_list set authorityNumber = ? where admin_number = ?";
+				pstmt3 = MainController.getDbController().getConnection().prepareStatement(sql);
+				pstmt3.setInt(1, updateAdmin.getAuthority());
+				pstmt3.setInt(2, updateAdmin.getAdminNumber());
+				pstmt3.executeUpdate();
+				success = true;
+				
+			}
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(pstmt3 != null){try {pstmt3.close();} catch (SQLException e) {e.printStackTrace();}}
+			if(pstmt2 != null){try {pstmt2.close();} catch (SQLException e) {e.printStackTrace();}}
+			if(pstmt1 != null){try {pstmt1.close();} catch (SQLException e) {e.printStackTrace();}}
+		}
 		
 		return success;
 
@@ -112,5 +185,8 @@ public class AdminDao {
 
 
 	}
+
+
+	
 	
 }
