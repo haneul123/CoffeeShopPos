@@ -1,8 +1,8 @@
-package order.vo;
+package productOrder.vo;
 
 import java.util.Date;
 
-public class Order {
+public class ProductOrder {
 
 	// variable
 	private int orderNumber;
@@ -16,7 +16,7 @@ public class Order {
 	
 	
 	// constructor
-	public Order() {
+	public ProductOrder() {
 	
 		
 		
