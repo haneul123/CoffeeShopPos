@@ -59,9 +59,10 @@ public class ProductOrderController {
 	public void requestOrderProductInsert(ProductOrder orderProduct){
 		
 		productOrderDao.orderProductInsert(orderProduct);
-		System.out.println("성공");
 		
 	}
+	
+	
 	// 주문 리스트 요청
 		public void requestOrderListView(){
 
