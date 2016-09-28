@@ -28,7 +28,7 @@ public class ProductMainMenuView {
 				
 				MainController.getProductController().requestProductlist();
 				
-				System.out.println("[1]상품등록  [2]상품조회  [3]상품수정  [4]상품삭제  [5]이전");
+				System.out.println("[1]상품등록  [2]상품조회  [3]상품수정  [4]상품삭제  [5]상품주문  [6]이전");
 				int seletedMainMenuNumber = keyboard.nextInt();
 				
 				if (seletedMainMenuNumber == 1) {
@@ -49,11 +49,16 @@ public class ProductMainMenuView {
 					
 				} else if (seletedMainMenuNumber == 5) {
 					
+				
+					
+				}else if (seletedMainMenuNumber == 6) {
+					
 					MainController.getAdminController().requestMainMenuView();
 									
 				} else {
 					
 					System.out.println("잘못 입력하셨습니다.");
+					MainController.getProductController().requestProductMainMenu();
 					
 				}
 			}
