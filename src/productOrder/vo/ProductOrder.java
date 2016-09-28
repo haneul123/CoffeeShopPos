@@ -6,68 +6,122 @@ public class ProductOrder {
 
 	// variable
 	private int productOrderNumber;
-	private String orderProduct;
+	private int productNumber;
+	private String productName;
+	private int productPrice;
+	private int userNumber;
+	private int orderCount;
+	private int orderSum;
 	private Date orderDate;
-	private String orderCount;
-	private String payment;
+	private int payment;
 	
 	
 	// constructor
 	public ProductOrder() {
-	
 		
 		
 	}
 	
 	
-	// getter and setter
-	public int getOrderNumber() {
-		return orderNumber;
+	public ProductOrder(int productNumber, int orderCount) {
+		
+		this.productNumber = productNumber;
+		this.orderCount = orderCount;
+		
 	}
-	public void setOrderNumber(int orderNumber) {
-		this.orderNumber = orderNumber;
+
+
+	public int getProductOrderNumber() {
+		return productOrderNumber;
 	}
-	public String getOrderProduct() {
-		return orderProduct;
+
+
+	public void setProductOrderNumber(int productOrderNumber) {
+		this.productOrderNumber = productOrderNumber;
 	}
-	public void setOrderProduct(String orderProduct) {
-		this.orderProduct = orderProduct;
+
+
+	public int getProductNumber() {
+		return productNumber;
 	}
-	public int getOrderQuentity() {
-		return orderQuentity;
+
+
+	public void setProductNumber(int productNumber) {
+		this.productNumber = productNumber;
 	}
-	public void setOrderQuentity(int orderQuentity) {
-		this.orderQuentity = orderQuentity;
+
+
+	public String getProductName() {
+		return productName;
 	}
-	public int getSales() {
-		return sales;
+
+
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
-	public void setSales(int sales) {
-		this.sales = sales;
+
+
+	public int getProductPrice() {
+		return productPrice;
 	}
-	public int getCost() {
-		return cost;
+
+
+	public void setProductPrice(int productPrice) {
+		this.productPrice = productPrice;
 	}
-	public void setCost(int cost) {
-		this.cost = cost;
+
+
+	public int getUserNumber() {
+		return userNumber;
 	}
-	public Date getSalesDate() {
-		return salesDate;
+
+
+	public void setUserNumber(int userNumber) {
+		this.userNumber = userNumber;
 	}
-	public void setSalesDate(Date salesDate) {
-		this.salesDate = salesDate;
+
+
+	public int getOrderCount() {
+		return orderCount;
 	}
-	public String getOrderCustomer() {
-		return orderCustomer;
+
+
+	public void setOrderCount(int orderCount) {
+		this.orderCount = orderCount;
 	}
-	public void setOrderCustomer(String orderCustomer) {
-		this.orderCustomer = orderCustomer;
+
+
+	public int getOrderSum() {
+		return orderSum;
 	}
-	public String getPayment() {
+
+
+	public void setOrderSum(int orderSum) {
+		this.orderSum = orderSum;
+	}
+
+
+	public Date getOrderDate() {
+		return orderDate;
+	}
+
+
+	public void setOrderDate(Date orderDate) {
+		this.orderDate = orderDate;
+	}
+
+
+	public int getPayment() {
 		return payment;
 	}
-	public void setPayment(String payment) {
+
+
+	public void setPayment(int payment) {
 		this.payment = payment;
 	}
+	
+	
+	
+
 		
 }
