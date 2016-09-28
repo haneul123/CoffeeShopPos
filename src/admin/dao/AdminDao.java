@@ -182,9 +182,23 @@ public class AdminDao {
 
 
 	// 관리자 정보 삭제
-	public void delete(){
+	public void delete(int selectedAdmin){
 
-
+		PreparedStatement pstmt = null;
+		
+		try {
+			
+			String sql = "delete from admin_list where admin_number = ?";	
+			pstmt = MainController.getDbController().getConnection().prepareStatement(sql);
+			pstmt.setInt(1, selectedAdmin);
+			pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(pstmt != null){try{pstmt.close();}catch(SQLException e){e.printStackTrace();}}
+		}
+		
 	}
 
 }
