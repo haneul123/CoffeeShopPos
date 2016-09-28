@@ -31,55 +31,54 @@ public class AdminMainMenu {
 			System.out.println(mainMenu[i]);
 		}
 
-		System.out.println("원하시는 메뉴를 선택하십시오");
-		int selectedMenu = keyboard.nextInt();
-
-		try{
-
-			while(true){
-
+		while(true){
+			
+			try{
+				
+				System.out.println("원하시는 메뉴를 선택하십시오");
+				int selectedMenu = keyboard.nextInt();
+				
 				if(selectedMenu == 1) {
 
 					// 상품관리 메뉴 출력
-					 MainController.getProductController().requestProductMainMenu();
-					
+					MainController.getProductController().requestProductMainMenu();
+
 				} else if (selectedMenu == 2) {
 
 					// 재고관리 메뉴 출력
-					 MainController.getIngredientController().requestIngredient();
-					
+					MainController.getIngredientController().requestIngredient();
+
 				} else if (selectedMenu == 3) {
 
 					// 메출관리 메뉴 출력
 					// MainController ???
-					
+
 				} else if (selectedMenu == 4) {
 
 					// 회원관리 메뉴 출력
 					// MainController.getUserController().requestMainMenuView();
-					
+
 				} else if (selectedMenu == 5) {
 
 					// 직원관리 메뉴 출력
 					MainController.getAdminController().requestAdminManagementView();
-					
+
 				} else if (selectedMenu == 6){
-					
+
 					MainController.getLoginController().requestLogout();
-					
+
 				} else {
 
-					System.out.println("잘못 입력하셨습니다");
+					System.out.println("없는 메뉴입니다. 다시 입력해주세요");
 
 				}
 
-			}	
-
-		} catch(InputMismatchException e) {
-			e.printStackTrace();
-			MainController.getAdminController().requestMainMenuView();
+			} catch(InputMismatchException e) {
+				System.out.println("잘못 입력하셨습니다. 메뉴 번호를 입력해주세요");
+				MainController.getAdminController().requestMainMenuView();
+			}
+			
 		}
-
 	}
 
 }
