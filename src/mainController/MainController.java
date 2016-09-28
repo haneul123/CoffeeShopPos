@@ -1,6 +1,7 @@
 package mainController;
 
 import admin.controller.AdminController;
+import ingredient.controller.IngredientController;
 import login.controller.LoginController;
 import mainView.MainMenuView;
 
@@ -9,6 +10,7 @@ public class MainController {
 	private static DBcontroller dbController;
 	private static AdminController adminController;
 	private static LoginController loginController;
+	private static IngredientController ingredientController;
 	
 	//구조
 	public MainController() {
@@ -16,6 +18,7 @@ public class MainController {
 		dbController = new DBcontroller();
 		adminController = new AdminController();
 		loginController = new LoginController();
+		ingredientController = new IngredientController();
 		
 	}
 
@@ -32,6 +35,16 @@ public class MainController {
 
 	public static LoginController getLoginController() {
 		return loginController;
+	}
+
+	
+	public static IngredientController getIngredientController() {
+		return ingredientController;
+	}
+	
+
+	public static void setIngredientController(IngredientController ingredientController) {
+		MainController.ingredientController = ingredientController;
 	}
 
 

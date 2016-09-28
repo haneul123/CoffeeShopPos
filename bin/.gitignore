@@ -1,12 +1,4 @@
-
-/admin/
 /mainController/
-<<<<<<< HEAD
-<<<<<<< HEAD
+/main/
 /ingredient/
-=======
->>>>>>> 709832c07728cd77babb8b01195c858744fb31ad
->>>>>>> choiwj1012/master
-=======
-/login/
->>>>>>> choiwj1012/master
+/admin/

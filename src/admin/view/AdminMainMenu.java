@@ -46,7 +46,7 @@ public class AdminMainMenu {
 				} else if (selectedMenu == 2) {
 
 					// 재고관리 메뉴 출력
-					// MainController.getIngredientController().requestMainMenuView();
+					 MainController.getIngredientController().requestIngredient();
 					
 				} else if (selectedMenu == 3) {
 

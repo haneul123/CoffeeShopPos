@@ -1,9 +1,16 @@
 package ingredient.dao;
 
+import ingredient.vo.Ingredient;
+
 public class IngredientDao {
 
 	// 재고관리_원재료 등록
-	public void addIngredient(){
+	public boolean addIngredient(Ingredient insertIngredients){
+		
+		boolean success = false;
+		
+		
+		return success;
 		
 		
 	}
