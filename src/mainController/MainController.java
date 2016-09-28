@@ -11,11 +11,8 @@ public class MainController {
 	private static DBcontroller dbController;
 	private static AdminController adminController;
 	private static LoginController loginController;
-<<<<<<< HEAD
 	private static ProductController productController;
-=======
 	private static IngredientController ingredientController;
->>>>>>> refs/remotes/origin/pr/8
 	
 	//구조
 	public MainController() {
@@ -23,11 +20,8 @@ public class MainController {
 		dbController = new DBcontroller();
 		adminController = new AdminController();
 		loginController = new LoginController();
-<<<<<<< HEAD
 		productController = new ProductController();
-=======
 		ingredientController = new IngredientController();
->>>>>>> refs/remotes/origin/pr/8
 		
 	}
 
