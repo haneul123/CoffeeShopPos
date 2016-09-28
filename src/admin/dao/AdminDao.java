@@ -201,4 +201,34 @@ public class AdminDao {
 		
 	}
 
+
+	// 급여 데이터 입력
+	public boolean salary(int adminNumber, int salary) {
+		
+		boolean success = false;
+		PreparedStatement pstmt = null;
+		
+		try {
+			
+			String sql = "insert into salary values(salary_number_seq.nextval, ?, ?, sysdate)";
+			pstmt = MainController.getDbController().getConnection().prepareStatement(sql);
+			pstmt.setInt(1, adminNumber);
+			pstmt.setInt(2, salary);
+			pstmt.executeUpdate();
+			success = true;
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			
+		} finally {
+			
+			if(pstmt != null){try{pstmt.close();}catch(SQLException e){e.printStackTrace();}}
+			
+		}
+	
+		return success;
+		
+	}
+
 }
