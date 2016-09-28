@@ -9,6 +9,7 @@ import admin.view.AdminMainMenu;
 import admin.view.AdminManagementView;
 import admin.view.AdminSignupView;
 import admin.view.AdminUpdateView;
+import admin.view.StaffMainMenu;
 import admin.vo.Admin;
 import mainController.MainController;
 import mainView.AlertView;
@@ -65,7 +66,16 @@ public class AdminController {
 
 	}
 
-
+	
+	// 직원 메인메뉴 뷰 요청
+	public void requestMainMenuViewStaff(){
+		
+		StaffMainMenu staffMainMenu = new StaffMainMenu();
+		staffMainMenu.staffMainMenu();
+		
+	}
+	
+	
 	// 직원관리 메뉴 뷰 출력요청
 	public void requestAdminManagementView() {
 
