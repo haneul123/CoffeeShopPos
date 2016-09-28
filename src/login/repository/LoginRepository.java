@@ -14,7 +14,7 @@ public class LoginRepository {
 	}
 	
 	
-	// getter and setter
+	// getter and setter	
 	public static String getLoginAdminId() {
 		return loginAdminId;
 	}

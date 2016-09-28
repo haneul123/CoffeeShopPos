@@ -37,9 +37,23 @@ public class LoginController {
 		
 		if(loginAdmin != null){
 		
-			alertView.alert("로그인에 성공하였습니다");
-			requestLoginInfoSave(loginAdmin);
-			MainController.getAdminController().requestMainMenuView();
+			// 관리자 권한인 경우
+			if(loginAdmin.getAuthority() == 1){
+				
+				alertView.alert("안녕하세요 " + loginAdmin.getAdminName() + "님");
+				System.out.println(loginAdmin.getAdminName() + "님의 출근 시간이 기록되었습니다");
+				requestLoginInfoSave(loginAdmin);
+				MainController.getAdminController().requestMainMenuView();
+				
+			// 직원 권한인 경우
+			} else if(loginAdmin.getAuthority() == 2){
+				
+				alertView.alert("안녕하세요 " + loginAdmin.getAdminName() + "님");
+				System.out.println(loginAdmin.getAdminName() + "님의 출근 시간이 기록되었습니다");
+				requestLoginInfoSave(loginAdmin);
+				MainController.getAdminController().requestMainMenuViewStaff();
+				
+			}
 			
 		} else {
 						
