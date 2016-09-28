@@ -13,11 +13,9 @@ public class MainController {
 	private static AdminController adminController;
 	private static LoginController loginController;
 	private static ProductController productController;
-<<<<<<< HEAD
 	private static ProductOrderController productOrderController; 
-=======
 	private static IngredientController ingredientController;
->>>>>>> refs/remotes/choiwj1012/master
+
 	
 	//구조
 	public MainController() {
@@ -26,11 +24,8 @@ public class MainController {
 		adminController = new AdminController();
 		loginController = new LoginController();
 		productController = new ProductController();
-<<<<<<< HEAD
 		productOrderController = new ProductOrderController();
-=======
 		ingredientController = new IngredientController();
->>>>>>> refs/remotes/choiwj1012/master
 		
 	}
 
