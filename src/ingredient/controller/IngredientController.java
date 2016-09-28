@@ -1,45 +1,69 @@
 package ingredient.controller;
 
 import ingredient.dao.IngredientDao;
+import ingredient.view.AddIngredientView;
+import ingredient.vo.Ingredient;
+import mainController.MainController;
+import mainView.AlertView;
 
 public class IngredientController {
 
 	// variable
 	private IngredientDao ingredientDao; 
-	
+
 	// constructor
 	public IngredientController() {
-	
+
 		this.ingredientDao = new IngredientDao();
-		
+
 	}
-	
+
+
 	// method
-	// ¿øÀç·á Ãß°¡ ¿äÃ»
-	public void requestAddIngredient(){
+	// ì¬ê³ ê´€ë¦¬
+	public void requestIngredient() {
 		
-		
+
 	}
-	
-	
-	// ¿øÀç·á Á¶È¸ ¿äÃ»
-	public void requestReadIngredient(){
-		
-		
+
+
+
+	// ì›ì¬ë£Œ ë“±ë¡
+	public void requestAddIngredient() {
+
+		AddIngredientView adv = new AddIngredientView();
+		Ingredient insertIngredients = adv.insertIngredientView();
+		boolean success = ingredientDao.addIngredient(insertIngredients);
+
+		if(success) {
+			new AlertView().alert("ì›ì¬ë£Œ ë“±ë¡ì„ ì„±ê³µí•˜ì˜€ìŠµë‹ˆë‹¤.");
+		} else {
+			new AlertView().alert("ì›ì¬ë£Œ ë“±ë¡ì— ì‹¤ì±„ í•˜ì˜€ìŠµë‹ˆë‹¤.");
+		}
+
+		MainController.mainMenuView();
+
 	}
-	
-	
-	// ¿øÀç·á ¼öÁ¤ ¿äÃ»
+
+
+	// ì›ì¬ë£Œ ì¡°íšŒ
+	public void requestReadIngredient() {
+
+
+	}
+
+
+	// ì›ì¬ë£Œ ì—…ë°ì´íŠ¸
 	public void requestUpdateIngredient(){
-	
-		
+
+
 	}
-	
-	
-	// ¿øÀç·á »èÁ¦ ¿äÃ»
-	public void requestDeleteIngredient(){
-		
-		
+
+
+	// ì›ì¬ë£Œ ì‚­ì œ
+	public void requestDeleteIngredient() {
+
+
 	}
-	
+
 }

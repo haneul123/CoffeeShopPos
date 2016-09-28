@@ -136,19 +136,19 @@ public class ProductController {
 
 	}
 
-	
+
 	//상품 정보 입력 뷰 호출
 	public void requestUpdateProductInfo(int selectedProductNumber) {
-		
+
 		UpdateProductView updateProductView = new UpdateProductView();
 		updateProductView.updateProductInfo(selectedProductNumber);
-		
+
 	}
 
-	
+
 	//상품수정
 	public void requestUpdate(Product updateProduct){
-		
+
 		boolean success = productDao.productUpdate(updateProduct);
 
 		AlertView alertView = new AlertView();
@@ -162,12 +162,12 @@ public class ProductController {
 	}
 
 
-//상품관리 메뉴
-public void requestProductMainMenu() {
+	//상품관리 메뉴
+	public void requestProductMainMenu() {
 
-	ProductMainMenuView productMainMenuView = new ProductMainMenuView();
-	productMainMenuView.productMainMenuView();
+		ProductMainMenuView productMainMenuView = new ProductMainMenuView();
+		productMainMenuView.productMainMenuView();
 
-}
+	}
 
 }
