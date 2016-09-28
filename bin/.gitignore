@@ -12,8 +12,14 @@
 /taxManagement/
 /user/
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /mainController/
 /productOrder/
 /admin/
 >>>>>>> refs/remotes/origin/haneul123/prduct/order
+=======
+/admin/
+/mainController/
+/login/
+>>>>>>> refs/remotes/choiwj1012/master

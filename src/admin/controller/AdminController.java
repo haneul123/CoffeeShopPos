@@ -3,6 +3,7 @@ package admin.controller;
 import java.util.ArrayList;
 
 import admin.dao.AdminDao;
+import admin.view.AdminDeleteView;
 import admin.view.AdminListView;
 import admin.view.AdminMainMenu;
 import admin.view.AdminManagementView;
@@ -94,7 +95,7 @@ public class AdminController {
 	}
 
 	
-	// 입력받은 관리자가 있는지 없는지 체크
+	// 입력받은 관리자가 있는지 없는지 체크 (수정시)
 	public void requestCheckAdmin(int selectedAdmin) {
 		
 		boolean success = adminDao.checkAdmin(selectedAdmin);
@@ -108,6 +109,25 @@ public class AdminController {
 		
 			AlertView alertView = new AlertView();
 			alertView.alert("없는 관리자 입니다.");
+		}
+		
+	}
+	
+	
+	// 입력받은 관리자가 있는지 없는지 체크 (삭제시)
+	public void requestCheckAdmin(int selectedAdmin, int delete){
+		
+		boolean success = adminDao.checkAdmin(selectedAdmin);
+		
+		if(success){
+			
+			adminDao.delete(selectedAdmin);
+			
+		} else {
+			
+			AlertView alertView = new AlertView();
+			alertView.alert("없는 관리자 입니다.");
+			
 		}
 		
 	}
@@ -132,7 +152,9 @@ public class AdminController {
 	// 관리자 삭제하기
 	public void requestDelete(){
 
-		
+		requestListView();
+		AdminDeleteView adminDeleteView = new AdminDeleteView();
+		adminDeleteView.adminNumberView();
 
 	}
 
