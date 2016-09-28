@@ -2,6 +2,7 @@ package ingredient.controller;
 
 import ingredient.dao.IngredientDao;
 import ingredient.view.AddIngredientView;
+import ingredient.view.IngredientMainMenu;
 import ingredient.vo.Ingredient;
 import mainController.MainController;
 import mainView.AlertView;
@@ -23,7 +24,9 @@ public class IngredientController {
 	// 재고관리
 	public void requestIngredient() {
 		
-
+		IngredientMainMenu ingredientMenu = new IngredientMainMenu();
+		ingredientMenu.ingredientMenu();
+		
 	}
 
 

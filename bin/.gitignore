@@ -1,15 +1,13 @@
-<<<<<<< HEAD
+/CoffeeShopPos.erm
+/admin/
+/financialManagement/
+/ingredient/
+/login/
+/main/
+/mainController/
 /mainView/
 /order/
 /product/
 /salesManagement/
 /taxManagement/
 /user/
-/admin/
-=======
->>>>>>> refs/remotes/origin/pr/8
-/mainController/
-/main/
-/ingredient/
-/admin/
-/login/
