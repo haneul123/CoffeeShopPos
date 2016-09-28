@@ -27,7 +27,7 @@ public class AdminManagementView {
 
 			System.out.println("직원관리 메뉴입니다");
 
-			String[] mgmMenu = {"1. 직원 계정 등록", "2. 직원 리스트 보기", "3. 직원 계정 수정", "4. 직원 계정 삭제", "5. 나가기"};
+			String[] mgmMenu = {"1. 직원 계정 등록", "2. 직원 리스트 보기", "3. 직원 계정 수정", "4. 직원 계정 삭제", "5. 급여 관리", "6. 나가기"};
 
 			for(int i=0; i<mgmMenu.length; i++){
 				System.out.println(mgmMenu[i]);
@@ -61,6 +61,10 @@ public class AdminManagementView {
 				MainController.getAdminController().requestDelete();
 
 			} else if(selectedMenu == 5){
+				
+				MainController.getAdminController().requestManagementSalary();
+				
+			} else if(selectedMenu == 6){
 
 				break;
 
