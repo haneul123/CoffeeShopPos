@@ -1,7 +1,13 @@
+/CoffeeShopPos.erm
+/admin/
+/financialManagement/
+/ingredient/
+/login/
+/main/
+/mainController/
 /mainView/
 /order/
 /product/
 /salesManagement/
 /taxManagement/
 /user/
-/mainController/
