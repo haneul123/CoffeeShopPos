@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import admin.vo.Admin;
 import login.repository.LoginRepository;
 import mainController.MainController;
+import mainView.AlertView;
 
 public class LoginDao {
 
@@ -79,7 +80,7 @@ public class LoginDao {
 
 		// 로그인 저장소 초기화
 		new LoginRepository();
-		
+			
 	}
 
 }

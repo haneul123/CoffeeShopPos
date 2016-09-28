@@ -25,7 +25,7 @@ public class MainMenuView {
 		System.out.println("	접근 가능한 계정 정보를 입력하시기 바랍니다.");
 		System.out.println("------------------------------------------");
 		System.out.println("	 [안내]:메뉴를 선택해 주세요.");
-		System.out.println("	[1]관리자 로그인   [2]관리자 등록");
+		System.out.println("[1] 관리자 로그인   [2] 관리자 등록  [3] 프로그램 종료");
 		
 		int selectedMenu = keyboard.nextInt();
 		
@@ -36,6 +36,10 @@ public class MainMenuView {
 		} else if(selectedMenu == 2) {
 			
 			MainController.getAdminController().requestSignUpInfo();
+			
+		} else if(selectedMenu == 3){
+			
+			MainController.getDbController().requestExitProgram();
 			
 		} else {
 			

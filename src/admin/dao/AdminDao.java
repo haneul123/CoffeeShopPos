@@ -49,8 +49,8 @@ public class AdminDao {
 			e.printStackTrace();
 		} finally {
 			if(pstmt2 != null){try{pstmt2.close();}catch(SQLException e){e.printStackTrace();}}
-			if(rs != null){try{pstmt2.close();}catch(SQLException e){e.printStackTrace();}}
-			if(pstmt != null){try{pstmt2.close();}catch(SQLException e){e.printStackTrace();}}
+			if(rs != null){try{rs.close();}catch(SQLException e){e.printStackTrace();}}
+			if(pstmt != null){try{pstmt.close();}catch(SQLException e){e.printStackTrace();}}
 		}
 		
 		return success;
@@ -182,9 +182,23 @@ public class AdminDao {
 
 
 	// 관리자 정보 삭제
-	public void delete(){
+	public void delete(int selectedAdmin){
 
-
+		PreparedStatement pstmt = null;
+		
+		try {
+			
+			String sql = "delete from admin_list where admin_number = ?";	
+			pstmt = MainController.getDbController().getConnection().prepareStatement(sql);
+			pstmt.setInt(1, selectedAdmin);
+			pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(pstmt != null){try{pstmt.close();}catch(SQLException e){e.printStackTrace();}}
+		}
+		
 	}
 
 }
