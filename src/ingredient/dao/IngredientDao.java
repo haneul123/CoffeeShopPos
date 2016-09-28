@@ -1,29 +1,36 @@
 package ingredient.dao;
 
+import ingredient.vo.Ingredient;
+
 public class IngredientDao {
 
-	// ¿øÀç·á Ãß°¡
-	public void addIngredient(){
+	// ì¬ê³ ê´€ë¦¬_ì›ì¬ë£Œ ë“±ë¡
+	public boolean addIngredient(Ingredient insertIngredients){
+		
+		boolean success = false;
+		
+		
+		return success;
 		
 		
 	}
 	
 	
-	// ¿øÀç·á Á¶È¸
+	// ì¬ê³ ê´€ë¦¬_ì›ì¬ë£Œ ì¡°íšŒ
 	public void readIngredient(){
 		
 		
 	}
 	
 	
-	// ¿øÀç·á ¼öÁ¤
+	// ì¬ê³ ê´€ë¦¬_ì›ì¬ë£Œ ìˆ˜ì •
 	public void updateIngredient(){
 	
 		
 	}
 	
 	
-	// ¿øÀç·á »èÁ¦
+	// ì¬ê³ ê´€ë¦¬_ì›ì¬ë£Œ ì‚­ì œ
 	public void deleteIngredient(){
 		
 		
