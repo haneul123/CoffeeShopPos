@@ -23,13 +23,13 @@ public class AdminDeleteView {
 	// 수정할 관리자 번호 입력 받기
 	public void adminNumberView(){
 
+		int selectedAdmin = 0;
 		System.out.println("관리자 삭제 페이지 입니다");
 		System.out.println("삭제를 원하시는 관리자 번호를 선택해 주십시오");
 		
 		try{
 			
-			int selectedAdmin = keyboard.nextInt();
-			MainController.getAdminController().requestCheckAdmin(selectedAdmin, 1);
+			selectedAdmin = keyboard.nextInt();
 			
 		} catch(InputMismatchException e){
 			
@@ -37,8 +37,8 @@ public class AdminDeleteView {
 			
 		}
 		
+		MainController.getAdminController().requestCheckAdmin(selectedAdmin, 1);
 		
-
 	}
 	
 }
