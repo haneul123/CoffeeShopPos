@@ -5,13 +5,10 @@ import java.util.Date;
 public class ProductOrder {
 
 	// variable
-	private int orderNumber;
+	private int productOrderNumber;
 	private String orderProduct;
-	private int orderQuentity;
-	private int sales;
-	private int cost;
-	private Date salesDate;
-	private String orderCustomer;
+	private Date orderDate;
+	private String orderCount;
 	private String payment;
 	
 	
