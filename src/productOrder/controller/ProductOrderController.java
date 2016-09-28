@@ -35,25 +35,33 @@ public class ProductOrderController {
 	//선택 상품 주문에 저장
 	public void requestOrderProduct(ProductOrder orderProduct) {
 		
-		//int orderProcessNumber = productOrderDao.orderproduct(orderProduct);
-		boolean success = productOrderDao.orderProductInsert();
+		int orderProcessNumber = productOrderDao.orderproduct(orderProduct);
 		
 		AlertView alertView = new AlertView();
 
-		if(success) {
+		if(orderProcessNumber==1) {
 
-			//alertView.alert("이미 주문하신 상품입니다. 수량  조정합니다.");
+			alertView.alert("이미 주문하신 상품입니다. 수량  조정합니다.");
 			alertView.alert("주문 완료");
 
 		} else   {
 
 			alertView.alert("주문 완료");
 
-		} 
+		}
+		
+		requestOrderListView();
 	
 	}
 
-	
+
+	//상품주문 리스트에 저장
+	public void requestOrderProductInsert(ProductOrder orderProduct){
+		
+		productOrderDao.orderProductInsert(orderProduct);
+		System.out.println("성공");
+		
+	}
 	// 주문 리스트 요청
 		public void requestOrderListView(){
 
