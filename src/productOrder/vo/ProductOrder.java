@@ -1,6 +1,6 @@
 package productOrder.vo;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class ProductOrder {
 
@@ -14,6 +14,7 @@ public class ProductOrder {
 	private int orderSum;
 	private Date orderDate;
 	private int payment;
+	private String userPhoneNumber;
 	
 	
 	// constructor
@@ -23,11 +24,22 @@ public class ProductOrder {
 	}
 	
 	
-	public ProductOrder(int productNumber, int orderCount) {
+	public ProductOrder(int productNumber, int orderCount, String userPhoneNumber) {
 		
 		this.productNumber = productNumber;
 		this.orderCount = orderCount;
+		this.userPhoneNumber = userPhoneNumber;
 		
+	}
+
+
+	public String getUserPhoneNumber() {
+		return userPhoneNumber;
+	}
+
+
+	public void setUserPhoneNumber(String userPhoneNumber) {
+		this.userPhoneNumber = userPhoneNumber;
 	}
 
 
