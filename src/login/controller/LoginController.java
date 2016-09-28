@@ -42,9 +42,9 @@ public class LoginController {
 			MainController.getAdminController().requestMainMenuView();
 			
 		} else {
-			
-			
-			alertView.alert("로그인에 실패하였습니다");
+						
+			alertView.alert("로그인에 실패하였습니다. 계정을 확인해 주시기 바랍니다.");
+			MainController.mainMenuView();
 			
 		}
 		
@@ -64,6 +64,9 @@ public class LoginController {
 	public void requestLogout(){
 		
 		loginDao.Logout();
+		AlertView alertView = new AlertView();
+		alertView.alert("로그아웃 되었습니다");
+		MainController.mainMenuView();
 
 	}
 	

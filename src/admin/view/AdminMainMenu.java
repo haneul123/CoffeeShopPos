@@ -24,7 +24,7 @@ public class AdminMainMenu {
 
 		System.out.println("관리자 메인 메뉴 입니다");
 
-		String[] mainMenu = {"1. 상품관리, 2. 재고관리, 3. 매출관리, 4. 회원관리, 5. 직원관리, 6. 나가기"};
+		String[] mainMenu = {"1. 상품관리, 2. 재고관리, 3. 매출관리, 4. 회원관리, 5. 직원관리, 6. 로그아웃"};
 
 		// 메인메뉴 출력
 		for(int i=0; i<mainMenu.length; i++){
@@ -65,7 +65,7 @@ public class AdminMainMenu {
 					
 				} else if (selectedMenu == 6){
 					
-					break;
+					MainController.getLoginController().requestLogout();
 					
 				} else {
 

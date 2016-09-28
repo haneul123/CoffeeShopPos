@@ -49,8 +49,8 @@ public class AdminDao {
 			e.printStackTrace();
 		} finally {
 			if(pstmt2 != null){try{pstmt2.close();}catch(SQLException e){e.printStackTrace();}}
-			if(rs != null){try{pstmt2.close();}catch(SQLException e){e.printStackTrace();}}
-			if(pstmt != null){try{pstmt2.close();}catch(SQLException e){e.printStackTrace();}}
+			if(rs != null){try{rs.close();}catch(SQLException e){e.printStackTrace();}}
+			if(pstmt != null){try{pstmt.close();}catch(SQLException e){e.printStackTrace();}}
 		}
 		
 		return success;
