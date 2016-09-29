@@ -96,9 +96,9 @@ public class LoginDao {
 
 	
 	// 로그아웃 처리
-	public void Logout(){
+	public Admin Logout(){
 
-		Statement stmt = null;
+		Admin logoutAdmin = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		int adminNumber = 0;
@@ -110,18 +110,30 @@ public class LoginDao {
 			pstmt = MainController.getDbController().getConnection().prepareStatement(sql);
 			pstmt.setInt(1, adminNumber);
 			pstmt.executeUpdate();
+			pstmt.close();
+			
+			sql = "select admin_name from admin_list where admin_id = ?";
+			pstmt = MainController.getDbController().getConnection().prepareStatement(sql);
+			pstmt.setString(1, LoginRepository.getLoginAdminId());
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				logoutAdmin = new Admin();
+				logoutAdmin.setAdminName(rs.getString(1));
+			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			if(pstmt != null){try {pstmt.close();} catch (SQLException e) {e.printStackTrace();}}
 			if(rs != null){try {rs.close();} catch (SQLException e) {e.printStackTrace();}}
-			if(rs != null){try {stmt.close();} catch (SQLException e) {e.printStackTrace();}}
 		}
 		
 		// 로그인 저장소 초기화
 		new LoginRepository();
-			
+		
+		return logoutAdmin;
+		
 	}
 
 }
