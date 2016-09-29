@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import ingredient.dao.IngredientDao;
 import ingredient.view.AddIngredientView;
 import ingredient.view.GetKeywordView;
+import ingredient.view.IngredientDeleteView;
 import ingredient.view.IngredientMainMenu;
 import ingredient.view.SearchIngredientView;
 import ingredient.view.SearchListView;
@@ -33,7 +34,7 @@ public class IngredientController {
 
 	
 	// method
-	// 재고관리
+	// 재고관리 메인메뉴 호출
 	public void requestIngredient() {
 		
 		IngredientMainMenu ingredientMenu = new IngredientMainMenu();
@@ -62,19 +63,23 @@ public class IngredientController {
 	public void requestSearchIngredient() {
 		
 		//뷰호출
-		SearchIngredientView aiv = new SearchIngredientView();
-		Ingredient getName  = aiv.searchIngredient();
+		SearchIngredientView siv = new SearchIngredientView();
+		Ingredient getName  = siv.searchIngredient();
+		
+		//Dao호출
 		ArrayList<Ingredient> ingredientList = ingredientDao.searchIngredient(getName);
 
 		SearchListView searchList = new SearchListView();
-		searchList.SearchListView(ingredientList);
+		searchList.SearchList(ingredientList);
 
 	}
 
 
 	// 원재료 업데이트
 	public void requestUpdateIngredient(){
-
+		
+		//뷰호출
+		
 
 	}
 
@@ -82,6 +87,25 @@ public class IngredientController {
 	// 원재료 삭제
 	public void requestDeleteIngredient() {
 
+		//뷰호출
+		IngredientDeleteView idv = new IngredientDeleteView();
+		Ingredient deleteIngredientGetNmae = idv.deleteIngredient();
+		
+		//Dao호출
+		ArrayList<Ingredient> ingredientList = ingredientDao.searchIngredient(deleteIngredientGetNmae);
+		SearchListView searchList = new SearchListView();
+		searchList.SearchList(ingredientList);
+		
+		//삭제할 제품번호
+		 int deleteIngredientGetNum = idv.deleteIngredientNum();
+		
+		boolean success = ingredientDao.deleteIngredient(deleteIngredientGetNum);
+		
+		if(success) {
+			new AlertView().alert("삭제성공");
+		} else {
+			new AlertView().alert("삭제실패");
+		}
 
 	}
 

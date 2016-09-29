@@ -16,26 +16,6 @@ public class DBcontroller {
 		try{
 
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-
-			// 최원재 Connection
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl","csp_admin","123456");
-=======
->>>>>>> choiwj1012/master
-			// conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl","csp_admin","123456");
-
-<<<<<<< HEAD
-=======
-=======
-			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl","csp_admin","123456");
-			
->>>>>>> refs/remotes/origin/master
->>>>>>> choiwj1012/master
-			// 김하늘 Connection
-			// conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "superadmin", "123456");
 			   
 			// 엄윤길 Connection
 			   conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/orcl","csp_admin","123456");

@@ -56,7 +56,7 @@ public class IngredientMainMenu {
 			}else if(selectedMenu == 4) {
 
 				System.out.println("재고삭제를 선택 하셨습니다.");
-				// MainController.getIngredientController().requestAddIngredient();
+				 MainController.getIngredientController().requestDeleteIngredient();
 
 			}else if(selectedMenu == 5) {
 

@@ -49,14 +49,14 @@ public class IngredientDao {
 		ArrayList<Ingredient> ingredientList = new ArrayList<Ingredient>();
 
 		try {
-			
+
 			String sql = "select * from INGREDIENT_LIST where INGREDIENT_NAME LIKE '%'||?||'%' ORDER BY ingredient_number";
 			pstmt = MainController.getDbController().getConnection().prepareStatement(sql);
 			pstmt.setString(1, getName.getIngredient_Name());
 			rs = pstmt.executeQuery();
-			
+
 			MainController.getIngredientController().requestInputKeyword(getName.getIngredient_Name());
-			
+
 			while(rs.next()) {
 
 				Ingredient ingredient = new Ingredient();
@@ -89,10 +89,26 @@ public class IngredientDao {
 
 
 	// 재고관리_원재료 삭제
-	public void deleteIngredient(){
+	public boolean deleteIngredient(int deleteIngredientGetNum){
 
+		PreparedStatement pstmt = null;
+
+		try {
+
+			String sql = "delete from INGREDIENT_LIST where INGREDIENT_NUMBER = ?";	
+			pstmt = MainController.getDbController().getConnection().prepareStatement(sql);
+			pstmt.setInt(1, deleteIngredientGetNum);
+			pstmt.executeUpdate();
+			success = true;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(pstmt != null){try{pstmt.close();}catch(SQLException e){e.printStackTrace();}}
+		}
+		
+		return success;
 
 	}
-
 
 }

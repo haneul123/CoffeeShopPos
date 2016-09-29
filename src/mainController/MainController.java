@@ -60,11 +60,6 @@ public class MainController {
 	public static IngredientController getIngredientController() {
 		return ingredientController;
 	}
-	
-
-	public static void setIngredientController(IngredientController ingredientController) {
-		MainController.ingredientController = ingredientController;
-	}
 
 
 	public static ProductController getProductController() {
