@@ -6,7 +6,7 @@ import product.vo.Product;
 
 public class ListProductView {
 	
-	
+	// 상품 리스트 출력하기
 	public void productList(ArrayList<Product> products) {
 		
 		System.out.println("상품번호\t상품이름\t상품가격\t상품설명");

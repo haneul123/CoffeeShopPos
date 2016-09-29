@@ -5,9 +5,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+
 import mainController.MainController;
 import productOrder.repository.ProductOrderRepository;
-import productOrder.vo.ProductOrder;
 import productPayment.vo.ProductPayment;
 
 public class ProductPaymentDao {
@@ -19,9 +19,9 @@ public class ProductPaymentDao {
 
 
 	//주문상품 리스트 어레이리스트에 저장하기.
-	public ArrayList<ProductPayment> orderProductInsert() {
+	public ArrayList<ProductPayment> orderProductList() {
 	
-		ArrayList<ProductPayment> orderProductInsert = new ArrayList<ProductPayment>();
+		ArrayList<ProductPayment> orderProductList = new ArrayList<ProductPayment>();
 		Statement stmt = null;
 		ResultSet rs = null;
 
@@ -42,11 +42,9 @@ public class ProductPaymentDao {
 				productpayment.setPaymentCount(rs.getInt(6));
 				productpayment.setPaymentDate(rs.getDate(7));
 				productpayment.setPaymentMethod(rs.getInt(8));
-				orderProductInsert.add(productpayment);
+				orderProductList.add(productpayment);
 				
 			}
-			
-			ProductOrderRepository.setProductPayment(orderProductInsert);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -55,12 +53,12 @@ public class ProductPaymentDao {
 			if(stmt != null){try{stmt.close();} catch (SQLException e){e.printStackTrace();}}
 		}
 		
-		return orderProductInsert;
+		return orderProductList;
 	}
 
 	
 	//주문상품리스트를 결제 리스트로 넣기
-	public boolean orderProductInsert(ProductOrder orderProduct) {
+	public boolean orderProductInsert(ArrayList<ProductPayment> productPayments) {
 
 		boolean success = false;
 		PreparedStatement pstmt1 = null;
@@ -68,12 +66,11 @@ public class ProductPaymentDao {
 
 		try {
 
-
-			for(int i = 0; i<ProductOrderRepository.getProductPayment().size(); i++){
+			for(int i = 0; i<productPayments.size(); i++){
 
 				String sql = "insert into product_pay_list values(payment_number_seq.nextval, ?)";
 				pstmt1 = MainController.getDbController().getConnection().prepareStatement(sql);
-				pstmt1.setInt(1, ProductOrderRepository.getProductPayment().get(i).getProductOrderNumber());
+				pstmt1.setInt(1, productPayments.get(i).getProductOrderNumber());
 				pstmt1.executeUpdate();
 				
 			}
@@ -112,9 +109,7 @@ public class ProductPaymentDao {
 				ProductPayment productpayment = new ProductPayment();
 				
 				productpayment.setPaymentListNumber(rs.getInt(1));
-				productpayment.setProductOrderNumber(rs.getInt(2));
-				
-				
+				productpayment.setProductOrderNumber(rs.getInt(2));		
 				orderProductInsert.add(productpayment);
 
 			}
