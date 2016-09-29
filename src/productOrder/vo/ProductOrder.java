@@ -17,11 +17,7 @@ public class ProductOrder {
 	
 	
 	// constructor
-	public ProductOrder() {
-		
-		
-	}
-	
+	public ProductOrder() {}
 	
 	public ProductOrder(int productNumber, int orderCount, String userPhoneNumber, int selectPaymentMethod) {
 		
@@ -33,6 +29,7 @@ public class ProductOrder {
 	}
 
 
+	// getter and setter
 	public int getProductOrderNumber() {
 		return productOrderNumber;
 	}

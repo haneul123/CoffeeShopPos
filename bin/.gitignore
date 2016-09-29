@@ -1,51 +1,12 @@
 <<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> master
-/CoffeeShopPos.erm
-/admin/
-/financialManagement/
-/ingredient/
-/login/
-/main/
 /mainController/
-<<<<<<< HEAD
-=======
-=======
-<<<<<<< HEAD
->>>>>>> refs/remotes/choiwj1012/master
->>>>>>> master
-/mainView/
-/order/
-/product/
-/salesManagement/
-/taxManagement/
-/user/
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-/mainController/
-/productOrder/
-/admin/
->>>>>>> refs/remotes/origin/haneul123/prduct/order
-=======
-/admin/
-=======
->>>>>>> refs/remotes/origin/pr/8
-/mainController/
-/main/
-/ingredient/
-/admin/
-/login/
->>>>>>> refs/remotes/choiwj1012/master
-<<<<<<< HEAD
 /productPayment/
+/product/
+/productOrder/
 =======
->>>>>>> master
-<<<<<<< HEAD
->>>>>>> refs/remotes/choiwj1012/master
-=======
-/Sales/
->>>>>>> refs/remotes/choiwj1012/master
+/productOrder/
+/productPayment/
+>>>>>>> refs/remotes/origin/master
+/admin/
+/ingredient/
+/login/
