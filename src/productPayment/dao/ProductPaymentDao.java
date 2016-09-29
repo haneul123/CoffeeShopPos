@@ -20,7 +20,7 @@ public class ProductPaymentDao {
 
 	//주문상품 리스트 어레이리스트에 저장하기.
 	public ArrayList<ProductPayment> orderProductInsert() {
-
+	
 		ArrayList<ProductPayment> orderProductInsert = new ArrayList<ProductPayment>();
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -34,19 +34,19 @@ public class ProductPaymentDao {
 			while(rs.next()) {
 
 				ProductPayment productpayment = new ProductPayment();
-				
 				productpayment.setProductOrderNumber(rs.getInt(1));
 				productpayment.setProductNumber(rs.getInt(2));
-				productpayment.setUserNumber(rs.getInt(3));
-				productpayment.setProductName(rs.getString(4));
-				productpayment.setPaymentMethod(rs.getInt(5));
+				productpayment.setProductName(rs.getString(3));
+				productpayment.setProductPrice(rs.getInt(4));
+				productpayment.setUserNumber(rs.getInt(5));
 				productpayment.setPaymentCount(rs.getInt(6));
-				productpayment.setProductPrice(rs.getInt(7));
-				productpayment.setPaymentDate(rs.getDate(8));
-				
+				productpayment.setPaymentDate(rs.getDate(7));
+				productpayment.setPaymentMethod(rs.getInt(8));
 				orderProductInsert.add(productpayment);
-
+				
 			}
+			
+			ProductOrderRepository.setProductPayment(orderProductInsert);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -69,12 +69,11 @@ public class ProductPaymentDao {
 		try {
 
 
-			for(int i = 0; i<ProductOrderRepository.getProductOrders().size(); i++){
+			for(int i = 0; i<ProductOrderRepository.getProductPayment().size(); i++){
 
-				String sql = "insert into product_pay_list values(payment_number_seq.nextval, ?, ?)";
+				String sql = "insert into product_pay_list values(payment_number_seq.nextval, ?)";
 				pstmt1 = MainController.getDbController().getConnection().prepareStatement(sql);
 				pstmt1.setInt(1, ProductOrderRepository.getProductPayment().get(i).getProductOrderNumber());
-				pstmt1.setInt(2, ProductOrderRepository.getProductPayment().get(i).getPaymentMethod());
 				pstmt1.executeUpdate();
 				
 			}
@@ -92,5 +91,41 @@ public class ProductPaymentDao {
 
 		return success;
 
+	}
+	
+	
+	//페이먼트 리스트
+	public ArrayList<ProductPayment> productPaymentlist() {
+
+		ArrayList<ProductPayment> orderProductInsert = new ArrayList<ProductPayment>();
+		Statement stmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			String sql = "select * from product_pay_list";
+			stmt = MainController.getDbController().getConnection().createStatement();
+			rs = stmt.executeQuery(sql);
+
+			while(rs.next()) {
+
+				ProductPayment productpayment = new ProductPayment();
+				
+				productpayment.setPaymentListNumber(rs.getInt(1));
+				productpayment.setProductOrderNumber(rs.getInt(2));
+				
+				
+				orderProductInsert.add(productpayment);
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(rs != null){try{rs.close();} catch (SQLException e){e.printStackTrace();}}
+			if(stmt != null){try{stmt.close();} catch (SQLException e){e.printStackTrace();}}
+		}
+		
+		return orderProductInsert;
 	}
 }
