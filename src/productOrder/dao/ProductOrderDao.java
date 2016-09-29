@@ -55,11 +55,12 @@ public class ProductOrderDao {
 
 			for(int i = 0; i<ProductOrderRepository.getProductOrders().size(); i++){
 
-				sql = "insert into product_order_list values(product_order_number_seq.nextval, ?, ?, ?, sysdate)";
+				sql = "insert into product_order_list values(product_order_number_seq.nextval, ?, ?, ?, sysdate, ?)";
 				pstmt2 = MainController.getDbController().getConnection().prepareStatement(sql);
 				pstmt2.setInt(1, userNumber);
 				pstmt2.setInt(2, ProductOrderRepository.getProductOrders().get(i).getProductNumber());
 				pstmt2.setInt(3, ProductOrderRepository.getProductOrders().get(i).getOrderCount());
+				pstmt2.setInt(4, ProductOrderRepository.getProductOrders().get(i).getSelectPaymentMethod());
 				pstmt2.executeUpdate();
 				
 			}
@@ -101,11 +102,12 @@ public class ProductOrderDao {
 				
 				ProductOrder productOrder = new ProductOrder();
 				productOrder.setProductOrderNumber(rs.getInt(1));
-				productOrder.setUserNumber(rs.getInt(2));
-				productOrder.setProductNumber(rs.getInt(3));
-				productOrder.setProductName(rs.getString(4));
+				productOrder.setProductNumber(rs.getInt(2));
+				productOrder.setProductName(rs.getString(3));
+				productOrder.setUserNumber(rs.getInt(4));
 				productOrder.setOrderCount(rs.getInt(5));
 				productOrder.setOrderDate(rs.getDate(6));
+				productOrder.setSelectPaymentMethod(rs.getInt(7));
 				productOrderList.add(productOrder);
 
 			}
@@ -122,12 +124,5 @@ public class ProductOrderDao {
 	}
 
 
-	public  ArrayList<ProductOrder> productOrders() {
-
-		ArrayList<ProductOrder> productOrders = ProductOrderRepository.getProductOrders();
-
-		return productOrders;
-
-	}
-
+	
 }

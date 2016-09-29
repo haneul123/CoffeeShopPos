@@ -55,10 +55,8 @@ public class ProductMainMenuView {
 					MainController.getProductOrderController().requestProductOrderView();
 					
 				}else if (seletedMainMenuNumber == 6) {
-					
-					MainController.getProductOrderController().requestOrderListView();
-					
-					//MainController.getAdminController().requestMainMenuView();
+
+					MainController.getAdminController().requestMainMenuView();
 									
 				} else {
 					
