@@ -27,9 +27,11 @@ public class LoginDao {
 	public Admin Login(Admin admin){
 
 		Admin loginAdmin = null;
+		Statement stmt = null;
 		PreparedStatement pstmt = null;
 		PreparedStatement pstmt2 = null;
 		ResultSet rs = null;
+		ResultSet rs2 = null;
 
 		try {
 
@@ -53,6 +55,14 @@ public class LoginDao {
 				pstmt2.setInt(1, loginAdmin.getAdminNumber());
 				pstmt2.executeUpdate();
 						
+				sql = "select max(login_number) from login_record";
+				stmt = MainController.getDbController().getConnection().createStatement();
+				rs2 = stmt.executeQuery(sql);
+				
+				if(rs2.next()){
+					LoginRepository.setLoginNumber(rs2.getInt(1));
+				}
+				
 			} else {
 
 				return loginAdmin;
@@ -63,6 +73,7 @@ public class LoginDao {
 			e.printStackTrace();
 		} finally {	
 			
+			if(stmt != null){try{stmt.close();}catch(SQLException e){e.printStackTrace();}}
 			if(pstmt2 != null){try{pstmt2.close();} catch(SQLException e){e.printStackTrace();}}
 			if(rs != null){try{rs.close();}catch(SQLException e){e.printStackTrace();}}
 			if(pstmt != null){try{pstmt.close();} catch(SQLException e){e.printStackTrace();}}
@@ -94,15 +105,8 @@ public class LoginDao {
 		
 		try {
 			
-			String sql = "select admin_number from admin_list";
-			stmt = MainController.getDbController().getConnection().createStatement();
-			rs = stmt.executeQuery(sql);
-			
-			if(rs.next()){
-				adminNumber = rs.getInt(1);
-			}
-			
-			sql = "update login_record set end_time = sysdate where admin_number = ?";
+			adminNumber = LoginRepository.getLoginNumber();
+			String sql = "update login_record set end_time = sysdate where login_number = ?";
 			pstmt = MainController.getDbController().getConnection().prepareStatement(sql);
 			pstmt.setInt(1, adminNumber);
 			pstmt.executeUpdate();
