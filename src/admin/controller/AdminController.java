@@ -9,6 +9,8 @@ import admin.view.AdminMainMenu;
 import admin.view.AdminManagementView;
 import admin.view.AdminSignupView;
 import admin.view.AdminUpdateView;
+import admin.view.ManagementSalary;
+import admin.view.StaffMainMenu;
 import admin.vo.Admin;
 import mainController.MainController;
 import mainView.AlertView;
@@ -65,7 +67,16 @@ public class AdminController {
 
 	}
 
-
+	
+	// 직원 메인메뉴 뷰 요청
+	public void requestMainMenuViewStaff(){
+		
+		StaffMainMenu staffMainMenu = new StaffMainMenu();
+		staffMainMenu.staffMainMenu();
+		
+	}
+	
+	
 	// 직원관리 메뉴 뷰 출력요청
 	public void requestAdminManagementView() {
 
@@ -156,6 +167,36 @@ public class AdminController {
 		AdminDeleteView adminDeleteView = new AdminDeleteView();
 		adminDeleteView.adminNumberView();
 
+	}
+
+
+	// 급여 메뉴 관리 
+	public void requestManagementSalary() {
+		
+		ManagementSalary managementSalary = new ManagementSalary();
+		managementSalary.managementSalary();
+		
+	}
+
+
+	// 급여 데이터 입력
+	public void requestInputSalary(int adminNumber, int salary) {
+		
+		boolean success = adminDao.salary(adminNumber, salary);
+		
+		AlertView alertView = new AlertView();
+		
+		if(success){
+			
+			alertView.alert("급여가 지급되었습니다");	
+			
+		} else {
+			
+			alertView.alert("급여지급에 실패하였습니다");
+			
+		}
+		
+		
 	}
 
 }

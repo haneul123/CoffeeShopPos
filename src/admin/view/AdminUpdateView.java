@@ -1,5 +1,6 @@
 package admin.view;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import admin.vo.Admin;
@@ -20,9 +21,15 @@ public class AdminUpdateView {
 	// 수정할 관리자 번호 입력 받기
 	public void adminNumberView(){
 
+		int selectedAdmin = 0;
 		System.out.println("관리자 수정 페이지 입니다");
 		System.out.println("수정을 원하시는 관리자 번호를 선택해 주십시오");
-		int selectedAdmin = keyboard.nextInt();
+		try{
+			selectedAdmin = keyboard.nextInt();
+		} catch(InputMismatchException e) {
+			System.out.println("잘못입력하셨습니다");
+		}
+		
 		MainController.getAdminController().requestCheckAdmin(selectedAdmin);
 
 	}
@@ -55,8 +62,12 @@ public class AdminUpdateView {
 			} else if(selectedMenu == 3) {
 
 				System.out.println("수정할 권한을 입력하십시오 (단, 1은 점장, 2는 직원입니다)");
-				authority = keyboard.nextInt();
-				
+				try{
+					authority = keyboard.nextInt();	
+				} catch(InputMismatchException e){
+					System.out.println("잘못 입력하셨습니다");
+				}
+								
 			} else if(selectedMenu == 4){
 				
 				break;
