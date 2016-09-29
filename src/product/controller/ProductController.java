@@ -25,7 +25,7 @@ public class ProductController {
 	}
 
 
-	//상품 리스트
+	//상품 리스트 표시를 위한 데이터 요청
 	public void requestProductlist() {
 
 		ArrayList<Product> products = productDao.productList();
@@ -79,24 +79,23 @@ public class ProductController {
 	public void requestSearch(){
 
 		SearchProductView searchProductView = new SearchProductView();
-
 		int searchNumber = searchProductView.searchProductNumber();
-		AlertView alertView = new AlertView();
+		
 		Product product = productDao.productSearch(searchNumber);
-
+		
 		if(product != null) {
 
 			searchProductView.printProduct(product);
 
-		}else {
-
+		} else {
+			
+			AlertView alertView = new AlertView();
 			alertView.alert("조회하신 상품이 없습니다.");
 			MainController.getProductController().requestProductlist();
 
 		}
 
 	}
-
 
 
 	// 상품삭제를 위한 번호입력
