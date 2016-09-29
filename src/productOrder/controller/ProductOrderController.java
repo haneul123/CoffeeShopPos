@@ -37,6 +37,8 @@ public class ProductOrderController {
 		
 		int orderProcessNumber = productOrderDao.orderproduct(orderProduct);
 		
+		productOrderDao.orderProductInsert(orderProduct);
+		
 		AlertView alertView = new AlertView();
 
 		if(orderProcessNumber==1) {
@@ -49,8 +51,6 @@ public class ProductOrderController {
 			alertView.alert("주문 완료");
 
 		}
-		
-		requestOrderListView();
 	
 	}
 
@@ -66,7 +66,7 @@ public class ProductOrderController {
 	// 주문 리스트 요청
 		public void requestOrderListView(){
 
-			ArrayList<ProductOrder> productOrders = productOrderDao.productOrders();
+			ArrayList<ProductOrder> productOrders = productOrderDao.productOrderList();
 			OrderListView orderListView = new OrderListView();
 			orderListView.OrderListView(productOrders);
 

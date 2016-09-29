@@ -49,13 +49,14 @@ public class ProductMainMenuView {
 					
 				} else if (seletedMainMenuNumber == 5) {
 					
-					MainController.getProductOrderController().requestOrderListView();
 					
 					MainController.getProductOrderController().requestProductOrderView();
 					
 				}else if (seletedMainMenuNumber == 6) {
 					
-					MainController.getAdminController().requestMainMenuView();
+					MainController.getProductOrderController().requestOrderListView();
+					
+					//MainController.getAdminController().requestMainMenuView();
 									
 				} else {
 					
