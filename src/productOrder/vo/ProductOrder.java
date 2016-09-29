@@ -11,10 +11,10 @@ public class ProductOrder {
 	private int productPrice;
 	private int userNumber;
 	private int orderCount;
-	private int orderSum;
 	private Date orderDate;
-	private int payment;
 	private String userPhoneNumber;
+	private int selectPaymentMethod;
+	private int getSelectPaymentMethod;
 	
 	
 	// constructor
@@ -24,17 +24,28 @@ public class ProductOrder {
 	}
 	
 	
-	public ProductOrder(int productNumber, int orderCount, String userPhoneNumber) {
+	public ProductOrder(int productNumber, int orderCount, String userPhoneNumber, int selectPaymentMethod) {
 		
 		this.productNumber = productNumber;
 		this.orderCount = orderCount;
 		this.userPhoneNumber = userPhoneNumber;
+		this.selectPaymentMethod = selectPaymentMethod;
 		
 	}
 
 
 	public String getUserPhoneNumber() {
 		return userPhoneNumber;
+	}
+
+
+	public int getSelectPaymentMethod() {
+		return selectPaymentMethod;
+	}
+
+
+	public void setSelectPaymentMethod(int selectPaymentMethod) {
+		this.selectPaymentMethod = selectPaymentMethod;
 	}
 
 
@@ -102,17 +113,6 @@ public class ProductOrder {
 		this.orderCount = orderCount;
 	}
 
-
-	public int getOrderSum() {
-		return orderSum;
-	}
-
-
-	public void setOrderSum(int orderSum) {
-		this.orderSum = orderSum;
-	}
-
-
 	public Date getOrderDate() {
 		return orderDate;
 	}
@@ -123,14 +123,7 @@ public class ProductOrder {
 	}
 
 
-	public int getPayment() {
-		return payment;
-	}
 
-
-	public void setPayment(int payment) {
-		this.payment = payment;
-	}
 	
 	
 	

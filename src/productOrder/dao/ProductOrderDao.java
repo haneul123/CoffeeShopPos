@@ -4,6 +4,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+
 import mainController.MainController;
 import productOrder.repository.ProductOrderRepository;
 import productOrder.vo.ProductOrder;
@@ -19,100 +21,51 @@ public class ProductOrderDao {
 
 
 	//주문한 상품  저장 하기
-	public int orderproduct(ProductOrder orderProduct) {
+	public boolean orderproduct(ProductOrder orderProduct) {
 
-		PreparedStatement pstmt = null;
-		PreparedStatement pstmt1 = null;
-		ResultSet rs = null;
-		ResultSet rs1 = null;
-		int orderProcessNumber = 0;
+	
+		boolean success = false;
+		return ProductOrderRepository.getProductOrders().add(orderProduct);
 
-		//수량만 증가
-		for(int i=0; i<ProductOrderRepository.getProductOrders().size(); i++) {
-			if(ProductOrderRepository.getProductOrders().get(i).getProductNumber() == orderProduct.getProductNumber()) {
-				ProductOrderRepository.getProductOrders().get(i).setOrderCount(orderProduct.getOrderCount());
-				orderProcessNumber = 1;
-				return orderProcessNumber;
-			}
-		}
 
-		//상품 정보 불러오기
-
-		try {
-
-			String sql = "select product_Name, product_Price from product_list where product_Number = ?";
-			pstmt = MainController.getDbController().getConnection().prepareStatement(sql);
-			pstmt.setInt(1, orderProduct.getProductNumber());
-			rs = pstmt.executeQuery();
-
-			if(rs.next()) {
-
-				ProductOrderRepository.getProductOrders().add(orderProduct);
-				ProductOrderRepository.getProductOrders().get(ProductOrderRepository.getLastProductOrderNumber()).setProductName(rs.getString(1));
-				ProductOrderRepository.getProductOrders().get(ProductOrderRepository.getLastProductOrderNumber()).setProductPrice(rs.getInt(2));
-				ProductOrderRepository.setLastProductOrderNumber(ProductOrderRepository.getLastProductOrderNumber() + 1);
-				orderProcessNumber = 2;
-
-			}
-
-			sql = "select user_number from user_list where user_phone_number = ?";
-			pstmt1 = MainController.getDbController().getConnection().prepareStatement(sql);
-			pstmt1.setString(1, orderProduct.getUserPhoneNumber());
-			rs1 = pstmt1.executeQuery();
-			
-			if(rs1.next()) {
-				
-				ProductOrderRepository.getProductOrders().add(orderProduct);
-				ProductOrderRepository.getProductOrders().get(ProductOrderRepository.getLastProductOrderNumber()).setUserNumber(rs.getInt(1));
-				
-			}
-			
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			if(rs != null){try {rs.close();} catch (SQLException e) {e.printStackTrace();}}
-			if(pstmt != null){try {pstmt.close();} catch (SQLException e) {e.printStackTrace();}}
-		}
-
-		return orderProcessNumber;
 	}
 
 
 	//주문상품을 주문 리스트에 넣기
-	public boolean orderProductInsert() {
+	public boolean orderProductInsert(ProductOrder orderProduct) {
 
 		boolean success = false;
 		PreparedStatement pstmt1 = null;
 		PreparedStatement pstmt2 = null;
-
+		int userNumber = 0;	
 		ResultSet rs1 = null;
-		ResultSet rs2 = null;
-
-		int userNumber = 0;
 
 		try {
-			
-		for(int i = 0; i<ProductOrderRepository.getProductOrders().size(); i++){
-//				String sql = "select user_number from user_list where user_phone_number = ?";
-//				pstmt2 = MainController.getDbController().getConnection().prepareStatement(sql);
-//				pstmt2.setInt(1, ProductOrderRepository.getProductOrders().get(i).getUserNumber());
-//				rs2 = pstmt2.executeQuery();
-//
-//			if(rs2.next()){
 
-					String sql = "insert into product_order_list(product_order_number, user_number, product_number, order_Count, order_date) values(?,?,?,?,?) where product_number = ? ";
-					pstmt1 = MainController.getDbController().getConnection().prepareStatement(sql);
-					pstmt1.setInt(1, ProductOrderRepository.getProductOrders().get(i).getProductOrderNumber());
-					pstmt1.setInt(2, ProductOrderRepository.getProductOrders().get(i).getUserNumber());
-					pstmt1.setInt(3, ProductOrderRepository.getProductOrders().get(i).getProductNumber());
-					pstmt1.setInt(4, ProductOrderRepository.getProductOrders().get(i).getOrderCount());
-					pstmt1.setDate(5, ProductOrderRepository.getProductOrders().get(i).getOrderDate());
-					pstmt1.executeUpdate();
-					success = true;
+			String sql = "select user_number from user_list where user_phone_number = ?";
+			pstmt1 = MainController.getDbController().getConnection().prepareStatement(sql);
+			pstmt1.setString(1, orderProduct.getUserPhoneNumber());
+			rs1 = pstmt1.executeQuery();	
 
-				}
+			if(rs1.next()){
+
+				userNumber = rs1.getInt(1);
 			
+			}
+
+			for(int i = 0; i<ProductOrderRepository.getProductOrders().size(); i++){
+
+				sql = "insert into product_order_list values(product_order_number_seq.nextval, ?, ?, ?, sysdate, ?)";
+				pstmt2 = MainController.getDbController().getConnection().prepareStatement(sql);
+				pstmt2.setInt(1, userNumber);
+				pstmt2.setInt(2, ProductOrderRepository.getProductOrders().get(i).getProductNumber());
+				pstmt2.setInt(3, ProductOrderRepository.getProductOrders().get(i).getOrderCount());
+				pstmt2.setInt(4, ProductOrderRepository.getProductOrders().get(i).getSelectPaymentMethod());
+				pstmt2.executeUpdate();
+				
+			}
+			
+			success = true;
 
 		}catch (SQLException e) {
 			e.printStackTrace();
@@ -123,7 +76,53 @@ public class ProductOrderDao {
 
 		}
 
+		ProductOrderRepository.getProductOrders().clear();
+
 		return success;
 
 	}
+
+
+	//주문 상품 리스트 가져오기
+
+	public  ArrayList<ProductOrder> productOrderList() {
+
+		ArrayList<ProductOrder> productOrderList = new ArrayList<ProductOrder>();
+		Statement stmt = null;
+		ResultSet rs = null;
+		
+
+		try{
+
+			String sql = "select * from product_order_list_view ";
+			stmt = MainController.getDbController().getConnection().createStatement();
+			rs = stmt.executeQuery(sql);
+
+			while(rs.next()) {
+				
+				ProductOrder productOrder = new ProductOrder();
+				productOrder.setProductOrderNumber(rs.getInt(1));
+				productOrder.setProductNumber(rs.getInt(2));
+				productOrder.setProductName(rs.getString(3));
+				productOrder.setUserNumber(rs.getInt(4));
+				productOrder.setOrderCount(rs.getInt(5));
+				productOrder.setOrderDate(rs.getDate(6));
+				productOrder.setSelectPaymentMethod(rs.getInt(7));
+				productOrderList.add(productOrder);
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(rs != null){try{rs.close();} catch (SQLException e){e.printStackTrace();}}
+			if(stmt != null){try{stmt.close();} catch (SQLException e){e.printStackTrace();}}
+		}
+
+		return productOrderList;
+
+	}
+
+
+	
 }
