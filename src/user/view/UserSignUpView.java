@@ -21,6 +21,8 @@ public class UserSignUpView {
 	// 회원 가입을 위한 정보 받기
 	public void userSignUpView() {
 
+		System.out.println("회원가입을 위한 정보를 입력해주세요");
+		
 		
 	}
 
