@@ -22,17 +22,18 @@ public class StaffMainMenu {
 	public void staffMainMenu(){
 
 		int selectedMenu = 0;
-		System.out.println("직원 메뉴 입니다");
-
-		String[] mainMenu = {"1. 상품조회, 2. 재고조회, 3. 회원등록, 4. 회원조회, 5. 로그아웃"};
-
-		// 메인메뉴 출력
-		for(int i=0; i<mainMenu.length; i++){
-			System.out.println(mainMenu[i]);
-		}
 
 		while(true){
 
+			System.out.println("직원 메뉴 입니다");
+
+			String[] mainMenu = {"1. 상품조회, 2. 재고조회, 3. 회원등록, 4. 회원조회, 5. 회원 삭제, 6. 로그아웃"};
+
+			// 메인메뉴 출력
+			for(int i=0; i<mainMenu.length; i++){
+				System.out.println(mainMenu[i]);
+			}
+			
 			try{
 
 				System.out.println("원하시는 메뉴를 선택하십시오");
@@ -51,19 +52,27 @@ public class StaffMainMenu {
 			} else if (selectedMenu == 2) {
 
 				// 재고조회
+				MainController.getIngredientController().requestSearchIngredient();
 
 			} else if (selectedMenu == 3) {
 
 				// 회원등록
+				MainController.getUserController().requestUserSignUpView();
 
 			} else if (selectedMenu == 4) {
 
 				// 회원조회
+				MainController.getUserController().requestUserList();
 
 			} else if (selectedMenu == 5) {
 
+				// 회원수정
+				MainController.getUserController().requestUserUpdateView();
+
+			} else if (selectedMenu == 6) {
+
 				// 로그아웃
-				MainController.getAdminController().requestAdminManagementView();
+				break;
 
 			} else {
 

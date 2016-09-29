@@ -1,37 +1,54 @@
 package salesManagement.dao;
 
+import java.util.ArrayList;
+
+import salesManagement.vo.SalesManagement;
+
 public class SalesManagementDao {
 	
 	
-	// ÀÏº°¸ÅÃâ Á¶È¸
-	public void dailySales(){
+	// ì¼ë³„ ë§¤ì¶œ ì •ë³´ ê²€ìƒ‰
+	public ArrayList<SalesManagement> dailyStats() {
 
-
-
+		ArrayList<SalesManagement> dailyStats = new ArrayList<SalesManagement>();
+		
+		
+		return dailyStats;
+		
 	}
 
+	
+	// ì›”ë³„ ë§¤ì¶œ ì •ë³´ ê²€ìƒ‰
+	public ArrayList<SalesManagement> monthlyStats() {
 
-	// ¿ùº°¸ÅÃâ Á¶È¸
-	public void monthlySales(){
-
-
-
+		ArrayList<SalesManagement> monthlyStats = new ArrayList<SalesManagement>();
+		
+		
+		return monthlyStats;
+		
 	}
 
+	
+	// ë°˜ê¸°ë³„ ë§¤ì¶œ ì •ë³´ ê²€ìƒ‰
+	public ArrayList<SalesManagement> semiAnnualStats() {
 
-	// ¹İ±âº° ¸ÅÃâ
-	public void semiAnnualSales(){
-
-
-
+		ArrayList<SalesManagement> semiAnnualStats = new ArrayList<SalesManagement>();
+		
+		
+		return semiAnnualStats;
+		
 	}
 
+	
+	// ì—°ê°„ ë§¤ì¶œ ì •ë³´ ê²€ìƒ‰
+	public ArrayList<SalesManagement> AnnualStats() {
 
-	// ¿¬°£ ¸ÅÃâ
-	public void annualSales(){
-
-
-
+		ArrayList<SalesManagement> annualStats = new ArrayList<SalesManagement>();
+		
+		
+		
+		return annualStats;
+		
 	}
 	
 	
