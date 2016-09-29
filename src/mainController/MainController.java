@@ -6,6 +6,7 @@ import login.controller.LoginController;
 import mainView.MainMenuView;
 import product.controller.ProductController;
 import productOrder.controller.ProductOrderController;
+import salesManagement.controller.SalesManagementController;
 import user.controller.UserController;
 
 public class MainController {
@@ -17,6 +18,7 @@ public class MainController {
 	private static ProductOrderController productOrderController; 
 	private static IngredientController ingredientController;
 	private static UserController userController;
+	private static SalesManagementController salesManagementController;
 	
 	//구조
 	public MainController() {
@@ -28,17 +30,14 @@ public class MainController {
 		productOrderController = new ProductOrderController();
 		ingredientController = new IngredientController();
 		userController = new UserController();
+		salesManagementController = new SalesManagementController();
 		
 	}
 
 
+	// getter and setter
 	public static ProductOrderController getProductOrderController() {
 		return productOrderController;
-	}
-
-
-	public static void setProductOrderController(ProductOrderController productOrderController) {
-		MainController.productOrderController = productOrderController;
 	}
 
 
@@ -62,11 +61,6 @@ public class MainController {
 	}
 	
 
-	public static void setIngredientController(IngredientController ingredientController) {
-		MainController.ingredientController = ingredientController;
-	}
-
-
 	public static ProductController getProductController() {
 		return productController;
 	}
@@ -75,6 +69,12 @@ public class MainController {
 	public static UserController getUserController() {
 		return userController;
 	}
+
+	
+	public static SalesManagementController getSalesManagementController() {
+		return salesManagementController;
+	}
+
 
 	//메인메뉴보기
 	public static void mainMenuView() {

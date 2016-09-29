@@ -56,7 +56,7 @@ public class AdminMainMenu {
 			} else if (selectedMenu == 3) {
 
 				// 메출관리 메뉴 출력
-				// MainController ???
+				MainController.getSalesManagementController().requestSalesManagementMenu();
 
 			} else if (selectedMenu == 4) {
 
