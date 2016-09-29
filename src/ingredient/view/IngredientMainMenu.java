@@ -24,9 +24,7 @@ public class IngredientMainMenu {
 		while(true) {
 
 			for(int i = 0; i < ingredMenu.length; i++) {
-
 				System.out.println(ingredMenu[i]);
-
 			}
 			
 			System.out.print("메뉴선택 : ");
@@ -35,7 +33,7 @@ public class IngredientMainMenu {
 				selectedMenu = keyboard.nextInt();
 			} catch (InputMismatchException e) {
 				new AlertView().alert("정수 타입의 숫자만 입력하세요.");
-				ingredientMenu();
+				MainController.getIngredientController().requestIngredientMainMenu();
 			}
 			
 			if(selectedMenu == 1) {

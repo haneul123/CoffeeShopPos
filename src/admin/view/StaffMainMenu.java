@@ -27,7 +27,7 @@ public class StaffMainMenu {
 
 			System.out.println("직원 메뉴 입니다");
 
-			String[] mainMenu = {"1. 상품조회, 2. 재고조회, 3. 회원등록, 4. 회원조회, 5. 회원 삭제, 6. 로그아웃"};
+			String[] mainMenu = {"1. 상품조회, 2. 재고조회, 3. 회원등록, 4. 회원조회, 5. 회원수정, 6. 로그아웃"};
 
 			// 메인메뉴 출력
 			for(int i=0; i<mainMenu.length; i++){
