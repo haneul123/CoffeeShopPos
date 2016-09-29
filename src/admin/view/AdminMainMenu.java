@@ -22,17 +22,17 @@ public class AdminMainMenu {
 	// 관리자 메인 메뉴 출력
 	public void adminMainMenu(){
 
-		int selectedMenu = 0;
-		System.out.println("관리자 메인 메뉴 입니다");
-		String[] mainMenu = {"1. 상품관리, 2. 재고관리, 3. 매출관리, 4. 회원관리, 5. 직원관리, 6. 로그아웃"};
-
-		// 메인메뉴 출력
-		for(int i=0; i<mainMenu.length; i++){
-			System.out.println(mainMenu[i]);
-		}
-
 		while(true){
+			
+			int selectedMenu = 0;
+			System.out.println("관리자 메인 메뉴 입니다");
+			String[] mainMenu = {"1. 상품관리, 2. 재고관리, 3. 매출관리, 4. 회원관리, 5. 직원관리, 6. 로그아웃"};
 
+			// 메인메뉴 출력
+			for(int i=0; i<mainMenu.length; i++){
+				System.out.println(mainMenu[i]);
+			}
+			
 			try{
 
 				System.out.println("원하시는 메뉴를 선택하십시오");
@@ -51,7 +51,7 @@ public class AdminMainMenu {
 			} else if (selectedMenu == 2) {
 
 				// 재고관리 메뉴 출력
-				MainController.getIngredientController().requestIngredient();
+				MainController.getIngredientController().requestIngredientMainMenu();
 
 			} else if (selectedMenu == 3) {
 

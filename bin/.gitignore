@@ -1,6 +1,16 @@
+/CoffeeShopPos.erm
+/admin/
+/ingredient/
+/login/
+/main/
 /mainController/
-/productPayment/
+/mainView/
 /product/
 /productOrder/
+<<<<<<< HEAD
 /ingredient/
+=======
+/productPayment/
+/salesManagement/
+>>>>>>> origin/master
 /user/

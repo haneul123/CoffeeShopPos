@@ -97,7 +97,7 @@ public class ProductPaymentDao {
 	//페이먼트 리스트
 	public ArrayList<ProductPayment> productPaymentlist() {
 
-		ArrayList<ProductPayment> orderProductInsert = new ArrayList<ProductPayment>();
+		ArrayList<ProductPayment> productPaymentlist = new ArrayList<ProductPayment>();
 		Statement stmt = null;
 		ResultSet rs = null;
 
@@ -115,7 +115,7 @@ public class ProductPaymentDao {
 				productpayment.setProductOrderNumber(rs.getInt(2));
 				
 				
-				orderProductInsert.add(productpayment);
+				productPaymentlist.add(productpayment);
 
 			}
 
@@ -126,6 +126,6 @@ public class ProductPaymentDao {
 			if(stmt != null){try{stmt.close();} catch (SQLException e){e.printStackTrace();}}
 		}
 		
-		return orderProductInsert;
+		return productPaymentlist;
 	}
 }

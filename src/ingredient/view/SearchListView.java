@@ -3,6 +3,7 @@ package ingredient.view;
 import java.util.ArrayList;
 
 import ingredient.vo.Ingredient;
+import mainController.MainController;
 import mainView.AlertView;
 
 public class SearchListView {
@@ -22,6 +23,7 @@ public class SearchListView {
 		if(ingredientList.size() == 0) {
 			
 			new AlertView().alert("찾으시는 제품이 없습니다.");
+			MainController.getIngredientController().requestIngredientMainMenu();
 			
 		} else {
 			
