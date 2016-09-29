@@ -66,7 +66,7 @@ public class AdminDao {
 		
 		try {
 			
-			String sql = "select * from admin_list";
+			String sql = "select * from admin_list order by admin_number";
 			stmt = MainController.getDbController().getConnection().createStatement();
 			rs = stmt.executeQuery(sql);
 			

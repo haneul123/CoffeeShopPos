@@ -6,6 +6,7 @@ import login.controller.LoginController;
 import mainView.MainMenuView;
 import product.controller.ProductController;
 import productOrder.controller.ProductOrderController;
+import user.controller.UserController;
 
 public class MainController {
 	
@@ -15,7 +16,7 @@ public class MainController {
 	private static ProductController productController;
 	private static ProductOrderController productOrderController; 
 	private static IngredientController ingredientController;
-
+	private static UserController userController;
 	
 	//구조
 	public MainController() {
@@ -26,6 +27,7 @@ public class MainController {
 		productController = new ProductController();
 		productOrderController = new ProductOrderController();
 		ingredientController = new IngredientController();
+		userController = new UserController();
 		
 	}
 
@@ -69,6 +71,10 @@ public class MainController {
 		return productController;
 	}
 
+
+	public static UserController getUserController() {
+		return userController;
+	}
 
 	//메인메뉴보기
 	public static void mainMenuView() {
