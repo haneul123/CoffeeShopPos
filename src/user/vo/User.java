@@ -14,20 +14,20 @@ public class User {
 	}
 
 
-	public User(int userNumber, String userPhoneNumber, int couponCount) {
-
-		this.userNumber = userNumber;
+	// 회원 가입시 필요한 생성자
+	public User(String userPhoneNumber) {
+		
 		this.userPhoneNumber = userPhoneNumber;
-		this.couponCount = couponCount;
 		
 	}
 
+	
 	// 회원 업데이트 시 필요한 생성자
 	public User(int selectedNumber, String userPhoneNumber) {
-		
+
 		this.userNumber = selectedNumber;
 		this.userPhoneNumber = userPhoneNumber;
-		
+
 	}
 
 
@@ -60,5 +60,5 @@ public class User {
 	public void setCouponCount(int couponCount) {
 		this.couponCount = couponCount;
 	}
-	
+
 }

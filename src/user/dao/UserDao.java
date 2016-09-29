@@ -28,8 +28,8 @@ public class UserDao {
 				
 				User user = new User();
 				user.setUserNumber(rs.getInt(1));
-				user.setUserPhoneNumber(rs.getString(2));
-				user.setCouponCount(rs.getInt(3));
+				user.setCouponCount(rs.getInt(2));
+				user.setUserPhoneNumber(rs.getString(3));
 				userList.add(user);
 				
 			}
@@ -52,19 +52,13 @@ public class UserDao {
 		
 		try {
 			
-			String sql = "select user_number from user_list where selectedNumber = ?";
+			String sql = "select user_number from user_list where user_number = ?";
 			pstmt = MainController.getDbController().getConnection().prepareStatement(sql);
 			pstmt.setInt(1, selectedNumber);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()){
-				
-				// 선택한 회원번호가 없다면 false를 리턴한다.
-				if(rs.wasNull()){
-					return success;
-				}
-				
-				success = true;
+				success = true;					
 			}	
 			
 		} catch (SQLException e) {
@@ -87,10 +81,12 @@ public class UserDao {
 		
 		try {
 			
-			String sql = "update user_list set user_phone_number where user_number = ?";
+			String sql = "update user_list set user_phone_number = ? where user_number = ?";
 			pstmt = MainController.getDbController().getConnection().prepareStatement(sql);
-			pstmt.setInt(1, updateUser.getUserNumber());
+			pstmt.setString(1, updateUser.getUserPhoneNumber());
+			pstmt.setInt(2, updateUser.getUserNumber());
 			pstmt.executeUpdate();
+			success = true;
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -98,6 +94,49 @@ public class UserDao {
 			if(pstmt != null){try{pstmt.close();}catch(SQLException e){e.printStackTrace();}}
 		}
 		
+		return success;
+		
+	}
+
+
+	// 회원가입 데이터 저장
+	public void userSignUp(User newUser) {
+
+		PreparedStatement pstmt = null;
+		
+		try {
+			
+			String sql = "insert into user_list values(user_number_seq.nextval, 0, ?)";
+			pstmt = MainController.getDbController().getConnection().prepareStatement(sql);
+			pstmt.setString(1, newUser.getUserPhoneNumber());
+			pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+				
+	}
+
+
+	// 선택한 회원 삭제
+	public boolean deleteUser(int selectedNumber) {
+
+		boolean success = false;
+		PreparedStatement pstmt = null;
+		
+		
+		try {
+			
+			String sql = "delete from user_list where user_number = ?";
+			pstmt = MainController.getDbController().getConnection().prepareStatement(sql);
+			pstmt.setInt(1, selectedNumber);
+			pstmt.executeUpdate();
+			success = true;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+				
 		return success;
 		
 	}

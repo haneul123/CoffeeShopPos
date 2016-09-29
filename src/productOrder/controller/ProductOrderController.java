@@ -1,9 +1,12 @@
 package productOrder.controller;
 
+import java.util.ArrayList;
+
 import mainView.AlertView;
 import productOrder.dao.ProductOrderDao;
 import productOrder.view.ProductOrderView;
 import productOrder.vo.ProductOrder;
+import productPayment.view.PaymentListView;
 
 public class ProductOrderController {
 
@@ -31,26 +34,23 @@ public class ProductOrderController {
 
 	//선택 상품 주문에 저장
 	public void requestOrderProduct(ProductOrder orderProduct) {
-		
-		int orderProcessNumber = productOrderDao.orderproduct(orderProduct);
-		productOrderDao.orderProductInsert();
-		
+
+		boolean success = productOrderDao.orderproduct(orderProduct);
+
+		productOrderDao.orderProductInsert(orderProduct);
+
 		AlertView alertView = new AlertView();
 
-		if(orderProcessNumber ==1) {
-
-			alertView.alert("이미 주문하신 상품입니다. 수량  조정합니다.");
-
-		} else if (orderProcessNumber ==2) {
+		if(success) {
 
 			alertView.alert("주문 완료");
 
-		} else {
+		} else   {
 
-			alertView.alert("선택하신 상품이 없습니다.");
+			alertView.alert("주문 완료");
+
 		}
-	
-	}
 
+	}
 
 }

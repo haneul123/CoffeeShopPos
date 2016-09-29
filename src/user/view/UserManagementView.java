@@ -38,7 +38,7 @@ public class UserManagementView {
 			if(selectedMenu == 1){
 
 				// 회원 가입 요청
-				MainController.getUserController().requestUserSignUp();
+				MainController.getUserController().requestUserSignUpView();
 				
 			} else if(selectedMenu == 2){
 
@@ -53,7 +53,7 @@ public class UserManagementView {
 			} else if (selectedMenu == 4){
 
 				// 회원 정보 삭제 뷰 요청
-				MainController.getUserController().requestUserDelete();
+				MainController.getUserController().requestUserDeleteView();
 
 			} else if (selectedMenu == 5){
 				

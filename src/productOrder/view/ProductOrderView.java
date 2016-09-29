@@ -31,8 +31,12 @@ public class ProductOrderView {
 			
 			System.out.println("회원 전화번호를 입력하세요");
 			String userPhoneNumber = keyboard.next();
+			
+			System.out.println("결제 방법을 입력하세요");
+			System.out.println("[1]카드  [2]현금");
+			int selectPaymentMethod = keyboard.nextInt();
 
-			ProductOrder orderProduct = new ProductOrder(selectedProductNumber, orderProductCount, userPhoneNumber);
+			ProductOrder orderProduct = new ProductOrder(selectedProductNumber, orderProductCount, userPhoneNumber, selectPaymentMethod);
 
 			MainController.getProductOrderController().requestOrderProduct(orderProduct);
 

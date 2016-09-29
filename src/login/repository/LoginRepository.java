@@ -6,6 +6,7 @@ public class LoginRepository {
 	public static String loginAdminId;
 	public static String loginAdminPassword;
 	public static int authorityNumber;
+	public static int loginNumber;
 	
 	
 	// constructor
@@ -37,6 +38,14 @@ public class LoginRepository {
 
 	public static void setAuthorityNumber(int authorityNumber) {
 		LoginRepository.authorityNumber = authorityNumber;
+	}
+
+	public static int getLoginNumber() {
+		return loginNumber;
+	}
+
+	public static void setLoginNumber(int loginNumber) {
+		LoginRepository.loginNumber = loginNumber;
 	}
 		
 }
