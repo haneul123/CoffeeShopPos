@@ -14,7 +14,6 @@ public class ProductOrder {
 	private Date orderDate;
 	private String userPhoneNumber;
 	private int selectPaymentMethod;
-	private int getSelectPaymentMethod;
 	
 	
 	// constructor
@@ -31,26 +30,6 @@ public class ProductOrder {
 		this.userPhoneNumber = userPhoneNumber;
 		this.selectPaymentMethod = selectPaymentMethod;
 		
-	}
-
-
-	public String getUserPhoneNumber() {
-		return userPhoneNumber;
-	}
-
-
-	public int getSelectPaymentMethod() {
-		return selectPaymentMethod;
-	}
-
-
-	public void setSelectPaymentMethod(int selectPaymentMethod) {
-		this.selectPaymentMethod = selectPaymentMethod;
-	}
-
-
-	public void setUserPhoneNumber(String userPhoneNumber) {
-		this.userPhoneNumber = userPhoneNumber;
 	}
 
 
@@ -113,6 +92,7 @@ public class ProductOrder {
 		this.orderCount = orderCount;
 	}
 
+
 	public Date getOrderDate() {
 		return orderDate;
 	}
@@ -123,10 +103,23 @@ public class ProductOrder {
 	}
 
 
+	public String getUserPhoneNumber() {
+		return userPhoneNumber;
+	}
 
-	
-	
-	
 
-		
+	public void setUserPhoneNumber(String userPhoneNumber) {
+		this.userPhoneNumber = userPhoneNumber;
+	}
+
+
+	public int getSelectPaymentMethod() {
+		return selectPaymentMethod;
+	}
+
+
+	public void setSelectPaymentMethod(int selectPaymentMethod) {
+		this.selectPaymentMethod = selectPaymentMethod;
+	}
+
 }
