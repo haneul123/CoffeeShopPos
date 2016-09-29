@@ -49,8 +49,8 @@ public class AdminDao {
 			e.printStackTrace();
 		} finally {
 			if(pstmt2 != null){try{pstmt2.close();}catch(SQLException e){e.printStackTrace();}}
-			if(rs != null){try{pstmt2.close();}catch(SQLException e){e.printStackTrace();}}
-			if(pstmt != null){try{pstmt2.close();}catch(SQLException e){e.printStackTrace();}}
+			if(rs != null){try{rs.close();}catch(SQLException e){e.printStackTrace();}}
+			if(pstmt != null){try{pstmt.close();}catch(SQLException e){e.printStackTrace();}}
 		}
 		
 		return success;
@@ -66,7 +66,7 @@ public class AdminDao {
 		
 		try {
 			
-			String sql = "select * from admin_list";
+			String sql = "select * from admin_list order by admin_number";
 			stmt = MainController.getDbController().getConnection().createStatement();
 			rs = stmt.executeQuery(sql);
 			
@@ -182,9 +182,53 @@ public class AdminDao {
 
 
 	// 관리자 정보 삭제
-	public void delete(){
+	public void delete(int selectedAdmin){
+
+		PreparedStatement pstmt = null;
+		
+		try {
+			
+			String sql = "delete from admin_list where admin_number = ?";	
+			pstmt = MainController.getDbController().getConnection().prepareStatement(sql);
+			pstmt.setInt(1, selectedAdmin);
+			pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(pstmt != null){try{pstmt.close();}catch(SQLException e){e.printStackTrace();}}
+		}
+		
+	}
 
 
+	// 급여 데이터 입력
+	public boolean salary(int adminNumber, int salary) {
+		
+		boolean success = false;
+		PreparedStatement pstmt = null;
+		
+		try {
+			
+			String sql = "insert into salary values(salary_number_seq.nextval, ?, ?, sysdate)";
+			pstmt = MainController.getDbController().getConnection().prepareStatement(sql);
+			pstmt.setInt(1, adminNumber);
+			pstmt.setInt(2, salary);
+			pstmt.executeUpdate();
+			success = true;
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			
+		} finally {
+			
+			if(pstmt != null){try{pstmt.close();}catch(SQLException e){e.printStackTrace();}}
+			
+		}
+	
+		return success;
+		
 	}
 
 }

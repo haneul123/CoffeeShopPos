@@ -1,9 +1,13 @@
 package mainController;
 
 import admin.controller.AdminController;
+import ingredient.controller.IngredientController;
 import login.controller.LoginController;
 import mainView.MainMenuView;
 import product.controller.ProductController;
+import productOrder.controller.ProductOrderController;
+import salesManagement.controller.SalesManagementController;
+import user.controller.UserController;
 
 public class MainController {
 	
@@ -11,6 +15,10 @@ public class MainController {
 	private static AdminController adminController;
 	private static LoginController loginController;
 	private static ProductController productController;
+	private static ProductOrderController productOrderController; 
+	private static IngredientController ingredientController;
+	private static UserController userController;
+	private static SalesManagementController salesManagementController;
 	
 	//구조
 	public MainController() {
@@ -19,7 +27,17 @@ public class MainController {
 		adminController = new AdminController();
 		loginController = new LoginController();
 		productController = new ProductController();
+		productOrderController = new ProductOrderController();
+		ingredientController = new IngredientController();
+		userController = new UserController();
+		salesManagementController = new SalesManagementController();
 		
+	}
+
+
+	// getter and setter
+	public static ProductOrderController getProductOrderController() {
+		return productOrderController;
 	}
 
 
@@ -37,9 +55,24 @@ public class MainController {
 		return loginController;
 	}
 
+	
+	public static IngredientController getIngredientController() {
+		return ingredientController;
+	}
 
+	
 	public static ProductController getProductController() {
 		return productController;
+	}
+
+
+	public static UserController getUserController() {
+		return userController;
+	}
+
+	
+	public static SalesManagementController getSalesManagementController() {
+		return salesManagementController;
 	}
 
 

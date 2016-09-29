@@ -1,33 +1,114 @@
 package ingredient.dao;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import ingredient.vo.Ingredient;
+import mainController.MainController;
+import mainView.AlertView;
+
 public class IngredientDao {
 
-	// ¿øÀç·á Ãß°¡
-	public void addIngredient(){
-		
-		
+	boolean success = false;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+
+	// ì¬ê³ ê´€ë¦¬_ì›ì¬ë£Œ ë“±ë¡
+	public boolean addIngredient(Ingredient insertIngredients){
+
+		try {
+
+			String sql = "insert into ingredient_list values(INGREDIENT_NUMBER_SEQ.NEXTVAL,?,?,?,?,?)";
+			pstmt = MainController.getDbController().getConnection().prepareStatement(sql);
+			pstmt.setString(1, insertIngredients.getIngredient_Name());
+			pstmt.setInt(2, insertIngredients.getIngredient_Price());
+			pstmt.setInt(3, insertIngredients.getIngreient_Inventory());
+			pstmt.setInt(4, insertIngredients.getIngredient_Inventory_MAX());
+			pstmt.setString(5, insertIngredients.getIngredient_unit());
+			rs = pstmt.executeQuery();
+			success = true;
+
+		} catch (SQLException e) {
+			new AlertView().alert("ë°ì´í„°ë² ì´ìŠ¤ ì—°ê²°ì— ì‹¤íŒ¨ í–ˆìŠµë‹ˆë‹¤.");
+			e.printStackTrace();
+		} finally {
+			if(pstmt != null){try{pstmt.close();}catch(SQLException e){e.printStackTrace();}}
+			if(rs != null){try{rs.close();}catch(SQLException e){e.printStackTrace();}}
+		}
+
+		return success;
+
 	}
-	
-	
-	// ¿øÀç·á Á¶È¸
-	public void readIngredient(){
-		
-		
+
+
+	// ì¬ê³ ê´€ë¦¬_ì›ì¬ë£Œ ì¡°íšŒ
+	public ArrayList<Ingredient> searchIngredient(Ingredient getName){
+
+		ArrayList<Ingredient> ingredientList = new ArrayList<Ingredient>();
+
+		try {
+
+			String sql = "select * from INGREDIENT_LIST where INGREDIENT_NAME LIKE '%'||?||'%' ORDER BY ingredient_number";
+			pstmt = MainController.getDbController().getConnection().prepareStatement(sql);
+			pstmt.setString(1, getName.getIngredient_Name());
+			rs = pstmt.executeQuery();
+
+			MainController.getIngredientController().requestInputKeyword(getName.getIngredient_Name());
+
+			while(rs.next()) {
+
+				Ingredient ingredient = new Ingredient();
+				ingredient.setIngredient_Number(rs.getInt("ingredient_Number"));
+				ingredient.setIngredient_Name(rs.getString("Ingredient_Name"));
+				ingredient.setIngredient_Price(rs.getInt("Ingredient_Price"));
+				ingredient.setIngredient_Inventory_MAX(rs.getInt("Ingredient_Inventory_MAX"));
+				ingredient.setIngredient_unit(rs.getString("Ingredient_unit"));
+				ingredientList.add(ingredient);
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(pstmt != null){try{pstmt.close();}catch(SQLException e){e.printStackTrace();}}
+			if(rs != null){try{rs.close();}catch(SQLException e){e.printStackTrace();}}
+		}
+
+		return ingredientList;
+
 	}
-	
-	
-	// ¿øÀç·á ¼öÁ¤
+
+
+	// ì¬ê³ ê´€ë¦¬_ì›ì¬ë£Œ ìˆ˜ì •
 	public void updateIngredient(){
-	
-		
+
+
 	}
-	
-	
-	// ¿øÀç·á »èÁ¦
-	public void deleteIngredient(){
+
+
+	// ì¬ê³ ê´€ë¦¬_ì›ì¬ë£Œ ì‚­ì œ
+	public boolean deleteIngredient(int deleteIngredientGetNum){
+
+		PreparedStatement pstmt = null;
+
+		try {
+
+			String sql = "delete from INGREDIENT_LIST where INGREDIENT_NUMBER = ?";	
+			pstmt = MainController.getDbController().getConnection().prepareStatement(sql);
+			pstmt.setInt(1, deleteIngredientGetNum);
+			pstmt.executeUpdate();
+			success = true;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(pstmt != null){try{pstmt.close();}catch(SQLException e){e.printStackTrace();}}
+		}
 		
-		
+		return success;
+
 	}
-	
-	
+
 }

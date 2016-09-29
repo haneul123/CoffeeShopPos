@@ -3,14 +3,18 @@ package admin.controller;
 import java.util.ArrayList;
 
 import admin.dao.AdminDao;
+import admin.view.AdminDeleteView;
 import admin.view.AdminListView;
 import admin.view.AdminMainMenu;
 import admin.view.AdminManagementView;
 import admin.view.AdminSignupView;
 import admin.view.AdminUpdateView;
+import admin.view.ManagementSalary;
+import admin.view.StaffMainMenu;
 import admin.vo.Admin;
 import mainController.MainController;
 import mainView.AlertView;
+import user.view.UserManagementView;
 
 
 public class AdminController {
@@ -65,7 +69,16 @@ public class AdminController {
 
 	}
 
-
+	
+	// 직원 메인메뉴 뷰 요청
+	public void requestMainMenuViewStaff(){
+		
+		StaffMainMenu staffMainMenu = new StaffMainMenu();
+		staffMainMenu.staffMainMenu();
+		
+	}
+	
+	
 	// 직원관리 메뉴 뷰 출력요청
 	public void requestAdminManagementView() {
 
@@ -95,7 +108,7 @@ public class AdminController {
 	}
 
 	
-	// 입력받은 관리자가 있는지 없는지 체크
+	// 입력받은 관리자가 있는지 없는지 체크 (수정시)
 	public void requestCheckAdmin(int selectedAdmin) {
 		
 		boolean success = adminDao.checkAdmin(selectedAdmin);
@@ -112,6 +125,26 @@ public class AdminController {
 		}
 		
 	}
+	
+	
+	// 입력받은 관리자가 있는지 없는지 체크 (삭제시)
+	public void requestCheckAdmin(int selectedAdmin, int delete){
+		
+		boolean success = adminDao.checkAdmin(selectedAdmin);
+		
+		if(success){
+			
+			adminDao.delete(selectedAdmin);
+			
+		} else {
+			
+			AlertView alertView = new AlertView();
+			alertView.alert("없는 관리자 입니다.");
+			
+		}
+		
+	}
+	
 	
 	// 관리자 수정 요청
 	public void requestUpdate(Admin updatedAdmin){
@@ -132,8 +165,39 @@ public class AdminController {
 	// 관리자 삭제하기
 	public void requestDelete(){
 
-		
+		requestListView();
+		AdminDeleteView adminDeleteView = new AdminDeleteView();
+		adminDeleteView.adminNumberView();
 
+	}
+
+
+	// 급여 메뉴 관리 
+	public void requestManagementSalary() {
+		
+		ManagementSalary managementSalary = new ManagementSalary();
+		managementSalary.managementSalary();
+		
+	}
+
+
+	// 급여 데이터 입력
+	public void requestInputSalary(int adminNumber, int salary) {
+		
+		boolean success = adminDao.salary(adminNumber, salary);
+		
+		AlertView alertView = new AlertView();
+		
+		if(success){
+			
+			alertView.alert("급여가 지급되었습니다");	
+			
+		} else {
+			
+			alertView.alert("급여지급에 실패하였습니다");
+			
+		}
+			
 	}
 
 }

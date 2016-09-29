@@ -1,0 +1,31 @@
+package productPayment.controller;
+
+
+import java.util.ArrayList;
+import productPayment.dao.ProductPaymentDao;
+import productPayment.view.PaymentListView;
+import productPayment.vo.ProductPayment;
+
+public class ProductPaymentContoller {
+	
+	private ProductPaymentDao productPaymentDao;
+
+
+	//constructor
+	public ProductPaymentContoller() {
+
+		this.productPaymentDao = new ProductPaymentDao();
+
+	}
+	
+	
+	//결제 리스트 부르기
+		public void requestOrderListView(ProductPayment productPayment){
+
+			ArrayList<ProductPayment> productPayments = productPaymentDao.orderProductInsert();
+			PaymentListView paymentListView = new PaymentListView();
+			paymentListView.productOrders(productPayments);
+
+		}
+
+}

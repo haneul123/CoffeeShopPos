@@ -1,5 +1,33 @@
 package product.view;
 
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+import mainController.MainController;
+
 public class RemoveProductView {
 
+	private Scanner keyboard;
+
+
+	public RemoveProductView(){
+
+		this.keyboard = new Scanner(System.in);
+
+	}
+
+
+	//삭제할 상품번호 받기
+	public void deleteProductNumber() {
+
+		try{
+
+			System.out.println("삭제할 번호를 입력하세요.");
+			int selectedProductDeleteNumber = keyboard.nextInt();
+			MainController.getProductController().requestDelete(selectedProductDeleteNumber);
+
+		}catch (InputMismatchException e) {
+			System.out.println("잘못입력 하셨습니다.");
+		}
+	}
 }

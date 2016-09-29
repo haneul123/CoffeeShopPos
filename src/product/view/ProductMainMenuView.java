@@ -7,9 +7,11 @@ import mainController.MainController;
 
 public class ProductMainMenuView {
 
+	// variable
 	private Scanner keyboard;
 
 
+	// constructor
 	public ProductMainMenuView() {
 
 		this.keyboard = new Scanner(System.in);
@@ -17,18 +19,18 @@ public class ProductMainMenuView {
 	}
 
 
+	// method
 	public void productMainMenuView() {
 
 		try{
 
 			while(true){
 
-
 				System.out.println("상품 관리");
 				
 				MainController.getProductController().requestProductlist();
 				
-				System.out.println("[1]상품등록  [2]상품조회  [3]상품수정  [4]상품삭제  [5]이전");
+				System.out.println("[1]상품등록  [2]상품조회  [3]상품수정  [4]상품삭제  [5]상품주문  [6]이전");
 				int seletedMainMenuNumber = keyboard.nextInt();
 				
 				if (seletedMainMenuNumber == 1) {
@@ -41,25 +43,31 @@ public class ProductMainMenuView {
 					
 				} else if (seletedMainMenuNumber == 3) {
 					
-					MainController.getProductController().requestUpdate();
+					MainController.getProductController().requestUpdateView();
 					
 				} else if (seletedMainMenuNumber == 4) {
 					
-					MainController.getProductController().requestDelete();
+					MainController.getProductController().requestDeleteProductNumber();
 					
 				} else if (seletedMainMenuNumber == 5) {
 					
+					
+					MainController.getProductOrderController().requestProductOrderView();
+					
+				}else if (seletedMainMenuNumber == 6) {
+
 					MainController.getAdminController().requestMainMenuView();
 									
 				} else {
 					
 					System.out.println("잘못 입력하셨습니다.");
+					MainController.getProductController().requestProductMainMenu();
 					
 				}
 			}
 			
 		}catch(InputMismatchException e) {
-			e.printStackTrace();
+			System.out.println("잘못 입력하셨습니다.");
 			MainController.getAdminController().requestMainMenuView();
 		}
 	}
