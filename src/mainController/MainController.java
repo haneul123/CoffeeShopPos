@@ -59,8 +59,8 @@ public class MainController {
 	public static IngredientController getIngredientController() {
 		return ingredientController;
 	}
-	
 
+	
 	public static ProductController getProductController() {
 		return productController;
 	}
