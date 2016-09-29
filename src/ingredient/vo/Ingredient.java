@@ -9,7 +9,7 @@ public class Ingredient {
 	private int ingredient_Price;
 	private int ingreient_Inventory;
 	private int ingredient_Inventory_MAX;
-	  
+	private String ingredient_unit;	  
 
 	// constructor
 	public Ingredient() {
@@ -18,15 +18,24 @@ public class Ingredient {
 	}
 
 	// 원재료 등록시 사용되는 생성자
-	public Ingredient(String ingredient_Name, int ingredient_Price, int ingredient_Inventory_MAX) {
+	public Ingredient(String ingredient_Name, int ingredient_Price, int ingredient_Inventory_MAX, String ingredient_unit) {
 		
 		this.ingredient_Name = ingredient_Name;
 		this.ingredient_Price = ingredient_Price;
 		this.ingredient_Inventory_MAX = ingredient_Inventory_MAX;
+		this.ingredient_unit = ingredient_unit;
 		
 	}
 
 
+	// 원재료 검색시 사용되는 생성자
+	public Ingredient(String searchName) {
+		
+		this.ingredient_Name = searchName;
+		
+	}
+
+	// getter and setter
 	public String getIngredient_Name() {
 		
 		return ingredient_Name;
@@ -87,9 +96,26 @@ public class Ingredient {
 		return ingredient_Number;
 		
 	}
-
-
-	// getter and setter
 	
+
+	public void setIngredient_Number(int ingredient_Number) {
+		
+		this.ingredient_Number = ingredient_Number;
+		
+	}
+	
+
+	public String getIngredient_unit() {
+		
+		return ingredient_unit;
+		
+	}
+	
+
+	public void setIngredient_unit(String ingredient_unit) {
+		
+		this.ingredient_unit = ingredient_unit;
+		
+	}
 	
 }

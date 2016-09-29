@@ -1,67 +1,54 @@
 package user.vo;
 
 public class User {
-	
-	private String number;
-	private String id;
-	private String name;
-	private String loginTime;
+
+	// variable
+	private int userNumber;
+	private String userPhoneNumber;
 	private int couponCount;
-	
-	
+
+
+	// constructor
 	public User(){
+
+	}
+
+
+	// 회원 가입시 필요한 생성자
+	public User(String userPhoneNumber) {
+		
+		this.userPhoneNumber = userPhoneNumber;
 		
 	}
+
 	
-	
-	public User(String id, String name, String loginTime, int couponCount){
-		
-		this.number = number;
-		this.id = id;
-		this.name = name;
-		this.loginTime = loginTime;
-		this.couponCount = couponCount;
-		
+	// 회원 업데이트 시 필요한 생성자
+	public User(int selectedNumber, String userPhoneNumber) {
+
+		this.userNumber = selectedNumber;
+		this.userPhoneNumber = userPhoneNumber;
+
 	}
 
 
-	public String getNumber() {
-		return number;
+	// getter and setter
+	public int getUserNumber() {
+		return userNumber;
 	}
 
 
-	public void setNumber(String number) {
-		this.number = number;
+	public void setUserNumber(int userNumber) {
+		this.userNumber = userNumber;
 	}
 
 
-	public String getId() {
-		return id;
+	public String getUserPhoneNumber() {
+		return userPhoneNumber;
 	}
 
 
-	public void setId(String id) {
-		this.id = id;
-	}
-
-
-	public String getName() {
-		return name;
-	}
-
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-
-	public String getLoginTime() {
-		return loginTime;
-	}
-
-
-	public void setLoginTime(String loginTime) {
-		this.loginTime = loginTime;
+	public void setUserPhoneNumber(String userPhoneNumber) {
+		this.userPhoneNumber = userPhoneNumber;
 	}
 
 
@@ -73,7 +60,5 @@ public class User {
 	public void setCouponCount(int couponCount) {
 		this.couponCount = couponCount;
 	}
-	
-	
 
 }

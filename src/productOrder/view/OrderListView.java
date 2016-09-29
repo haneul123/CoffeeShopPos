@@ -27,16 +27,17 @@ public class OrderListView {
 
 		} else {
 
-			System.out.println("상품번호\t상품이름\t\t상품가격\t주문수량\t주문일자");
+			System.out.println("주문번호\t상품번호\t상품이름\t유저번호\t주문수량\t주문일자");
 			for(int i=0; i<productOrders.size(); i++){
 
+				System.out.print(productOrders.get(i).getProductOrderNumber() + "\t");
+				System.out.print(productOrders.get(i).getUserNumber() + "\t");
+				System.out.print(productOrders.get(i).getProductName() + "\t");
 				System.out.print(productOrders.get(i).getProductNumber() + "\t");
 				System.out.print(productOrders.get(i).getOrderCount() + "\t");
-				System.out.println(productOrders.get(i).getUserPhoneNumber());
+				System.out.println(productOrders.get(i).getOrderDate());
 
 			}	
-
-			System.out.println("총 금액 : " + productOrders.get(0).getOrderSum());
 
 		}
 
