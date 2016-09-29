@@ -61,8 +61,8 @@ public class AdminMainMenu {
 			} else if (selectedMenu == 4) {
 
 				// 회원관리 메뉴 출력
-				MainController.getUserController().requestUserManagement();
-
+				MainController.getUserController().requestUserManagementView();
+				
 			} else if (selectedMenu == 5) {
 
 				// 직원관리 메뉴 출력
