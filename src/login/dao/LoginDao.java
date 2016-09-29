@@ -98,7 +98,6 @@ public class LoginDao {
 	// 로그아웃 처리
 	public void Logout(){
 
-		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		int adminNumber = 0;
@@ -116,7 +115,6 @@ public class LoginDao {
 		} finally {
 			if(pstmt != null){try {pstmt.close();} catch (SQLException e) {e.printStackTrace();}}
 			if(rs != null){try {rs.close();} catch (SQLException e) {e.printStackTrace();}}
-			if(rs != null){try {stmt.close();} catch (SQLException e) {e.printStackTrace();}}
 		}
 		
 		// 로그인 저장소 초기화
