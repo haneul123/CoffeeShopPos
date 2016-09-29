@@ -31,9 +31,9 @@ public class OrderListView {
 			for(int i=0; i<productOrders.size(); i++){
 
 				System.out.print(productOrders.get(i).getProductOrderNumber() + "\t");
-				System.out.print(productOrders.get(i).getProductNumber() + "\t");
-				System.out.print(productOrders.get(i).getProductName() + "\t");
 				System.out.print(productOrders.get(i).getUserNumber() + "\t");
+				System.out.print(productOrders.get(i).getProductName() + "\t");
+				System.out.print(productOrders.get(i).getProductNumber() + "\t");
 				System.out.print(productOrders.get(i).getOrderCount() + "\t");
 				System.out.println(productOrders.get(i).getOrderDate());
 

@@ -21,33 +21,12 @@ public class ProductOrderDao {
 
 
 	//주문한 상품  저장 하기
-	public int orderproduct(ProductOrder orderProduct) {
+	public boolean orderproduct(ProductOrder orderProduct) {
 
-		int orderProcessNumber = 0;
+	
+		boolean success = false;
+		return ProductOrderRepository.getProductOrders().add(orderProduct);
 
-		//수량만 증가
-
-		if(ProductOrderRepository.getProductOrders().size() == 0){
-
-			ProductOrderRepository.getProductOrders().add(orderProduct);
-
-		}else{
-
-			for(int i=0; i<ProductOrderRepository.getProductOrders().size(); i++) {
-
-				if(ProductOrderRepository.getProductOrders().get(i).getProductNumber() == orderProduct.getProductNumber()) {		
-					ProductOrderRepository.getProductOrders().get(i).setOrderCount(orderProduct.getOrderCount());
-					orderProcessNumber = 1;
-
-				}else {
-
-					ProductOrderRepository.getProductOrders().add(orderProduct);
-
-				}
-			}
-		}
-
-		return orderProcessNumber;
 
 	}
 
@@ -76,15 +55,16 @@ public class ProductOrderDao {
 
 			for(int i = 0; i<ProductOrderRepository.getProductOrders().size(); i++){
 
-				sql = "insert into product_order_list values(product_order_number_seq.nextval,?,?,?,sysdate) ";
+				sql = "insert into product_order_list values(product_order_number_seq.nextval, ?, ?, ?, sysdate)";
 				pstmt2 = MainController.getDbController().getConnection().prepareStatement(sql);
 				pstmt2.setInt(1, userNumber);
 				pstmt2.setInt(2, ProductOrderRepository.getProductOrders().get(i).getProductNumber());
 				pstmt2.setInt(3, ProductOrderRepository.getProductOrders().get(i).getOrderCount());
 				pstmt2.executeUpdate();
-				success = true;
+				
 			}
-
+			
+			success = true;
 
 		}catch (SQLException e) {
 			e.printStackTrace();
@@ -96,7 +76,6 @@ public class ProductOrderDao {
 		}
 
 		ProductOrderRepository.getProductOrders().clear();
-		ProductOrderRepository.setLastProductOrderNumber(0);
 
 		return success;
 
