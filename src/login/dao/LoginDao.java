@@ -98,10 +98,7 @@ public class LoginDao {
 	// 로그아웃 처리
 	public Admin Logout(){
 
-<<<<<<< HEAD
-=======
 		Admin logoutAdmin = null;
->>>>>>> origin/master
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		int adminNumber = 0;

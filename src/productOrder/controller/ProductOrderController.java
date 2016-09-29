@@ -32,9 +32,9 @@ public class ProductOrderController {
 	//선택 상품 주문에 저장
 	public void requestOrderProduct(ProductOrder orderProduct) {
 
-		boolean success = productOrderDao.orderproduct(orderProduct);
+		productOrderDao.orderproduct(orderProduct);
 
-		productOrderDao.orderProductInsert(orderProduct);
+		boolean success = productOrderDao.orderProductInsert(orderProduct);
 
 		AlertView alertView = new AlertView();
 

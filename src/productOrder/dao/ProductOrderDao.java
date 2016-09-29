@@ -21,17 +21,10 @@ public class ProductOrderDao {
 
 
 	//주문한 상품  저장 하기
-<<<<<<< HEAD
 	public void orderproduct(ProductOrder orderProduct) {
 
 		ProductOrderRepository.getProductOrders().add(orderProduct);
-
-=======
-	public boolean orderproduct(ProductOrder orderProduct) {
-
-		return ProductOrderRepository.getProductOrders().add(orderProduct);
-
->>>>>>> origin/master
+		
 	}
 
 
