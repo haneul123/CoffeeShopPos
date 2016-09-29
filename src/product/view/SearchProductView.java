@@ -3,7 +3,6 @@ package product.view;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import mainController.MainController;
 import product.vo.Product;
 
 public class SearchProductView {
@@ -30,7 +29,7 @@ public class SearchProductView {
 
 		}catch (InputMismatchException e) {
 			System.out.println("잘못입력 하셨습니다.");
-			MainController.getProductController().requestProductMainMenu();
+			searchProductNumber();
 		}
 		
 		return searchProductNumber;
