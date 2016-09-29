@@ -35,7 +35,7 @@ public class IngredientController {
 	
 	// method
 	// 재고관리 메인메뉴 호출
-	public void requestIngredient() {
+	public void requestIngredientMainMenu() {
 		
 		IngredientMainMenu ingredientMenu = new IngredientMainMenu();
 		ingredientMenu.ingredientMenu();
@@ -97,7 +97,7 @@ public class IngredientController {
 		searchList.SearchList(ingredientList);
 		
 		//삭제할 제품번호
-		 int deleteIngredientGetNum = idv.deleteIngredientNum();
+		int deleteIngredientGetNum = idv.deleteIngredientNum();
 		
 		boolean success = ingredientDao.deleteIngredient(deleteIngredientGetNum);
 		

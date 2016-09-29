@@ -77,11 +77,21 @@ public class UserDao {
 	public boolean updateUser(User updateUser) {
 		
 		boolean success = false;
+		Statement stmt = null;
 		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		
 		try {
 			
-			String sql = "update user_list set user_phone_number = ? where user_number = ?";
+			String sql = "select user_phone_number from user_list";
+			stmt = MainController.getDbController().getConnection().createStatement();
+			rs = stmt.executeQuery(sql);
+			
+			if(rs.next()){
+				return success;
+			}
+			
+			sql = "update user_list set user_phone_number = ? where user_number = ?";
 			pstmt = MainController.getDbController().getConnection().prepareStatement(sql);
 			pstmt.setString(1, updateUser.getUserPhoneNumber());
 			pstmt.setInt(2, updateUser.getUserNumber());
@@ -92,6 +102,8 @@ public class UserDao {
 			e.printStackTrace();
 		} finally {
 			if(pstmt != null){try{pstmt.close();}catch(SQLException e){e.printStackTrace();}}
+			if(rs != null){try{rs.close();}catch(SQLException e){e.printStackTrace();}}
+			if(stmt != null){try{stmt.close();}catch(SQLException e){e.printStackTrace();}}
 		}
 		
 		return success;
