@@ -1,6 +1,5 @@
 package user.view;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import mainController.MainController;
@@ -25,7 +24,7 @@ public class UserUpdateView {
 	// 회원 업데이트 정보 받기
 	public void userUpdateView(int selectedNumber){
 
-		System.out.println("수정하실 유저 휴대폰 번호를 입력하십시오");
+		System.out.println("수정하실 유저 휴대폰 번호 뒷 8자리를 붙여서 입력하십시오");
 		String userPhoneNumber = keyboard.next();
 		
 		User updateUser = new User(selectedNumber, userPhoneNumber);
