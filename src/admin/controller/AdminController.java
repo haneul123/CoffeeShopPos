@@ -14,6 +14,7 @@ import admin.view.StaffMainMenu;
 import admin.vo.Admin;
 import mainController.MainController;
 import mainView.AlertView;
+import user.view.UserManagementView;
 
 public class AdminController {
 
@@ -195,8 +196,7 @@ public class AdminController {
 			alertView.alert("급여지급에 실패하였습니다");
 			
 		}
-		
-		
+			
 	}
 
 }
