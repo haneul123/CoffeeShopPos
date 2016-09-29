@@ -55,8 +55,6 @@ public class IngredientController {
 			new AlertView().alert("원재료 등록에 실패 하였습니다.");
 		}
 
-		requestIngredient();
-
 	}
 
 
