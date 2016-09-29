@@ -22,9 +22,9 @@ public class ProductPaymentContoller {
 	//결제 리스트 부르기
 		public void requestPaymentList(){
 
-			ArrayList<ProductPayment> productPayments = productPaymentDao.productPaymentlist();
+			ArrayList<ProductPayment> productPaymentlist = productPaymentDao.productPaymentlist();
 			PaymentListView paymentListView = new PaymentListView();
-			paymentListView.productOrders(productPayments);
+			paymentListView.productOrders(productPaymentlist);
 
 		}
 
