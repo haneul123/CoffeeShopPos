@@ -22,23 +22,6 @@ public class UserUpdateView {
 
 
 	// method
-	// 수정할 회원번호 입력
-	public void selectUserNumber() {
-
-		int selectedNumber = 0;
-
-		System.out.println("업데이트 할 회원 번호를 입력하십시오");
-		try{
-			selectedNumber = keyboard.nextInt();
-		} catch(InputMismatchException e) {	
-			System.out.println("번호를 입력해 주십시오");
-		}	
-		
-		MainController.getUserController().requestCheckUser(selectedNumber);
-
-	}
-
-
 	// 회원 업데이트 정보 받기
 	public void userUpdateView(int selectedNumber){
 

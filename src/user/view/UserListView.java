@@ -14,8 +14,8 @@ public class UserListView {
 		
 		for(int i=0; i<userList.size(); i++){
 		
-			System.out.println(userList.get(i).getUserNumber());
-			System.out.println(userList.get(i).getUserPhoneNumber());
+			System.out.print(userList.get(i).getUserNumber() + "\t");
+			System.out.print(userList.get(i).getUserPhoneNumber() + "\t");
 			System.out.println(userList.get(i).getCouponCount());
 			
 		}
