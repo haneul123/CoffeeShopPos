@@ -7,9 +7,11 @@ import mainController.MainController;
 
 public class ProductMainMenuView {
 
+	// variable
 	private Scanner keyboard;
 
 
+	// constructor
 	public ProductMainMenuView() {
 
 		this.keyboard = new Scanner(System.in);
@@ -17,12 +19,12 @@ public class ProductMainMenuView {
 	}
 
 
+	// method
 	public void productMainMenuView() {
 
 		try{
 
 			while(true){
-
 
 				System.out.println("상품 관리");
 				

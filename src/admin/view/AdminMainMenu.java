@@ -61,8 +61,8 @@ public class AdminMainMenu {
 			} else if (selectedMenu == 4) {
 
 				// 회원관리 메뉴 출력
-				// MainController.getUserController().requestMainMenuView();
-
+				MainController.getUserController().requestUserManagementView();
+				
 			} else if (selectedMenu == 5) {
 
 				// 직원관리 메뉴 출력
@@ -70,8 +70,9 @@ public class AdminMainMenu {
 
 			} else if (selectedMenu == 6){
 
+				// 로그 아웃
 				MainController.getLoginController().requestLogout();
-
+				
 			} else {
 
 				System.out.println("없는 메뉴입니다. 다시 입력해주세요");
