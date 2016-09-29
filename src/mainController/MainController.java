@@ -4,7 +4,7 @@ import admin.controller.AdminController;
 import ingredient.controller.IngredientController;
 import login.controller.LoginController;
 import mainView.MainMenuView;
-import product.Controller.ProductController;
+import product.controller.ProductController;
 import productOrder.controller.ProductOrderController;
 import productPayment.controller.ProductPaymentContoller;
 import salesManagement.controller.SalesManagementController;
