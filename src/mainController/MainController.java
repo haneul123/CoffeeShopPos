@@ -59,12 +59,8 @@ public class MainController {
 	public static IngredientController getIngredientController() {
 		return ingredientController;
 	}
-<<<<<<< HEAD
 
-=======
 	
->>>>>>> choiwj1012/master
-
 	public static ProductController getProductController() {
 		return productController;
 	}
