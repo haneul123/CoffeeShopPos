@@ -18,14 +18,22 @@ public class DBcontroller {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 
 			// 최원재 Connection
+<<<<<<< HEAD
+			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl","csp_admin","123456");
+=======
 			// conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl","csp_admin","123456");
+>>>>>>> ygeom/ingredient/insert
 
 			// 김하늘 Connection
 			// conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "superadmin", "123456");
 			   
 			// 엄윤길 Connection
+<<<<<<< HEAD
+			// conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/orcl","csp_admin","123456");
+=======
 			   conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/orcl","csp_admin","123456");
 
+>>>>>>> ygeom/ingredient/insert
 
 		}catch (ClassNotFoundException e) {
 			alertView.alert("데이터베이스 연결에 실패했습니다.");
