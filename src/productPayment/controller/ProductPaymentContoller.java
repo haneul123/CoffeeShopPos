@@ -20,9 +20,9 @@ public class ProductPaymentContoller {
 	
 	
 	//결제 리스트 부르기
-		public void requestOrderListView(ProductPayment productPayment){
+		public void requestPaymentList(){
 
-			ArrayList<ProductPayment> productPayments = productPaymentDao.orderProductInsert();
+			ArrayList<ProductPayment> productPayments = productPaymentDao.productPaymentlist();
 			PaymentListView paymentListView = new PaymentListView();
 			paymentListView.productOrders(productPayments);
 

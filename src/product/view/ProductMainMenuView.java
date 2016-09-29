@@ -56,7 +56,7 @@ public class ProductMainMenuView {
 					
 				}else if (seletedMainMenuNumber == 6) {
 
-					MainController.getAdminController().requestMainMenuView();
+					MainController.getProductPaymentController().requestPaymentList();
 									
 				} else {
 					
