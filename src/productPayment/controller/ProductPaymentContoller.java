@@ -20,6 +20,7 @@ public class ProductPaymentContoller {
 
 	}
 
+	
 	// 결제 데이터 베이스에 주문 데이터를 저장하기
 	public void requestInsertOrderData(ProductPayment productPayment){
 
@@ -28,6 +29,12 @@ public class ProductPaymentContoller {
 	}
 
 	
+	// 결제 리스트 뷰 요청
+	public void requestPaymentList(){
+		
+		
+	}
+		
 	// 결제 리스트 부르기
 	public void requestPaymentListView(){
 

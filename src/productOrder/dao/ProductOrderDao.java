@@ -6,11 +6,19 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import mainController.MainController;
+import productOrder.repository.ProductOrderRepository;
 import productOrder.vo.ProductOrder;
 import productPayment.vo.ProductPayment;
 
 public class ProductOrderDao {
 
+	// constructor
+	public ProductOrderDao() {
+	
+		new ProductOrderRepository();
+		
+	}
+	
 
 	//주문상품을 주문 리스트에 넣기
 	public ProductPayment orderProductInsert(ProductOrder orderProduct) {
@@ -72,16 +80,18 @@ public class ProductOrderDao {
 			pstmt3.setInt(2, userNumber);
 			pstmt3.executeUpdate();
 
-			sql = "select (pl.product_price * pol.ORDER_COUNT) as totalPrice, ((pl.product_price * pol.ORDER_COUNT) - (pl.product_price * ?)) as realPrice from product_list pl, product_order_list pol where pl.product_number = pol.product_number";
+			sql = "select (pl.product_price * pol.ORDER_COUNT) as totalPrice, ";
+			sql += "((pl.product_price * pol.ORDER_COUNT) - (pl.product_price * ?)) as realPrice ";
+			sql	+= "from product_list pl, product_order_list pol ";
+			sql	+= "where pl.product_number = pol.product_number";
 			pstmt4 = MainController.getDbController().getConnection().prepareStatement(sql);
 			pstmt4.setInt(1, freeCoupon);
-
 			rs3 = pstmt4.executeQuery();
 
 			if(rs3.next()) {
-
-				productPayment.setTotalPrice(rs3.getInt(1));
-				productPayment.setRealPrice(rs3.getInt(2));
+				
+				ProductOrderRepository.setTotalPrice(rs3.getInt(1));
+				ProductOrderRepository.setRealPrice(rs3.getInt(2));
 
 			}
 
@@ -108,6 +118,8 @@ public class ProductOrderDao {
 				productPayment.setPaymentMethod(rs5.getInt(6));
 
 			}
+			
+			// 결제가 완료된 경우에 쿠폰수가 정리되고 그만큼 원재료가 감소한다. 
 
 		}catch (SQLException e) {
 			e.printStackTrace();
