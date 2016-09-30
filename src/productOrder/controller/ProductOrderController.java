@@ -20,7 +20,7 @@ public class ProductOrderController {
 	}
 
 
-	// 상품주분 뷰 호출
+	// 상품주문 뷰 호출
 	public void requestProductOrderView() {
 
 		ProductOrderView productOrderView = new ProductOrderView();
@@ -32,9 +32,11 @@ public class ProductOrderController {
 	//선택 상품 주문에 저장
 	public void requestOrderProduct(ProductOrder orderProduct) {
 
-		boolean success = productOrderDao.orderproduct(orderProduct);
-
-		productOrderDao.orderProductInsert(orderProduct);
+		// 주문 사항을 productOrderRepository에 저장
+		productOrderDao.orderproduct(orderProduct);
+		
+		// 주문 데이터베이스에 주문 사항 저장
+		boolean success = productOrderDao.orderProductInsert(orderProduct);
 
 		AlertView alertView = new AlertView();
 
@@ -42,9 +44,9 @@ public class ProductOrderController {
 
 			alertView.alert("주문 완료");
 
-		} else   {
+		} else {
 
-			alertView.alert("주문 완료");
+			alertView.alert("주문 실패");
 
 		}
 

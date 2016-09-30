@@ -21,12 +21,9 @@ public class ProductOrderDao {
 
 
 	//주문한 상품  저장 하기
-	public boolean orderproduct(ProductOrder orderProduct) {
+	public void orderproduct(ProductOrder orderProduct) {
 
-	
-		boolean success = false;
-		return ProductOrderRepository.getProductOrders().add(orderProduct);
-
+		ProductOrderRepository.getProductOrders().add(orderProduct);
 
 	}
 
@@ -48,9 +45,7 @@ public class ProductOrderDao {
 			rs1 = pstmt1.executeQuery();	
 
 			if(rs1.next()){
-
-				userNumber = rs1.getInt(1);
-			
+				userNumber = rs1.getInt(1);		
 			}
 
 			for(int i = 0; i<ProductOrderRepository.getProductOrders().size(); i++){

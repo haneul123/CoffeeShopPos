@@ -66,7 +66,7 @@ public class UpdateProductView {
 
 			} else if(selectedMenu == 4){
 
-				MainController.getProductController().requestProductMainMenu();
+				break;
 
 			} else {
 

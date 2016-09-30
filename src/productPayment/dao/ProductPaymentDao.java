@@ -113,8 +113,6 @@ public class ProductPaymentDao {
 				
 				productpayment.setPaymentListNumber(rs.getInt(1));
 				productpayment.setProductOrderNumber(rs.getInt(2));
-				
-				
 				productPaymentlist.add(productpayment);
 
 			}
