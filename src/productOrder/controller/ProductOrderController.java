@@ -32,10 +32,15 @@ public class ProductOrderController {
 	//선택 상품 주문에 저장
 	public void requestOrderProduct(ProductOrder orderProduct) {
 
+<<<<<<< HEAD
 		// 주문 사항을 productOrderRepository에 저장
 		productOrderDao.orderproduct(orderProduct);
 		
 		// 주문 데이터베이스에 주문 사항 저장
+=======
+		productOrderDao.orderproduct(orderProduct);
+
+>>>>>>> refs/remotes/choiwj1012/master
 		boolean success = productOrderDao.orderProductInsert(orderProduct);
 
 		AlertView alertView = new AlertView();

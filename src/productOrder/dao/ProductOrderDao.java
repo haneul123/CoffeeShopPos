@@ -22,9 +22,14 @@ public class ProductOrderDao {
 
 	//주문한 상품  저장 하기
 	public void orderproduct(ProductOrder orderProduct) {
+<<<<<<< HEAD
 
 		ProductOrderRepository.getProductOrders().add(orderProduct);
+=======
+>>>>>>> refs/remotes/choiwj1012/master
 
+		ProductOrderRepository.getProductOrders().add(orderProduct);
+		
 	}
 
 
@@ -79,8 +84,7 @@ public class ProductOrderDao {
 
 
 	//주문 상품 리스트 가져오기
-
-	public  ArrayList<ProductOrder> productOrderList() {
+	public ArrayList<ProductOrder> productOrderList() {
 
 		ArrayList<ProductOrder> productOrderList = new ArrayList<ProductOrder>();
 		Statement stmt = null;
@@ -118,6 +122,4 @@ public class ProductOrderDao {
 
 	}
 
-
-	
 }

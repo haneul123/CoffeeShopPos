@@ -11,7 +11,6 @@ import product.vo.Product;
 
 public class ProductDao {
 
-
 	//상품리스트
 	public ArrayList<Product> productList() {
 
@@ -21,6 +20,7 @@ public class ProductDao {
 		ResultSet rs = null;
 
 		try{
+			
 			stmt = MainController.getDbController().getConnection().createStatement();
 			String sql = "select * from product_list";
 			rs = stmt.executeQuery(sql);
@@ -35,21 +35,14 @@ public class ProductDao {
 				products.add(product);
 
 			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 
-			if(stmt != null){
-
-				try{
-
-					stmt.close();
-
-				}catch (SQLException e){
-					e.printStackTrace();
-				}if(rs !=null){try{rs.close();}catch (SQLException e){e.printStackTrace();}
-				}
-			}
+			if(stmt != null){ try{stmt.close();}catch(SQLException e){e.printStackTrace();}}
+			if(rs != null){ try{rs.close();}catch(SQLException e){e.printStackTrace();}}
+		
 		}
 
 		return products;
@@ -126,6 +119,7 @@ public class ProductDao {
 				searchProduct.setProductComment(rs.getString(4));
 
 			}
+			
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally{
@@ -134,6 +128,7 @@ public class ProductDao {
 			if(pstmt != null){try{pstmt.close();} catch (SQLException e){e.printStackTrace();}}
 
 		}
+		
 		return searchProduct;
 
 	}
@@ -141,26 +136,26 @@ public class ProductDao {
 
 	//상품삭제
 	public boolean deleteProduct(int deleteProductNumber){
-		
+
 		boolean success = false;
 		PreparedStatement pstmt = null;
-		
+
 		try {
-			
+
 			String sql = "delete from product_list where product_number = ?";
 			pstmt = MainController.getDbController().getConnection().prepareStatement(sql);
 			pstmt.setInt(1, deleteProductNumber);
 			pstmt.executeUpdate();
 			success = true;
-			
+
 		}catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			
+
 			if(pstmt != null){try{pstmt.close();} catch (SQLException e){e.printStackTrace();}}
-	
+
 		}
-	
+
 		return success;
 
 	}

@@ -47,7 +47,6 @@ public class ProductOrderView {
 			MainController.getProductOrderController().requestOrderProduct(orderProduct);
 
 		}catch(InputMismatchException e){	
-			
 			System.err.println("잘못입력하셨습니다");		
 		}
 	}

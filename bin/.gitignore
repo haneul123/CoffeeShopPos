@@ -11,6 +11,14 @@
 /ingredient/
 =======
 /productPayment/
+<<<<<<< HEAD
 /salesManagement/
 >>>>>>> origin/master
+=======
+>>>>>>> refs/remotes/origin/master
+/admin/
+/ingredient/
+/login/
+/salesManagement/
+>>>>>>> refs/remotes/choiwj1012/master
 /user/
