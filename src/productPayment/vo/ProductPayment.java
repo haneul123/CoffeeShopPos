@@ -13,6 +13,8 @@ public class ProductPayment {
 	private int paymentMethod;
 	private Date paymentDate;
 	private int productPrice;
+	private int totalPrice;
+	private int realPrice;
 
 
 	public ProductPayment() {
@@ -28,10 +30,26 @@ public class ProductPayment {
 		this.PaymentCount = PaymentCount;
 		this.paymentMethod = paymentMethod;
 		this.productPrice = productPrice;
-		this.paymentDate = paymentDate;		
+		this.paymentDate = paymentDate;	
 
 	}
 	
+	public int getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(int totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+
+	public int getRealPrice() {
+		return realPrice;
+	}
+
+	public void setRealPrice(int realPrice) {
+		this.realPrice = realPrice;
+	}
+
 	public int getProductOrderNumber() {
 		return productOrderNumber;
 	}

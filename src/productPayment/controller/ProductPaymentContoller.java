@@ -8,16 +8,11 @@ import productPayment.view.PaymentListView;
 import productPayment.vo.ProductPayment;
 
 public class ProductPaymentContoller {
-<<<<<<< HEAD
-=======
 
 	
 	// variable
 	private ProductPaymentDao productPaymentDao;
->>>>>>> refs/remotes/choiwj1012/master
 
-	// variable
-	private ProductPaymentDao productPaymentDao;
 
 	// constructor
 	public ProductPaymentContoller() {
@@ -27,18 +22,6 @@ public class ProductPaymentContoller {
 	}
 
 
-<<<<<<< HEAD
-	// 결제 리스트 부르기
-	public void requestPaymentList(){
-
-		ArrayList<ProductPayment> productPaymentlist = productPaymentDao.productPaymentlist();
-		PaymentListView paymentListView = new PaymentListView();
-		paymentListView.productOrders(productPaymentlist);
-
-	}
-
-=======
-	// method
 	// 결제 리스트 부르기
 	public void requestPaymentList(){
 
@@ -61,6 +44,5 @@ public class ProductPaymentContoller {
 		paymentListView.productOrders(orderProductList);
 		
 	}
-	
->>>>>>> refs/remotes/choiwj1012/master
+
 }
