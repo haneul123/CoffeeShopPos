@@ -59,7 +59,7 @@ public class ProductMainMenuView {
 
 			}else if (selectedMenu == 6) {
 
-				MainController.getProductPaymentController().requestPaymentList();
+				MainController.getProductPaymentController().requestPaymentListView();
 
 			} else {
 
