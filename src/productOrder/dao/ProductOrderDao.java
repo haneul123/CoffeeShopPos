@@ -26,9 +26,9 @@ public class ProductOrderDao {
 
 	//주문한 상품  저장 하기
 	public boolean orderproduct(ProductOrder orderProduct) {
-
-	 boolean success = ProductOrderRepository.getProductOrders().add(orderProduct);
-	 return success;
+		
+		boolean success = ProductOrderRepository.getProductOrders().add(orderProduct);
+		return success;
 
 	}
 
