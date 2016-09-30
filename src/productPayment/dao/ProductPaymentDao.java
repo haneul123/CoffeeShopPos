@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import mainController.MainController;
 import productOrder.repository.ProductOrderRepository;
+import productOrder.vo.ProductOrder;
 import productPayment.vo.ProductPayment;
 
 public class ProductPaymentDao {
@@ -34,6 +35,7 @@ public class ProductPaymentDao {
 			while(rs.next()) {
 
 				ProductPayment productpayment = new ProductPayment();
+				
 				productpayment.setProductOrderNumber(rs.getInt(1));
 				productpayment.setProductNumber(rs.getInt(2));
 				productpayment.setProductName(rs.getString(3));
@@ -90,37 +92,42 @@ public class ProductPaymentDao {
 
 	}
 	
-	
-	//페이먼트 리스트
-	public ArrayList<ProductPayment> productPaymentlist() {
+	//주문 상품 리스트 가져오기
+		public ArrayList<ProductOrder> productOrderList() {
 
-		ArrayList<ProductPayment> orderProductInsert = new ArrayList<ProductPayment>();
-		Statement stmt = null;
-		ResultSet rs = null;
+			ArrayList<ProductOrder> productOrderList = new ArrayList<ProductOrder>();
+			Statement stmt = null;
+			ResultSet rs = null;
 
-		try {
 
-			String sql = "select * from product_pay_list";
-			stmt = MainController.getDbController().getConnection().createStatement();
-			rs = stmt.executeQuery(sql);
+			try{
 
-			while(rs.next()) {
+				String sql = "select * from product_order_list_view ";
+				stmt = MainController.getDbController().getConnection().createStatement();
+				rs = stmt.executeQuery(sql);
 
-				ProductPayment productpayment = new ProductPayment();
-				
-				productpayment.setPaymentListNumber(rs.getInt(1));
-				productpayment.setProductOrderNumber(rs.getInt(2));		
-				orderProductInsert.add(productpayment);
+				while(rs.next()) {
 
+					ProductOrder productOrder = new ProductOrder();
+					productOrder.setProductOrderNumber(rs.getInt(1));
+					productOrder.setProductNumber(rs.getInt(2));
+					productOrder.setProductName(rs.getString(3));
+					productOrder.setUserNumber(rs.getInt(4));
+					productOrder.setOrderCount(rs.getInt(5));
+					productOrder.setOrderDate(rs.getDate(6));
+					productOrder.setSelectPaymentMethod(rs.getInt(7));
+					productOrderList.add(productOrder);
+
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				if(rs != null){try{rs.close();} catch (SQLException e){e.printStackTrace();}}
+				if(stmt != null){try{stmt.close();} catch (SQLException e){e.printStackTrace();}}
 			}
 
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			if(rs != null){try{rs.close();} catch (SQLException e){e.printStackTrace();}}
-			if(stmt != null){try{stmt.close();} catch (SQLException e){e.printStackTrace();}}
+			return productOrderList;
+
 		}
-		
-		return orderProductInsert;
-	}
 }

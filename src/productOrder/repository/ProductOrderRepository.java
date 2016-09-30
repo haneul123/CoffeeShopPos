@@ -10,7 +10,6 @@ public class ProductOrderRepository {
 	// variable
 	static private ArrayList<ProductOrder> productOrders = new ArrayList<ProductOrder>();
 	static private ArrayList<ProductPayment> productPayment = new ArrayList<ProductPayment>();
-	static private int lastProductOrderNumber;
 
 	// constructor
 	public ProductOrderRepository() {
@@ -32,14 +31,6 @@ public class ProductOrderRepository {
 
 	public static void setProductPayment(ArrayList<ProductPayment> productPayment) {
 		ProductOrderRepository.productPayment = productPayment;
-	}
-
-	public static int getLastProductOrderNumber() {
-		return lastProductOrderNumber;
-	}
-
-	public static void setLastProductOrderNumber(int lastProductOrderNumber) {
-		ProductOrderRepository.lastProductOrderNumber = lastProductOrderNumber;
 	}
 
 }

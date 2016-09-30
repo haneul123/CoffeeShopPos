@@ -1,6 +1,5 @@
 package productPayment.controller;
 
-
 import java.util.ArrayList;
 
 import mainView.AlertView;
@@ -23,7 +22,6 @@ public class ProductPaymentContoller {
 	}
 
 
-	// method
 	// 결제 리스트 부르기
 	public void requestPaymentList(){
 
@@ -46,5 +44,5 @@ public class ProductPaymentContoller {
 		paymentListView.productOrders(orderProductList);
 		
 	}
-	
+
 }

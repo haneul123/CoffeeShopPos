@@ -1,14 +1,24 @@
-<<<<<<< HEAD
+/CoffeeShopPos.erm
+/admin/
+/ingredient/
+/login/
+/main/
 /mainController/
-/productPayment/
+/mainView/
 /product/
 /productOrder/
+<<<<<<< HEAD
+/ingredient/
 =======
-/productOrder/
 /productPayment/
+<<<<<<< HEAD
+/salesManagement/
+>>>>>>> origin/master
+=======
 >>>>>>> refs/remotes/origin/master
 /admin/
 /ingredient/
 /login/
 /salesManagement/
+>>>>>>> refs/remotes/choiwj1012/master
 /user/
