@@ -4,38 +4,18 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 
 import mainController.MainController;
-import productOrder.repository.ProductOrderRepository;
 import productOrder.vo.ProductOrder;
 import productPayment.vo.ProductPayment;
 
 public class ProductOrderDao {
 
-
-	private static final ProductPayment productPayment = null;
-
-
-	public void order(){
-
-		new ProductOrderRepository();
-
-	}
-
-
-	//주문한 상품  저장 하기
-	public boolean orderproduct(ProductOrder orderProduct) {
-		
-		boolean success = ProductOrderRepository.getProductOrders().add(orderProduct);
-		return success;
-
-	}
-
-
+	
 	//주문상품을 주문 리스트에 넣기
 	public ProductPayment orderProductInsert(ProductOrder orderProduct) {
 
+		ProductPayment productPayment = null;
 		Statement stmt = null;
 		PreparedStatement pstmt1 = null;
 		PreparedStatement pstmt2 = null;	
@@ -59,17 +39,13 @@ public class ProductOrderDao {
 				userNumber = rs1.getInt(1);		
 			}
 
-			for(int i = 0; i<ProductOrderRepository.getProductOrders().size(); i++){
-
-				sql = "insert into product_order_list values(product_order_number_seq.nextval, ?, ?, ?, sysdate, ?)";
-				pstmt2 = MainController.getDbController().getConnection().prepareStatement(sql);
-				pstmt2.setInt(1, userNumber);
-				pstmt2.setInt(2, ProductOrderRepository.getProductOrders().get(i).getProductNumber());
-				pstmt2.setInt(3, ProductOrderRepository.getProductOrders().get(i).getOrderCount());
-				pstmt2.setInt(4, ProductOrderRepository.getProductOrders().get(i).getSelectPaymentMethod());
-				pstmt2.executeUpdate();
-
-			}
+			sql = "insert into product_order_list values(product_order_number_seq.nextval, ?, ?, ?, sysdate, ?)";
+			pstmt2 = MainController.getDbController().getConnection().prepareStatement(sql);
+			pstmt2.setInt(1, userNumber);
+			pstmt2.setInt(2, orderProduct.getProductNumber());
+			pstmt2.setInt(3, orderProduct.getOrderCount());
+			pstmt2.setInt(4, orderProduct.getSelectPaymentMethod());
+			pstmt2.executeUpdate();
 
 			sql = "select trunc((ul.coupon_count + pol.order_count) / 10, 0) as freecoupon,"; 
 			sql += " mod((ul.coupon_count + pol.order_count) , 10) as remaincoupon";
@@ -83,29 +59,26 @@ public class ProductOrderDao {
 				freeCoupon = rs2.getInt(1);
 				remainCoupon = rs2.getInt(2);
 
-			} else {
-				for(int i = 0; i<ProductOrderRepository.getProductOrders().size(); i++){
+			} 
 
-					sql = "insert into user_list values(user_number_seq.nextval,?,?)";
-					pstmt3 = MainController.getDbController().getConnection().prepareStatement(sql);
-					pstmt3.setInt(1, remainCoupon);
-					pstmt3.setString(2, ProductOrderRepository.getProductOrders().get(i).getUserPhoneNumber());
-					
-				}
-			}
+			sql = "update user_list set coupon_count = ? where user_number = ?";
+			pstmt3 = MainController.getDbController().getConnection().prepareStatement(sql);
+			pstmt3.setInt(1, remainCoupon);
+			pstmt3.setInt(2, userNumber);
+			pstmt3.executeUpdate();
 
-			sql = "select pl.product_price * pol.ORDER_COUNT as totalprice,";
-			sql += " (pl.product_price * pol.ORDER_COUNT) - (pl.product_price * ?) as realprice";
+			sql = "select (pl.product_price * pol.ORDER_COUNT) as totalPrice,";
+			sql += " ((pl.product_price * pol.ORDER_COUNT) - (pl.product_price * ?)) as realPrice";
 			sql += " from product_list pl, product_order_list pol";
 			sql += " where pl.product_number = pol.product_number";
 			pstmt4 = MainController.getDbController().getConnection().prepareStatement(sql);
 			pstmt4.setInt(1, freeCoupon);
 
-			rs3 = pstmt3.executeQuery();
+			rs3 = pstmt4.executeQuery();
 
 			if(rs3.next()) {
 
-				ProductPayment productPayment = new ProductPayment();
+				productPayment = new ProductPayment();
 				productPayment.setTotalPrice(rs3.getInt(1));
 				productPayment.setRealPrice(rs3.getInt(2));
 
@@ -115,15 +88,61 @@ public class ProductOrderDao {
 			e.printStackTrace();
 		} finally {
 
+			if(rs3 != null){try{rs3.close();} catch (SQLException e) {e.printStackTrace();}}
+			if(pstmt4 != null){try{pstmt4.close();} catch (SQLException e) {e.printStackTrace();}}
+			if(pstmt3 != null){try{pstmt3.close();} catch (SQLException e) {e.printStackTrace();}}
+			if(rs2 != null){try{rs2.close();} catch (SQLException e) {e.printStackTrace();}}
+			if(pstmt2 != null){try{pstmt2.close();} catch (SQLException e) {e.printStackTrace();}}
 			if(rs1 != null){try{rs1.close();} catch (SQLException e) {e.printStackTrace();}}
 			if(pstmt1 != null){try{pstmt1.close();} catch (SQLException e) {e.printStackTrace();}}
 
 		}
 
-		ProductOrderRepository.getProductOrders().clear();
-
 		return productPayment;
 
+	}
+
+
+	// 주문한 상품을 선택해서 내보내기
+	public ProductPayment selectOrderProduct() {
+
+		ProductPayment productPayment = new ProductPayment();
+		int maxProductOrderNumber = 0;
+		Statement stmt = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ResultSet rs2 = null;
+		
+		try {
+		
+			String sql = "select max(product_order_number) from product_order_list";
+			stmt = MainController.getDbController().getConnection().createStatement();
+			rs = stmt.executeQuery(sql);
+			
+			if(rs.next()){
+				maxProductOrderNumber = rs.getInt(1);
+			}
+			
+			sql = "select * from product_order_list where product_order_number = ?";
+			pstmt = MainController.getDbController().getConnection().prepareStatement(sql);
+			pstmt.setInt(1, maxProductOrderNumber);
+			rs2 = pstmt.executeQuery();
+			
+			if(rs2.next()){
+				productPayment.setProductOrderNumber(rs2.getInt(1));
+				productPayment.setUserNumber(rs2.getInt(2));
+				productPayment.setProductNumber(rs2.getInt(3));
+				productPayment.setPaymentCount(rs2.getInt(4));
+				productPayment.setPaymentDate(rs2.getDate(5));
+				productPayment.setPaymentMethod(rs2.getInt(6));
+			}
+					
+		} catch (SQLException e) {
+			e.printStackTrace();		
+		}
+			
+		return productPayment;
+		
 	}
 
 }

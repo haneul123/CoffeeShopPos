@@ -1,6 +1,6 @@
 package productOrder.controller;
 
-import mainView.AlertView;
+import mainController.MainController;
 import productOrder.dao.ProductOrderDao;
 import productOrder.view.ProductOrderView;
 import productOrder.vo.ProductOrder;
@@ -33,22 +33,12 @@ public class ProductOrderController {
 	//선택 상품 주문에 저장
 	public void requestOrderProduct(ProductOrder orderProduct) {
 
-		// 주문 사항을 productOrderRepository에 저장
-		boolean success = productOrderDao.orderproduct(orderProduct);
 		ProductPayment productPayment = productOrderDao.orderProductInsert(orderProduct);
-
-		AlertView alertView = new AlertView();
-
-		if(success) {
-
-			alertView.alert("주문 완료");
-
-		} else {
-
-			alertView.alert("주문 실패");
-
-		}
+		ProductPayment productPayInfo = productOrderDao.selectOrderProduct();
+		MainController.getProductPaymentController().reuqestInsertOrderData(productPayment, productPayInfo);
 
 	}
 
+	
+	
 }

@@ -4,51 +4,38 @@ import java.sql.Date;
 
 public class ProductPayment {
 
+	
+	// variable
 	private int paymentListNumber;
 	private int productOrderNumber;
 	private int productNumber;
-	private int userNumber;
 	private String productName;
+	private int productPrice;
+	private int userNumber;
+	private String userPhoneNumber;
 	private int PaymentCount;
 	private int paymentMethod;
-	private Date paymentDate;
-	private int productPrice;
+	private Date paymentDate;	
 	private int totalPrice;
 	private int realPrice;
 
-
+	
+	// constructor
 	public ProductPayment() {
 
 	}
 
-	public ProductPayment(int productOrderNumber, int productNumber, int userNumber, String productName, int PaymentCount, int paymentMethod, Date paymentDate, int productPrice) {
-
-		this.productOrderNumber = productOrderNumber;
-		this.productNumber = productNumber;
-		this.userNumber = userNumber;
-		this.productName = productName;
-		this.PaymentCount = PaymentCount;
-		this.paymentMethod = paymentMethod;
-		this.productPrice = productPrice;
-		this.paymentDate = paymentDate;	
-
-	}
 	
-	public int getTotalPrice() {
-		return totalPrice;
+	// getter and setter
+	public int getPaymentListNumber() {
+		return paymentListNumber;
 	}
 
-	public void setTotalPrice(int totalPrice) {
-		this.totalPrice = totalPrice;
+
+	public void setPaymentListNumber(int paymentListNumber) {
+		this.paymentListNumber = paymentListNumber;
 	}
 
-	public int getRealPrice() {
-		return realPrice;
-	}
-
-	public void setRealPrice(int realPrice) {
-		this.realPrice = realPrice;
-	}
 
 	public int getProductOrderNumber() {
 		return productOrderNumber;
@@ -60,13 +47,33 @@ public class ProductPayment {
 	}
 
 
-	public int getPaymentListNumber() {
-		return paymentListNumber;
+	public int getProductNumber() {
+		return productNumber;
 	}
 
 
-	public void setPaymentListNumber(int paymentListNumber) {
-		this.paymentListNumber = paymentListNumber;
+	public void setProductNumber(int productNumber) {
+		this.productNumber = productNumber;
+	}
+
+
+	public String getProductName() {
+		return productName;
+	}
+
+
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+
+
+	public int getProductPrice() {
+		return productPrice;
+	}
+
+
+	public void setProductPrice(int productPrice) {
+		this.productPrice = productPrice;
 	}
 
 
@@ -80,13 +87,13 @@ public class ProductPayment {
 	}
 
 
-	public int getProductNumber() {
-		return productNumber;
+	public String getUserPhoneNumber() {
+		return userPhoneNumber;
 	}
 
 
-	public void setProductNumber(int productNumber) {
-		this.productNumber = productNumber;
+	public void setUserPhoneNumber(String userPhoneNumber) {
+		this.userPhoneNumber = userPhoneNumber;
 	}
 
 
@@ -120,27 +127,23 @@ public class ProductPayment {
 	}
 
 
-	public String getProductName() {
-		return productName;
+	public int getTotalPrice() {
+		return totalPrice;
 	}
 
 
-	public void setProductName(String productName) {
-		this.productName = productName;
+	public void setTotalPrice(int totalPrice) {
+		this.totalPrice = totalPrice;
 	}
 
 
-	public int getProductPrice() {
-		return productPrice;
+	public int getRealPrice() {
+		return realPrice;
 	}
 
 
-	public void setProductPrice(int productPrice) {
-		this.productPrice = productPrice;
+	public void setRealPrice(int realPrice) {
+		this.realPrice = realPrice;
 	}
-
-
-
-
 
 }

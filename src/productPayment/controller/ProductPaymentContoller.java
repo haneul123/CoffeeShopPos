@@ -2,7 +2,6 @@ package productPayment.controller;
 
 import java.util.ArrayList;
 
-import mainView.AlertView;
 import productPayment.dao.ProductPaymentDao;
 import productPayment.view.PaymentListView;
 import productPayment.vo.ProductPayment;
@@ -21,25 +20,20 @@ public class ProductPaymentContoller {
 
 	}
 
-
+	// 결제 데이터 베이스에 주문 데이터를 저장하기
+	public void reuqestInsertOrderData(ProductPayment productPayment, ProductPayment productPayInfo){
+		
+		productPaymentDao.insertOrderData(productPayment,productPayInfo);
+		
+	}
+	
+	
 	// 결제 리스트 부르기
 	public void requestPaymentList(){
 
-		ArrayList<ProductPayment> orderProductList = productPaymentDao.orderProductList();
-		boolean success = productPaymentDao.orderProductInsert(orderProductList);
-		
-		AlertView alertView = new AlertView();
-		
-		if(success){
-		
-			alertView.alert("리스트 삽입 성공");
-			
-		} else {
-			
-			alertView.alert("리스트 삽입 실패");
-			
-		}
-		
+		// 결제리스트 데이터 가져오기
+		ArrayList<ProductPayment> orderProductList = productPaymentDao.productPaymentList();
+	
 		PaymentListView paymentListView = new PaymentListView();
 		paymentListView.productOrders(orderProductList);
 		
