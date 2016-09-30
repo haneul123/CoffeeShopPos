@@ -34,9 +34,8 @@ public class ProductOrderController {
 	public void requestOrderProduct(ProductOrder orderProduct) {
 
 		ProductPayment productPayment = productOrderDao.orderProductInsert(orderProduct);
-		ProductPayment productPayInfo = productOrderDao.selectOrderProduct();
-		MainController.getProductPaymentController().reuqestInsertOrderData(productPayment, productPayInfo);
-
+		MainController.getProductPaymentController().requestInsertOrderData(productPayment);
+		
 	}
 
 	
