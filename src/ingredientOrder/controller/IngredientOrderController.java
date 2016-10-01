@@ -1,6 +1,10 @@
 package ingredientOrder.controller;
 
+import java.util.ArrayList;
+
 import ingredientOrder.dao.IngredientOrderDao;
+import ingredientOrder.view.IngredientOrderList;
+import ingredientOrder.view.IngredientOrderListDelete;
 import ingredientOrder.view.IngredientOrderMainMenu;
 import ingredientOrder.view.IngredientOrderView;
 import ingredientOrder.vo.IngredientOrder;
@@ -59,5 +63,41 @@ public class IngredientOrderController {
 	}
 
 
+	//원재료 주문 리스트 뷰
+	public void requestOrderIngredientList() {
+		
+		ArrayList<IngredientOrder> ingredietnOrderList = ingredientOrderDao.orderInfredientList();
+		IngredientOrderList ingredientOrderList = new IngredientOrderList();
+		ingredientOrderList.ingredientOrderList(ingredietnOrderList);
+		
+	}
+
+
+	//원재료주문 리스트 삭제 뷰
+	public void requestOrderIngredientDeleteView() {
+		
+		requestOrderIngredientList();
+	
+		IngredientOrderListDelete ingredientOrderListDelete = new IngredientOrderListDelete();
+		ingredientOrderListDelete.ingredientOrderListDelete();
+		
+	}
+	
+	
+	//원재료주문 리스트 삭제 
+	public void requestOrderIngredientDelete(int deleteIngredientOrder) {
+		
+		boolean success = ingredientOrderDao.deleteIngredientOrder(deleteIngredientOrder);
+		AlertView alertView = new AlertView();
+		
+		if(success){
+			alertView.alert("삭제 성공");
+		}else {
+			alertView.alert("삭제실패");
+		}
+		
+		
+		
+	}
 }
 

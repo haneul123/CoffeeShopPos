@@ -86,10 +86,6 @@ public class ProductPaymentDao {
 				} 
 
 
-<<<<<<< HEAD
-				//ProductOrderRepository.setTotalPrice(rs3.getInt(1));
-				//ProductOrderRepository.setRealPrice(rs3.getInt(2));
-=======
 				// 계산된 쿠폰수 만큼 업데이트
 				sql = "update user_list set coupon_count = ? where user_number = ?";
 				pstmt2 = MainController.getDbController().getConnection().prepareStatement(sql);
@@ -113,7 +109,7 @@ public class ProductPaymentDao {
 					ProductOrderRepository.setRealPrice(rs3.getInt(2));
 
 				}
->>>>>>> refs/remotes/choiwj1012/master
+
 
 			}
 

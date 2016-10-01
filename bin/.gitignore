@@ -1,20 +1,3 @@
-/CoffeeShopPos.erm
-/admin/
-/ingredient/
-/login/
-/main/
 /mainController/
-/mainView/
-/product/
-/productOrder/
-/productPayment/
-/productPaymentRepository/
-/salesManagement/
-/user/
-<<<<<<< HEAD
-/ingredientController/
-/ingredientDao/
-/ingredientview/
 /ingredientOrder/
-=======
->>>>>>> refs/remotes/choiwj1012/master
+/productPayment/
