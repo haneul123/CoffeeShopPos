@@ -91,8 +91,8 @@ public class ProductPaymentDao {
 
 			if(rs3.next()) {
 
-				ProductOrderRepository.setTotalPrice(rs3.getInt(1));
-				ProductOrderRepository.setRealPrice(rs3.getInt(2));
+				//ProductOrderRepository.setTotalPrice(rs3.getInt(1));
+				//ProductOrderRepository.setRealPrice(rs3.getInt(2));
 
 			}
 
