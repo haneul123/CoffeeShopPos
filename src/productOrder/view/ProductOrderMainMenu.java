@@ -27,12 +27,12 @@ public class ProductOrderMainMenu {
 			
 			System.out.println("상품 주문 메뉴 입니다");
 			System.out.println("원하시는 메뉴를 선택해 주세요");
-			System.out.println("1. 상품 주문  2. 주문한 내역 보기  3. 상품 주문 수정  4. 상품 주문 취소  5. 상품 주문 결제  6. 결제 내역 확인  7. 나가기");
+			System.out.println("1. 상품 주문  2. 주문한 내역 보기  3. 상품 주문 취소  4. 상품 주문 결제  5. 결제 내역 확인  6. 나가기");
 			
 			try{
 				selectedMenu = keyboard.nextInt();	
 			} catch(InputMismatchException e) {
-				System.out.println("1번부터 4번까지 숫자를 입력해 주십시오");
+				System.out.println("1번부터 6번까지 숫자를 입력해 주십시오");
 				MainController.getProductOrderController().requestProductOrderMainMenuView();
 			}
 			
@@ -48,26 +48,21 @@ public class ProductOrderMainMenu {
 				
 			} else if(selectedMenu == 3){
 				
-				// 상품 주문 수정 메뉴로 이동
-				MainController.getProductOrderController().requestProductOrderUpdateView();
+				// 상품 주문 취소 메뉴로 이동
+				MainController.getProductOrderController().requestSelectDeleteOrderNumber();
 				
 			} else if(selectedMenu == 4){
-				
-				// 상품 주문 취소 메뉴로 이동
-				MainController.getProductOrderController().requestProductOrderCancelView();
-				
-			} else if(selectedMenu == 5){
 				
 				// 상품 주문 결제 메뉴로 이동
 				MainController.getProductPaymentController().requestProductPaymentView();
 				
-			} else if(selectedMenu == 6){
+			} else if(selectedMenu == 5){
 				
 				// 결제 내역 확인하는 뷰 요청
 				MainController.getProductPaymentController().requestProductPaymentListView();
 				
-			} else if(selectedMenu == 7){
-				
+			} else if(selectedMenu == 6){
+			
 				break;
 				
 			} else {

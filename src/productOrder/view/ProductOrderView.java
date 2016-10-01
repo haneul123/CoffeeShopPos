@@ -24,7 +24,6 @@ public class ProductOrderView {
 
 		int productNumber = 0;
 		int orderCount = 0;
-		int paymentMethod = 0;
 		
 		try{
 
@@ -34,11 +33,7 @@ public class ProductOrderView {
 			System.out.println("몇개 주문하시겠습니까?");
 			orderCount = keyboard.nextInt();
 			
-			System.out.println("결제 방법을 입력하세요");
-			System.out.println("[1]카드  [2]현금");
-			paymentMethod = keyboard.nextInt();
-
-			ProductOrder orderProduct = new ProductOrder(userNumber, productNumber, orderCount, paymentMethod);
+			ProductOrder orderProduct = new ProductOrder(userNumber, productNumber, orderCount);
 
 			MainController.getProductOrderController().requestOrderProduct(orderProduct);
 

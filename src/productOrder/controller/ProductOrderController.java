@@ -7,11 +7,10 @@ import mainView.AlertView;
 import productOrder.dao.ProductOrderDao;
 import productOrder.view.CheckUserPhoneNumberView;
 import productOrder.view.ChoiceGuestOrMember;
-import productOrder.view.ProductOrderCancelView;
 import productOrder.view.ProductOrderListView;
 import productOrder.view.ProductOrderMainMenu;
-import productOrder.view.ProductOrderUpdateView;
 import productOrder.view.ProductOrderView;
+import productOrder.view.SelectDeleteOrderNumber;
 import productOrder.vo.ProductOrder;
 
 public class ProductOrderController {
@@ -106,21 +105,70 @@ public class ProductOrderController {
 	}
 
 
-	// 상품 주문 수정 뷰 요청
-	public void requestProductOrderUpdateView(){
-
-		ProductOrderUpdateView productOrderUpdateView = new ProductOrderUpdateView();
-		productOrderUpdateView.productOrderUpdateView();
-
+	// 주문 삭제를 위한 주문 번호 요청
+	public void requestSelectDeleteOrderNumber(){
+	
+		MainController.getProductOrderController().requestProductOrderListView();
+		SelectDeleteOrderNumber selectDeleteOrderNumber = new SelectDeleteOrderNumber();
+		selectDeleteOrderNumber.selectDeleteOrderNumber();
+		
 	}
-
-
+	
+	
+	// 선택한 주문 번호에 대한 유효성 체크
+	public void requestCheckProductOrderNumber(int deleteOrderNumber){
+		
+		boolean success = productOrderDao.checkOrderNumber(deleteOrderNumber);
+		
+		if(success){
+			
+			MainController.getProductOrderController().requestProductOrderCancelView(deleteOrderNumber);
+			
+		} else {
+			
+			AlertView alertView = new AlertView();
+			alertView.alert("없는 주문 번호입니다. 다시 확인하시기 바랍니다");
+			
+		}
+		
+	}
+	
+	
 	// 상품 주문 취소 뷰 요청
-	public void requestProductOrderCancelView(){
+	public void requestProductOrderCancelView(int deleteOrderNumber){
 
-		ProductOrderCancelView productOrderCancelView = new ProductOrderCancelView();
-		productOrderCancelView.productOrderCancelView();
-
+		boolean success = productOrderDao.deleteOrderNumber(deleteOrderNumber);
+		
+		AlertView alertView = new AlertView();
+		if(success){
+			
+			alertView.alert("주문이 정상적으로 삭제되었습니다");
+			
+		} else {
+			
+			alertView.alert("주문 삭제에 실패하였습니다. 재시도 바랍니다");
+			
+		}
+		
+	}
+	
+	
+	// 주문 전체 취소 요청 (결제단에서 요청됨)
+	public void requestProductOrderAllDelete(){
+		
+		boolean success = productOrderDao.deleteAllOrder();
+		
+		AlertView alertView = new AlertView();
+		if(success){
+			
+			alertView.alert("결제가 정상적으로 취소되었습니다");
+			
+		} else {
+			
+			alertView.alert("결제 삭제에 실패하였습니다. 재시도 바랍니다");
+			
+		}
+		
 	}
 
 }
