@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-/productOrder/
-/productPayment/
-/product/
-/admin/
-/login/
-/productPaymentRepository/
-=======
 /CoffeeShopPos.erm
 /admin/
 /ingredient/
@@ -16,6 +8,6 @@
 /product/
 /productOrder/
 /productPayment/
+/productPaymentRepository/
 /salesManagement/
 /user/
->>>>>>> refs/remotes/origin/pr/18

@@ -25,11 +25,12 @@ public class RemoveProductView {
 		try{
 
 			System.out.println("삭제할 번호를 입력하세요.");
+			
 			try{
 				selectedProductDeleteNumber = keyboard.nextInt();
 			} catch(InputMismatchException e) {
 				System.out.println("숫자를 입력해 주세요");
-				deleteProductNumber();
+				MainController.getProductController().requestDeleteProductNumber();
 			}
 			
 			MainController.getProductController().requestDelete(selectedProductDeleteNumber);
