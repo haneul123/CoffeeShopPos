@@ -9,6 +9,7 @@ import ingredient.view.IngredientDeleteView;
 import ingredient.view.IngredientMainMenu;
 import ingredient.view.SearchIngredientView;
 import ingredient.view.SearchListView;
+import ingredient.view.UpdateIngredientView;
 import ingredient.vo.Ingredient;
 import mainView.AlertView;
 
@@ -26,28 +27,35 @@ public class IngredientController {
 
 	//사용자가 입력한 키워드 호출
 	public void requestInputKeyword(String getName) {
-		
+
 		GetKeywordView gkv = new GetKeywordView();
 		gkv.requestGetKeywordName(getName);
-		
+
 	}
 
-	
+
 	// method
 	// 재고관리 메인메뉴 호출
 	public void requestIngredientMainMenu() {
-		
+
 		IngredientMainMenu ingredientMenu = new IngredientMainMenu();
 		ingredientMenu.ingredientMenu();
-		
+
+	}
+
+
+	//원재료 등록 뷰 호출
+	public void requertAddInfredientView() {
+
+		AddIngredientView adv = new AddIngredientView();
+		adv.insertIngredientView();
+
 	}
 
 
 	// 원재료 등록
-	public void requestAddIngredient() {
+	public void requestAddIngredient(Ingredient insertIngredients) {
 
-		AddIngredientView adv = new AddIngredientView();
-		Ingredient insertIngredients = adv.insertIngredientView();
 		boolean success = ingredientDao.addIngredient(insertIngredients);
 
 		if(success) {
@@ -61,11 +69,11 @@ public class IngredientController {
 
 	// 원재료 조회
 	public void requestSearchIngredient() {
-		
+
 		//뷰호출
 		SearchIngredientView siv = new SearchIngredientView();
 		Ingredient getName  = siv.searchIngredient();
-		
+
 		//Dao호출
 		ArrayList<Ingredient> ingredientList = ingredientDao.searchIngredient(getName);
 
@@ -75,38 +83,80 @@ public class IngredientController {
 	}
 
 
+	//원재료 수정전 조회
+	public void requestIngredientUpdateNumber() {
+		
+		requestSearchIngredient();
+		
+		UpdateIngredientView updateIngredientNum = new UpdateIngredientView();
+		updateIngredientNum.updateingredientNumberView();
+		
+	}
+	
+	
+	//원재료 정보 입력 뷰
+	public void requestIngredientUpdateInfo(int selectedIngredientNumber) {
+		
+		UpdateIngredientView updateIngredientInfo = new UpdateIngredientView();
+		updateIngredientInfo.updateProductInfo(selectedIngredientNumber);
+		
+		
+	}
+	
+	
 	// 원재료 업데이트
-	public void requestUpdateIngredient(){
+	public void requestUpdateIngredient(Ingredient updateingredient){
+
+		boolean success = ingredientDao.updateIngredient(updateingredient);
+
+		AlertView alert = new AlertView();
 		
-		//뷰호출
 		
+		if(success) {
+			alert.alert("수정성공");
+		} else {
+			alert.alert("수정실패");
+		}
+
+	}
+
+
+	//원재료 삭제 뷰 호출
+	public void requerstDeleteIngredientView() {
+
+		requestSearchIngredient();
+
+		IngredientDeleteView deleteIngredientGetNum = new IngredientDeleteView();
+		deleteIngredientGetNum.deleteIngredientNum();
+
 
 	}
 
 
 	// 원재료 삭제
-	public void requestDeleteIngredient() {
+	public void requestDeleteIngredient(int deleteIngredientGetNum) {
+		
 
-		//뷰호출
-		IngredientDeleteView idv = new IngredientDeleteView();
-		Ingredient deleteIngredientGetNmae = idv.deleteIngredient();
-		
-		//Dao호출
-		ArrayList<Ingredient> ingredientList = ingredientDao.searchIngredient(deleteIngredientGetNmae);
-		SearchListView searchList = new SearchListView();
-		searchList.SearchList(ingredientList);
-		
-		//삭제할 제품번호
-		int deleteIngredientGetNum = idv.deleteIngredientNum();
-		
 		boolean success = ingredientDao.deleteIngredient(deleteIngredientGetNum);
 		
+		AlertView alert = new AlertView();
+
 		if(success) {
-			new AlertView().alert("삭제성공");
+			alert.alert("삭제성공");
 		} else {
-			new AlertView().alert("삭제실패");
+			alert.alert("삭제실패");
 		}
 
 	}
 
+
+	//원재료 목록
+	public void requestListIngredient() {
+
+		ArrayList<Ingredient> ingredientList = ingredientDao.listInfredient();
+
+		SearchListView IngredientlistView = new SearchListView();
+		IngredientlistView.SearchList(ingredientList);
+
+	}
 }
