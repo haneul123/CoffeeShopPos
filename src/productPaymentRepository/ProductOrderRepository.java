@@ -10,14 +10,17 @@ public class ProductOrderRepository {
 	public static int getTotalPrice() {
 		return totalPrice;
 	}
+	
 	public static void setTotalPrice(int totalPrice) {
 		ProductOrderRepository.totalPrice = totalPrice;
 	}
+	
 	public static int getRealPrice() {
 		return realPrice;
 	}
+	
 	public static void setRealPrice(int realPrice) {
 		ProductOrderRepository.realPrice = realPrice;
 	}
-		
+					
 }
