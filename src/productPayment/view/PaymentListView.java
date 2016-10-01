@@ -2,7 +2,6 @@ package productPayment.view;
 
 import java.util.ArrayList;
 
-import productOrder.repository.ProductOrderRepository;
 import productPayment.vo.ProductPayment;
 
 public class PaymentListView {
@@ -30,10 +29,7 @@ public class PaymentListView {
 				System.out.println(productPayments.get(i).getPaymentDate());
 
 			}
-			
-			System.out.println("총 결제액 : " + ProductOrderRepository.getTotalPrice());
-			System.out.println("실 결제액 : " + ProductOrderRepository.getRealPrice());
-			
+						
 		}
 		
 	}

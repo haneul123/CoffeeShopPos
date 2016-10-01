@@ -7,9 +7,11 @@ import product.vo.Product;
 
 public class UpdateProductView {
 
+	
 	// variable
 	private Scanner keyboard;
 
+	
 	// constructor
 	public UpdateProductView() {
 
@@ -17,6 +19,7 @@ public class UpdateProductView {
 
 	}
 
+	
 	// method
 	// 수정할 상품 번호 입력 받기
 	public void updateProductNumberView(){
@@ -29,7 +32,7 @@ public class UpdateProductView {
 			selectedProductNumber = keyboard.nextInt();
 		} catch(InputMismatchException e){
 			System.out.println("잘못입력하셨습니다.");
-			updateProductNumberView();
+			MainController.getProductController().requestUpdateView();
 		}
 
 		MainController.getProductController().requestUpdateProductInfo(selectedProductNumber);
@@ -43,42 +46,50 @@ public class UpdateProductView {
 		int updateProductPrice = 0;
 		String updateProductComment = null;
 
-		while(true){
+		try{
 
-			System.out.println("변경을 원하시는 메뉴를 선택하십시오");
-			System.out.println("[1] 상품이름 [2] 상품가격 [3]상품정보 [4] 이전");
-			int selectedMenu = keyboard.nextInt();
+			while(true){
 
-			if(selectedMenu == 1){
+				System.out.println("변경을 원하시는 메뉴를 선택하십시오");
+				System.out.println("[1] 상품이름 [2] 상품가격 [3] 상품정보 [4] 나가기");
 
-				System.out.println("수정할 상품 이름 : ");
-				updateProductName = keyboard.next();
+				int selectedMenu = keyboard.nextInt();
 
-			} else if(selectedMenu == 2){
+				if(selectedMenu == 1){
 
-				System.out.println("수정할 상품 가격 : ");
-				updateProductPrice = keyboard.nextInt();
+					System.out.println("수정할 상품 이름 : ");
+					updateProductName = keyboard.next();
 
-			} else if(selectedMenu == 3){
+				} else if(selectedMenu == 2){
 
-				System.out.println("수정할 상품 내용 : ");
-				updateProductComment = keyboard.next();
+					System.out.println("수정할 상품 가격 : ");
+					updateProductPrice = keyboard.nextInt();
 
-			} else if(selectedMenu == 4){
+				} else if(selectedMenu == 3){
 
-				break;
+					System.out.println("수정할 상품 내용 : ");
+					updateProductComment = keyboard.next();
 
-			} else {
+				} else if(selectedMenu == 4){
 
-				System.out.println("잘못 입력하셨습니다");
+					break;
+
+				} else {
+
+					System.out.println("없는 번호입니다. 1 ~ 6번까지 눌러주시기 바랍니다");
+
+				}
+
+				Product updateProduct = new Product(selectedProductNumber, updateProductName, updateProductPrice, updateProductComment);
+				MainController.getProductController().requestUpdate(updateProduct);
 
 			}
 
-			Product updateProduct = new Product(selectedProductNumber, updateProductName, updateProductPrice, updateProductComment);
-			MainController.getProductController().requestUpdate(updateProduct);
-
+		} catch(InputMismatchException e){
+			System.out.println("잘못입력하셨습니다.");
+			MainController.getProductController().requestUpdateView();
 		}
-
+		
 	}
-
+	
 }

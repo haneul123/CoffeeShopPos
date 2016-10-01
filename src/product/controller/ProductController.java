@@ -15,9 +15,12 @@ import product.vo.Product;
 
 public class ProductController {
 
+	
+	// variable
 	private ProductDao productDao;
 
-	//구조
+	
+	// constructor
 	public ProductController(){
 
 		productDao = new ProductDao();
@@ -25,7 +28,7 @@ public class ProductController {
 	}
 
 
-	//상품 리스트 표시를 위한 데이터 요청
+	// 상품 리스트 표시를 위한 데이터 요청
 	public void requestProductlist() {
 
 		ArrayList<Product> products = productDao.productList();
@@ -46,7 +49,7 @@ public class ProductController {
 	}
 
 
-	//상품등록을 위한 정보 입력
+	// 상품등록을 위한 정보 입력
 	public void requestInsertProductInfo(){
 
 		InsertProductView insertProductView = new InsertProductView();
@@ -55,7 +58,7 @@ public class ProductController {
 	}
 
 
-	//상품등록
+	// 상품등록
 	public void requestInsertProduct(Product insertProduct){
 
 		boolean success = productDao.productInsert(insertProduct);
@@ -75,7 +78,7 @@ public class ProductController {
 	}
 
 
-	//상품조회
+	// 상품조회
 	public void requestSearch(){
 
 		SearchProductView searchProductView = new SearchProductView();
@@ -107,7 +110,7 @@ public class ProductController {
 	}
 
 
-	//상품삭제
+	// 상품삭제
 	public void requestDelete(int deleteProductNumber){
 
 		boolean success = productDao.deleteProduct(deleteProductNumber);
@@ -126,17 +129,16 @@ public class ProductController {
 	}
 
 
-	//상품 수정 정보요청 뷰
+	// 상품 수정 정보요청 뷰
 	public void requestUpdateView() {
 
-		requestProductlist();
 		UpdateProductView updateProductView = new UpdateProductView();
 		updateProductView.updateProductNumberView();
 
 	}
 
 
-	//상품 정보 입력 뷰 호출
+	// 상품 정보 입력 뷰 호출
 	public void requestUpdateProductInfo(int selectedProductNumber) {
 
 		UpdateProductView updateProductView = new UpdateProductView();
@@ -145,7 +147,7 @@ public class ProductController {
 	}
 
 
-	//상품수정
+	// 상품수정
 	public void requestUpdate(Product updateProduct){
 
 		boolean success = productDao.productUpdate(updateProduct);

@@ -26,7 +26,7 @@ public class AdminMainMenu {
 			
 			int selectedMenu = 0;
 			System.out.println("관리자 메인 메뉴 입니다");
-			String[] mainMenu = {"1. 상품관리, 2. 재고관리, 3. 매출관리, 4. 회원관리, 5. 직원관리, 6. 로그아웃"};
+			String[] mainMenu = {"1. 상품관리, 2. 주문관리, 3. 재고관리, 4. 재무관리, 5. 회원관리, 6. 직원관리, 7. 로그아웃"};
 
 			// 메인메뉴 출력
 			for(int i=0; i<mainMenu.length; i++){
@@ -47,28 +47,33 @@ public class AdminMainMenu {
 
 				// 상품관리 메뉴 출력
 				MainController.getProductController().requestProductMainMenu();
+				
+			} else if (selectedMenu == 2){
 
-			} else if (selectedMenu == 2) {
+				// 주문관리 메뉴 출력
+				MainController.getProductOrderController().requestProductOrderMainMenuView();
+				
+			} else if (selectedMenu == 3) {
 
 				// 재고관리 메뉴 출력
 				MainController.getIngredientController().requestIngredientMainMenu();
 
-			} else if (selectedMenu == 3) {
+			} else if (selectedMenu == 4) {
 
-				// 메출관리 메뉴 출력
+				// 재무관리 메뉴 출력
 				MainController.getSalesManagementController().requestSalesManagementMenu();
 
-			} else if (selectedMenu == 4) {
+			} else if (selectedMenu == 5) {
 
 				// 회원관리 메뉴 출력
 				MainController.getUserController().requestUserManagementView();
 				
-			} else if (selectedMenu == 5) {
+			} else if (selectedMenu == 6) {
 
 				// 직원관리 메뉴 출력
 				MainController.getAdminController().requestAdminManagementView();
 
-			} else if (selectedMenu == 6){
+			} else if (selectedMenu == 7){
 
 				// 로그 아웃
 				MainController.getLoginController().requestLogout();
