@@ -11,7 +11,10 @@
 /productPaymentRepository/
 /salesManagement/
 /user/
+<<<<<<< HEAD
 /ingredientController/
 /ingredientDao/
 /ingredientview/
 /ingredientOrder/
+=======
+>>>>>>> refs/remotes/choiwj1012/master

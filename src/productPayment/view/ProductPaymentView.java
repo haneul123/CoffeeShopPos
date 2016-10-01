@@ -19,7 +19,7 @@ public class ProductPaymentView {
 	
 	// 주문된 상품을 결제할 것인지 확인받음
 	public void productPaymentView() {
-		
+			
 		int selectedMenu = 0;
 		
 		System.out.println("해당 상품들을 결제하시겠습니까?");

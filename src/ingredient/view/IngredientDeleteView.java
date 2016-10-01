@@ -3,9 +3,7 @@ package ingredient.view;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import ingredient.vo.Ingredient;
 import mainController.MainController;
-import mainView.AlertView;
 
 public class IngredientDeleteView {
 

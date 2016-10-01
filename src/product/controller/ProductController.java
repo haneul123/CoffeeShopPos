@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import mainController.MainController;
 import mainView.AlertView;
 import product.dao.ProductDao;
+import product.view.InsertIngredientInfoView;
 import product.view.InsertProductView;
 import product.view.ListProductView;
 import product.view.ProductMainMenuView;
@@ -58,10 +59,39 @@ public class ProductController {
 	}
 
 
-	// 상품등록
-	public void requestInsertProduct(Product insertProduct){
+	// 사용될 원재료 정보 입력
+	public void requestInsertIngredientInfo(Product insertProduct){
+		
+		InsertIngredientInfoView insertIngredientInfoView = new InsertIngredientInfoView();
+		insertIngredientInfoView.insertIngredientInfoView(insertProduct);
+		
+	}
+	
+	
+	// 입력한 원재료 번호 유효성 체크 (완성되면 원재료 controller로 이동되어야 함)
+	public void requestCheckIngredientNumber(Product ingredient){
+	
+		boolean isFind = productDao.checkIngredientNumber(ingredient);
+		AlertView alertView = new AlertView();
+		
+		if(isFind){
+			
+			alertView.alert("사용 원재료가 등록되었습니다");
+			
+		} else {
+			
+			alertView.alert("선택하신 원재료 번호는 없는 번호입니다");
+			MainController.getProductController().requestInsertProductInfo();
+			
+		}
+		
+	}
 
-		boolean success = productDao.productInsert(insertProduct);
+
+	// 상품등록
+	public void requestInsertProduct(Product insertProduct, ArrayList<Product> ingredientList){
+		
+		boolean success = productDao.productInsert(insertProduct, ingredientList);
 
 		AlertView alertView = new AlertView();
 

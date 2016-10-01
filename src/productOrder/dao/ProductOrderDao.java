@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import mainController.MainController;
 import productOrder.vo.ProductOrder;
+import productPaymentRepository.ProductOrderRepository;
 
 public class ProductOrderDao {
 
@@ -17,7 +18,7 @@ public class ProductOrderDao {
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		int userNumber = 0;
+		int userNumber = 1;
 		
 		try {
 			
@@ -75,6 +76,7 @@ public class ProductOrderDao {
 		ArrayList<ProductOrder> orderList = new ArrayList<ProductOrder>(); 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		int totalPrice = 0;
 		
 		try {
 			
@@ -98,6 +100,13 @@ public class ProductOrderDao {
 				orderList.add(order);
 				
 			}
+			
+			for(int i = 0; i<orderList.size(); i++){
+				totalPrice = totalPrice + orderList.get(i).getTotalPrice();
+			}
+			
+			ProductOrderRepository.setTotalPrice(totalPrice);
+			ProductOrderRepository.setRealPrice(totalPrice);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
