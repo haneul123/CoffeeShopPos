@@ -21,6 +21,7 @@ public class ProductPaymentDao {
 		Statement stmt2 = null;
 		Statement stmt3 = null;
 		Statement stmt4 = null;
+		Statement stmt5 = null;
 		PreparedStatement pstmt1 = null;
 		PreparedStatement pstmt2 = null;
 		PreparedStatement pstmt3 = null;
@@ -52,12 +53,6 @@ public class ProductPaymentDao {
 			}
 
 
-			// 주문 데이터 결제 상태로 변경하기
-			sql = "update product_order_list set isAgreePaid = 2 where isAgreePaid = 1";
-			stmt2 = MainController.getDbController().getConnection().createStatement();
-			stmt2.executeUpdate(sql);
-
-
 			// 가져온 주문 데이터를 결제 데이터에 저장하기
 			for(int i = 0; i<paymentList.size(); i++){
 
@@ -69,7 +64,7 @@ public class ProductPaymentDao {
 
 			}
 
-			
+
 			// 쿠폰처리 (비회원은 쿠폰수를 계산하지 않는다)
 			if(paymentList.get(0).getUserNumber() != 1){
 
@@ -79,8 +74,8 @@ public class ProductPaymentDao {
 				sql += " mod((ul.coupon_count + pol.order_count) , 10) as remaincoupon";
 				sql += " from user_list ul, product_order_list pol";
 				sql += " where ul.user_number = pol.user_number";
-				stmt3 = MainController.getDbController().getConnection().createStatement();
-				rs2 = stmt3.executeQuery(sql);
+				stmt2 = MainController.getDbController().getConnection().createStatement();
+				rs2 = stmt2.executeQuery(sql);
 
 				if(rs2.next()) {
 
@@ -109,13 +104,19 @@ public class ProductPaymentDao {
 
 				if(rs3.next()) {
 
-					ProductOrderRepository.setTotalPrice(rs3.getInt(1));
 					ProductOrderRepository.setRealPrice(rs3.getInt(2));
+					ProductOrderRepository.setTotalPrice(rs3.getInt(1));
 
 				}
 
 			}
 
+			
+			// 주문 데이터 결제 상태로 변경하기
+			sql = "update product_order_list set isAgreePaid = 2 where isAgreePaid = 1";
+			stmt3 = MainController.getDbController().getConnection().createStatement();
+			stmt3.executeUpdate(sql);
+			
 			
 			// 완료된 주문에 해당하는 원재료 감소 처리를 위한 정보 수집
 			sql = "select pui.product_number, pui.ingredient_number, (pui.use_amount * oc.order_count) "; 
@@ -124,19 +125,19 @@ public class ProductPaymentDao {
 			stmt4 = MainController.getDbController().getConnection().createStatement();
 			rs4 = stmt4.executeQuery(sql);
 			while(rs4.next()){
-				
+
 				UseIngredientAmount useAmount = new UseIngredientAmount();
 				useAmount.setProductNumber(rs4.getInt(1));
 				useAmount.setIngredientNumber(rs4.getInt(2));
 				useAmount.setTotalAmount(rs4.getInt(3));
 				useAmountList.add(useAmount);
-				
+
 			}
-			
-			
+
+
 			// 원재료 감소 처리
 			for(int i=0; i<useAmountList.size(); i++){
-				
+
 				sql =  "update ingredient_list ";
 				sql += "set ingredient_inventory = (ingredient_inventory - ?) ";
 				sql += "where ingredient_number = ?";
@@ -144,14 +145,21 @@ public class ProductPaymentDao {
 				pstmt4.setInt(1, useAmountList.get(i).getTotalAmount());
 				pstmt4.setInt(2, useAmountList.get(i).getIngredientNumber());
 				pstmt4.executeUpdate();
-				
+
 			}
-			 				
-			isSuccess = true;
+
 			
+			// 원재료 감소처리 확인 플래그 설정
+			sql = "update product_pay_list set use_ingredient = 2 where use_ingredient = 1";
+			stmt5 = MainController.getDbController().getConnection().createStatement();
+			stmt5.executeUpdate(sql);
+			
+			isSuccess = true;
+
 		}catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
+			if(stmt5 != null){try {stmt5.close();} catch (SQLException e) {e.printStackTrace();}}
 			if(pstmt4 != null){try {pstmt4.close();} catch (SQLException e) {e.printStackTrace();}}
 			if(rs4 != null){try {rs4.close();} catch (SQLException e) {e.printStackTrace();}}
 			if(stmt4 != null){try {stmt4.close();} catch (SQLException e) {e.printStackTrace();}}

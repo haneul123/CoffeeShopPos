@@ -22,5 +22,5 @@ public class ProductOrderRepository {
 	public static void setRealPrice(int realPrice) {
 		ProductOrderRepository.realPrice = realPrice;
 	}
-					
+				
 }
