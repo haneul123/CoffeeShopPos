@@ -6,6 +6,8 @@ public class Product {
 	private String productName;
 	private int productPrice;
 	private String productComment;
+	private int productIngredientNumber;
+	private int useAmount;
 	
 	
 	public Product() {
@@ -72,6 +74,25 @@ public class Product {
 	public void setProductComment(String productComment) {
 		this.productComment = productComment;
 	}
-	
-	
+
+
+	public int getProductIngredientNumber() {
+		return productIngredientNumber;
+	}
+
+
+	public void setProductIngredientNumber(int productIngredientNumber) {
+		this.productIngredientNumber = productIngredientNumber;
+	}
+
+
+	public int getUseAmount() {
+		return useAmount;
+	}
+
+
+	public void setUseAmount(int useAmount) {
+		this.useAmount = useAmount;
+	}
+
 }

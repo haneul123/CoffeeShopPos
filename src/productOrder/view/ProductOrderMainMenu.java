@@ -27,7 +27,7 @@ public class ProductOrderMainMenu {
 			
 			System.out.println("상품 주문 메뉴 입니다");
 			System.out.println("원하시는 메뉴를 선택해 주세요");
-			System.out.println("1. 상품 주문  2. 주문한 내역 보기  3. 상품 주문 취소  4. 상품 주문 결제  5. 결제 내역 확인  6. 나가기");
+			System.out.println("1. 상품 주문  2. 주문한 내역 보기  3. 상품 주문 취소  4. 상품 주문 결제  5. 나가기");
 			
 			try{
 				selectedMenu = keyboard.nextInt();	
@@ -57,11 +57,6 @@ public class ProductOrderMainMenu {
 				MainController.getProductPaymentController().requestProductPaymentView();
 				
 			} else if(selectedMenu == 5){
-				
-				// 결제 내역 확인하는 뷰 요청
-				MainController.getProductPaymentController().requestProductPaymentListView();
-				
-			} else if(selectedMenu == 6){
 			
 				break;
 				

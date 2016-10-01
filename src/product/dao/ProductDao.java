@@ -11,7 +11,7 @@ import product.vo.Product;
 
 public class ProductDao {
 
-	//상품리스트
+	// 상품 리스트
 	public ArrayList<Product> productList() {
 
 		ArrayList<Product> products = new ArrayList<Product>();
@@ -20,7 +20,7 @@ public class ProductDao {
 		ResultSet rs = null;
 
 		try{
-			
+
 			stmt = MainController.getDbController().getConnection().createStatement();
 			String sql = "select * from product_list";
 			rs = stmt.executeQuery(sql);
@@ -35,14 +35,14 @@ public class ProductDao {
 				products.add(product);
 
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 
 			if(stmt != null){ try{stmt.close();}catch(SQLException e){e.printStackTrace();}}
 			if(rs != null){ try{rs.close();}catch(SQLException e){e.printStackTrace();}}
-		
+
 		}
 
 		return products;
@@ -50,45 +50,105 @@ public class ProductDao {
 	}
 
 
-	//상품등록
-	public boolean productInsert(Product insertProduct){
+	// 선택된 원재료 번호가 있는 번호인지 체크
+	public boolean checkIngredientNumber(Product ingredient) {
 
-		boolean success = false;
-
+		boolean isFind = false;
 		PreparedStatement pstmt = null;
-		PreparedStatement pstmt2 = null;
 		ResultSet rs = null;
 
 		try {
 
-			String sql = "select * from product_list where product_Name = ?";
+			String sql = "select * from ingredient_list where ingredient_number = ?";
 			pstmt = MainController.getDbController().getConnection().prepareStatement(sql);
-			pstmt.setString(1, insertProduct.getProductName());
+			pstmt.setInt(1, ingredient.getProductIngredientNumber());
 			rs = pstmt.executeQuery();
+			if(rs.next()){
+				isFind = true;
+			}
 
-			if(rs.next()) {
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(rs != null){try {rs.close();} catch (SQLException e) {e.printStackTrace();}}
+			if(pstmt != null){try {pstmt.close();} catch (SQLException e) {e.printStackTrace();}} 
+		}
+
+		return isFind;
+
+	}
+
+
+	// 상품 등록
+	public boolean productInsert(Product insertProduct, ArrayList<Product> ingredientList){
+
+		boolean success = false;
+
+		PreparedStatement pstmt1 = null;
+		PreparedStatement pstmt2 = null;
+		PreparedStatement pstmt3 = null;
+		PreparedStatement pstmt4 = null;
+		ResultSet rs1 = null;
+		ResultSet rs2 = null;
+
+		try {
+
+			// 등록하려는 상품 이름이 이미 존재하는 것인지 검토
+			String sql = "select * from product_list where product_Name = ?";
+			pstmt1 = MainController.getDbController().getConnection().prepareStatement(sql);
+			pstmt1.setString(1, insertProduct.getProductName());
+			rs1 = pstmt1.executeQuery();
+
+			if(rs1.next()) {
 
 				return success;
 
 			} else {
 
-				sql = "insert into product_list values(product_number_seq.nextval,?,?,?)";
+				// 이미 존재하는 상품이 아니라면 상품 리스트에 추가
+				sql = "insert into product_list values(product_number_seq.nextval, ?, ?, ?)";
 				pstmt2 = MainController.getDbController().getConnection().prepareStatement(sql);
 				pstmt2.setString(1, insertProduct.getProductName());
 				pstmt2.setInt(2, insertProduct.getProductPrice());
 				pstmt2.setString(3, insertProduct.getProductComment());
-				pstmt2.executeQuery();
-				success = true;
+				pstmt2.executeUpdate();
+
+				
+				// 새로 등록된 상품의 상품 번호 가져오기
+				sql = "select product_number from product_list where product_name = ?";
+				pstmt3 = MainController.getDbController().getConnection().prepareStatement(sql);
+				pstmt3.setString(1, insertProduct.getProductName());
+				rs2 = pstmt3.executeQuery();
+				if(rs2.next()){
+					insertProduct.setProductNumber(rs2.getInt(1));
+				}
+				
+				
+				// 상품이 사용하는 원재료의 번호와 양 등록
+				for(int i = 0; i<ingredientList.size(); i++){
+
+					sql = "insert into product_use_ingredient values(use_number_seq.nextval, ?, ?, ?)";
+					pstmt4 = MainController.getDbController().getConnection().prepareStatement(sql);
+					pstmt4.setInt(1, ingredientList.get(i).getProductIngredientNumber());
+					pstmt4.setInt(2, insertProduct.getProductNumber());
+					pstmt4.setInt(3, ingredientList.get(i).getUseAmount());
+					pstmt4.executeUpdate();
+					success = true;
+
+				}
 
 			}
 
-		}catch (SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 
+			if(pstmt4 != null){try {pstmt4.close();} catch (SQLException e) {e.printStackTrace();}}
+			if(rs2 != null){try {rs2.close();} catch (SQLException e) {e.printStackTrace();}}
+			if(pstmt3 != null){try {pstmt3.close();} catch (SQLException e) {e.printStackTrace();}}
 			if(pstmt2 != null){try {pstmt2.close();} catch (SQLException e) {e.printStackTrace();}}
-			if(rs != null){try {rs.close();} catch (SQLException e) {e.printStackTrace();}}
-			if(pstmt != null){try {pstmt.close();} catch (SQLException e) {e.printStackTrace();}}
+			if(rs1 != null){try {rs1.close();} catch (SQLException e) {e.printStackTrace();}}
+			if(pstmt1 != null){try {pstmt1.close();} catch (SQLException e) {e.printStackTrace();}}
 
 		}
 
@@ -119,7 +179,7 @@ public class ProductDao {
 				searchProduct.setProductComment(rs.getString(4));
 
 			}
-			
+
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally{
@@ -128,7 +188,7 @@ public class ProductDao {
 			if(pstmt != null){try{pstmt.close();} catch (SQLException e){e.printStackTrace();}}
 
 		}
-		
+
 		return searchProduct;
 
 	}

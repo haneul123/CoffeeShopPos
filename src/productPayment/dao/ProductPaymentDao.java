@@ -52,7 +52,7 @@ public class ProductPaymentDao {
 			stmt2 = MainController.getDbController().getConnection().createStatement();
 			stmt2.executeUpdate(sql);
 
-			
+
 			// 가져온 주문 데이터를 결제 데이터에 저장하기
 			for(int i = 0; i<paymentList.size(); i++){
 
@@ -63,13 +63,13 @@ public class ProductPaymentDao {
 				pstmt1.executeUpdate();
 
 			}
-			
+
 			isSuccess = true;
-			
+
 			// 쿠폰처리 (비회원은 쿠폰수를 계산하지 않는다)
 			if(paymentList.get(0).getUserNumber() != 1){
-				
-				
+
+
 				// 주문한 만큼의 쿠폰 계산 및 무료로 나가야 할 쿠폰 수 계산
 				sql = "select trunc((ul.coupon_count + pol.order_count) / 10, 0) as freecoupon,"; 
 				sql += " mod((ul.coupon_count + pol.order_count) , 10) as remaincoupon";
@@ -84,8 +84,8 @@ public class ProductPaymentDao {
 					remainCoupon = rs2.getInt(2);
 
 				} 
-				
-				
+
+
 				// 계산된 쿠폰수 만큼 업데이트
 				sql = "update user_list set coupon_count = ? where user_number = ?";
 				pstmt2 = MainController.getDbController().getConnection().prepareStatement(sql);
@@ -93,7 +93,7 @@ public class ProductPaymentDao {
 				pstmt2.setInt(2, paymentList.get(0).getUserNumber());
 				pstmt2.executeUpdate();
 
-				
+
 				// 쿠폰을 반영한 실제 결제 가격 계산
 				sql = "select (pl.product_price * pol.ORDER_COUNT) as totalPrice, ";
 				sql += "((pl.product_price * pol.ORDER_COUNT) - (pl.product_price * ?)) as realPrice ";
@@ -109,9 +109,14 @@ public class ProductPaymentDao {
 					ProductOrderRepository.setRealPrice(rs3.getInt(2));
 
 				}
-				
+
 			}
-		
+
+			// 완료된 주문에 해당하는 원재료 감소 처리
+			
+
+
+
 		}catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -125,7 +130,7 @@ public class ProductPaymentDao {
 			if(rs1 != null){try {rs1.close();} catch (SQLException e) {e.printStackTrace();}}
 			if(stmt1 != null){try {stmt1.close();} catch (SQLException e) {e.printStackTrace();}}
 		}
-		
+
 		return isSuccess;
 
 	}

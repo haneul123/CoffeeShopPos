@@ -20,7 +20,7 @@ public class InsertProductView {
 
 	//상품등록 뷰
 	public void insertProductView() {
-
+		
 		int productPrice = 0;
 
 		System.out.println("상품등록 모드입니다.");
@@ -41,8 +41,8 @@ public class InsertProductView {
 		String productComment = keyboard.next();
 
 		Product insertProduct = new Product(productName, productPrice, productComment);
-		MainController.getProductController().requestInsertProduct(insertProduct);
-
+		MainController.getProductController().requestInsertIngredientInfo(insertProduct);
+		
 	}
 
 }
