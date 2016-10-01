@@ -8,18 +8,20 @@ import java.util.ArrayList;
 
 import mainController.MainController;
 import productPayment.vo.ProductPayment;
+import productPaymentRepository.ProductOrderRepository;
 
 public class ProductPaymentDao {
 
 	// 주문 된 상품 결제처리
-	public void payment(int paymentMethod) {
+	public boolean payment(int paymentMethod) {
 
+		boolean isSuccess = false;
 		Statement stmt1 = null;
 		Statement stmt2 = null;
+		Statement stmt3 = null;
 		PreparedStatement pstmt1 = null;
 		PreparedStatement pstmt2 = null;
 		PreparedStatement pstmt3 = null;
-		PreparedStatement pstmt4 = null;
 		ResultSet rs1 = null;
 		ResultSet rs2 = null;
 		ResultSet rs3 = null;
@@ -28,7 +30,7 @@ public class ProductPaymentDao {
 		ArrayList<ProductPayment> paymentList = new ArrayList<ProductPayment>();
 
 		try {
-			
+
 			// 결제 처리가 안된 주문 데이터 가져오기
 			String sql = "select product_order_number, user_number from product_order_list where isAgreePaid = 1";
 			stmt1 = MainController.getDbController().getConnection().createStatement();
@@ -44,7 +46,13 @@ public class ProductPaymentDao {
 
 			}
 
-			
+
+			// 주문 데이터 결제 상태로 변경하기
+			sql = "update product_order_list set isAgreePaid = 2 where isAgreePaid = 1";
+			stmt2 = MainController.getDbController().getConnection().createStatement();
+			stmt2.executeUpdate(sql);
+
+
 			// 가져온 주문 데이터를 결제 데이터에 저장하기
 			for(int i = 0; i<paymentList.size(); i++){
 
@@ -52,64 +60,84 @@ public class ProductPaymentDao {
 				pstmt1 = MainController.getDbController().getConnection().prepareStatement(sql);
 				pstmt1.setInt(1, paymentList.get(i).getProductOrderNumber());
 				pstmt1.setInt(2, paymentList.get(i).getPaymentNumber());
+				pstmt1.executeUpdate();
 
 			}
 
-			
-			// 주문한 만큼의 쿠폰 계산 및 무료로 나가야 할 쿠폰 수 계산
-			sql = "select trunc((ul.coupon_count + pol.order_count) / 10, 0) as freecoupon,"; 
-			sql += " mod((ul.coupon_count + pol.order_count) , 10) as remaincoupon";
-			sql += " from user_list ul, product_order_list pol";
-			sql += " where ul.user_number = pol.user_number";
-			stmt2 = MainController.getDbController().getConnection().createStatement();
-			rs2 = stmt2.executeQuery(sql);
+			isSuccess = true;
 
-			if(rs2.next()) {
+			// 쿠폰처리 (비회원은 쿠폰수를 계산하지 않는다)
+			if(paymentList.get(0).getUserNumber() != 1){
 
-				freeCoupon = rs2.getInt(1);
-				remainCoupon = rs2.getInt(2);
 
-			} 
-			
-			
-			// 주문한 만큼 쿠폰 수 올려주기
-			sql = "update user_list set coupon_count = ? where user_number = ?";
-			pstmt3 = MainController.getDbController().getConnection().prepareStatement(sql);
-			pstmt3.setInt(1, remainCoupon);
-			pstmt3.setInt(2, paymentList.get(0).getUserNumber());
-			pstmt3.executeUpdate();
+				// 주문한 만큼의 쿠폰 계산 및 무료로 나가야 할 쿠폰 수 계산
+				sql = "select trunc((ul.coupon_count + pol.order_count) / 10, 0) as freecoupon,"; 
+				sql += " mod((ul.coupon_count + pol.order_count) , 10) as remaincoupon";
+				sql += " from user_list ul, product_order_list pol";
+				sql += " where ul.user_number = pol.user_number";
+				stmt3 = MainController.getDbController().getConnection().createStatement();
+				rs2 = stmt3.executeQuery(sql);
 
-			
-			// 쿠폰을 반영한 실제 결제 가격 계산
-			sql = "select (pl.product_price * pol.ORDER_COUNT) as totalPrice, ";
-			sql += "((pl.product_price * pol.ORDER_COUNT) - (pl.product_price * ?)) as realPrice ";
-			sql	+= "from product_list pl, product_order_list pol ";
-			sql	+= "where pl.product_number = pol.product_number";
-			pstmt4 = MainController.getDbController().getConnection().prepareStatement(sql);
-			pstmt4.setInt(1, freeCoupon);
-			rs3 = pstmt4.executeQuery();
+				if(rs2.next()) {
 
-			if(rs3.next()) {
+					freeCoupon = rs2.getInt(1);
+					remainCoupon = rs2.getInt(2);
 
-				ProductOrderRepository.setTotalPrice(rs3.getInt(1));
-				ProductOrderRepository.setRealPrice(rs3.getInt(2));
+				} 
+
+
+<<<<<<< HEAD
+				//ProductOrderRepository.setTotalPrice(rs3.getInt(1));
+				//ProductOrderRepository.setRealPrice(rs3.getInt(2));
+=======
+				// 계산된 쿠폰수 만큼 업데이트
+				sql = "update user_list set coupon_count = ? where user_number = ?";
+				pstmt2 = MainController.getDbController().getConnection().prepareStatement(sql);
+				pstmt2.setInt(1, remainCoupon);
+				pstmt2.setInt(2, paymentList.get(0).getUserNumber());
+				pstmt2.executeUpdate();
+
+
+				// 쿠폰을 반영한 실제 결제 가격 계산
+				sql = "select (pl.product_price * pol.ORDER_COUNT) as totalPrice, ";
+				sql += "((pl.product_price * pol.ORDER_COUNT) - (pl.product_price * ?)) as realPrice ";
+				sql	+= "from product_list pl, product_order_list pol ";
+				sql	+= "where pl.product_number = pol.product_number";
+				pstmt3 = MainController.getDbController().getConnection().prepareStatement(sql);
+				pstmt3.setInt(1, freeCoupon);
+				rs3 = pstmt3.executeQuery();
+
+				if(rs3.next()) {
+
+					ProductOrderRepository.setTotalPrice(rs3.getInt(1));
+					ProductOrderRepository.setRealPrice(rs3.getInt(2));
+
+				}
+>>>>>>> refs/remotes/choiwj1012/master
 
 			}
+
+			// 완료된 주문에 해당하는 원재료 감소 처리
+			
+
+
 
 		}catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
+			if(rs3 != null){try {rs3.close();} catch (SQLException e) {e.printStackTrace();}}
+			if(pstmt3 != null){try {pstmt3.close();} catch (SQLException e) {e.printStackTrace();}}
 			if(pstmt2 != null){try {pstmt2.close();} catch (SQLException e) {e.printStackTrace();}}
+			if(rs2 != null){try {rs2.close();} catch (SQLException e) {e.printStackTrace();}}
+			if(stmt3 != null){try {stmt2.close();} catch (SQLException e) {e.printStackTrace();}}
 			if(pstmt1 != null){try {pstmt1.close();} catch (SQLException e) {e.printStackTrace();}}
+			if(stmt2 != null){try {stmt2.close();} catch (SQLException e) {e.printStackTrace();}}
 			if(rs1 != null){try {rs1.close();} catch (SQLException e) {e.printStackTrace();}}
 			if(stmt1 != null){try {stmt1.close();} catch (SQLException e) {e.printStackTrace();}}
 		}
 
+		return isSuccess;
+
 	}
-
-
-	// 결제된 정보 리스트 가져가기 (유저 핸드폰번호를 이용하여 검색)
-
-
 
 }
