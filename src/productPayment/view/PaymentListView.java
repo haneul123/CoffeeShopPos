@@ -2,6 +2,7 @@ package productPayment.view;
 
 import java.util.ArrayList;
 
+import productOrder.repository.ProductOrderRepository;
 import productPayment.vo.ProductPayment;
 
 public class PaymentListView {
@@ -16,7 +17,7 @@ public class PaymentListView {
 
 		} else {
 
-			System.out.println("주문번호\t상품번호\t상품이름\t상품가격\t유저번호\t주문수량\t결제방법\t총결제액\t실결제액\t주문일자");
+			System.out.println("주문번호\t상품번호\t상품이름\t상품가격\t유저번호\t주문수량\t결제방법\t주문일자");
 			for(int i=0; i<productPayments.size(); i++){
 
 				System.out.print(productPayments.get(i).getProductOrderNumber() + "\t");
@@ -26,11 +27,12 @@ public class PaymentListView {
 				System.out.print(productPayments.get(i).getUserNumber() + "\t");
 				System.out.print(productPayments.get(i).getPaymentCount() + "\t");
 				System.out.print(productPayments.get(i).getPaymentMethod() + "\t");
-				System.out.print(productPayments.get(i).getTotalPrice() + "\t");
-				System.out.print(productPayments.get(i).getRealPrice() + "\t");
 				System.out.println(productPayments.get(i).getPaymentDate());
 
 			}
+			
+			System.out.println("총 결제액 : " + ProductOrderRepository.getTotalPrice());
+			System.out.println("실 결제액 : " + ProductOrderRepository.getRealPrice());
 			
 		}
 		

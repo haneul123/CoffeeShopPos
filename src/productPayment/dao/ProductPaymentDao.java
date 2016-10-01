@@ -13,7 +13,7 @@ public class ProductPaymentDao {
 
 
 	// 주문 상품 데이터를 결제 데이터베이스에 저장하기
-	public void insertOrderData(ProductPayment productPayment, ProductPayment productPayInfo) {
+	public void insertOrderData(ProductPayment productPayment) {
 
 		PreparedStatement pstmt = null;
 		
@@ -21,7 +21,7 @@ public class ProductPaymentDao {
 			
 			String sql = "insert into product_pay_list values(product_pay_number_seq.nextval, ?)";
 			pstmt = MainController.getDbController().getConnection().prepareStatement(sql);
-			pstmt.setInt(1, productPayInfo.getProductOrderNumber());
+			pstmt.setInt(1, productPayment.getProductOrderNumber());
 			pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
