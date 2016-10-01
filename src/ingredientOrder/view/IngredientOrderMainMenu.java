@@ -43,6 +43,7 @@ public class IngredientOrderMainMenu {
 			} else if(selectedMenu == 2){
 				
 				MainController.getIngredientOrderController().requestOrderIngredientList();
+				MainController.getIngredientPaymentController().ingredientPayment();
 			
 				
 			} else if(selectedMenu == 3){

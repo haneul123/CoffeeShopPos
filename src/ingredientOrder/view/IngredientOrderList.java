@@ -6,12 +6,14 @@ import ingredientOrder.vo.IngredientOrder;
 
 public class IngredientOrderList {
 	
-	
+
 	public IngredientOrderList() {
+		
 		
 	}
 	
 	
+	//원재료 주문 리스트
 	public void ingredientOrderList(ArrayList<IngredientOrder> ingredietnOrders) {
 		
 		
@@ -28,10 +30,8 @@ public class IngredientOrderList {
 		System.out.print(ingredietnOrders.get(i).getTotalPrice()+"\t");
 		System.out.println(ingredietnOrders.get(i).getOrderDate());
 		
-		
 		}
 	
 	}
-	
 
 }
