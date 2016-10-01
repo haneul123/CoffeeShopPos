@@ -27,7 +27,7 @@ public class IngredientOrderMainMenu {
 			
 			System.out.println("원재료 주문 메뉴 입니다");
 			System.out.println("원하시는 메뉴를 선택해 주세요");
-			System.out.println("1. 원재료 주문  2. 주문한 내역 보기  3. 상품 주문 취소  4. 상품 주문 결제  5. 나가기");
+			System.out.println("1. 원재료 주문  2. 주문한 내역 보기  3. 상품 주문 취소  4. 상품 주문 삭제  5. 나가기");
 			
 			try{
 				selectedMenu = keyboard.nextInt();	
@@ -42,7 +42,7 @@ public class IngredientOrderMainMenu {
 				
 			} else if(selectedMenu == 2){
 				
-				// 주문내역 확인하는 뷰 요청
+				MainController.getIngredientOrderController().requestOrderIngredientList();
 			
 				
 			} else if(selectedMenu == 3){
@@ -52,7 +52,7 @@ public class IngredientOrderMainMenu {
 				
 			} else if(selectedMenu == 4){
 				
-			
+				MainController.getIngredientOrderController().requestOrderIngredientDeleteView();
 				
 			} else if(selectedMenu == 5){
 				
