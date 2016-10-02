@@ -3,6 +3,8 @@ package mainController;
 
 import admin.controller.AdminController;
 import ingredient.controller.IngredientController;
+import ingredientOrder.controller.IngredientOrderController;
+import ingredientPayment.controller.IngredientPaymentController;
 import login.controller.LoginController;
 import mainView.MainMenuView;
 import product.controller.ProductController;
@@ -22,6 +24,8 @@ public class MainController {
 	private static UserController userController;
 	private static SalesManagementController salesManagementController;
 	private static ProductPaymentContoller productPaymentController;
+	private static IngredientOrderController ingredientOrderController;
+	private static IngredientPaymentController ingredientPaymentController;
 	
 	//구조
 	public MainController() {
@@ -35,6 +39,9 @@ public class MainController {
 		userController = new UserController();
 		salesManagementController = new SalesManagementController();
 		productPaymentController = new ProductPaymentContoller();
+		ingredientOrderController = new IngredientOrderController();
+		ingredientPaymentController = new IngredientPaymentController();
+		
 	}
 
 
@@ -81,6 +88,16 @@ public class MainController {
 	
 	public static SalesManagementController getSalesManagementController() {
 		return salesManagementController;
+	}
+
+
+	public static IngredientOrderController getIngredientOrderController() {
+		return ingredientOrderController;
+	}
+
+
+	public static IngredientPaymentController getIngredientPaymentController() {
+		return ingredientPaymentController;
 	}
 
 

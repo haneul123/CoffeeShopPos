@@ -24,6 +24,7 @@ public class ProductMainMenuView {
 
 		int selectedMenu = 0;
 
+		
 		while(true){
 
 			System.out.println("상품 관리");

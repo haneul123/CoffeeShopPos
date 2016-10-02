@@ -24,7 +24,7 @@ public class IngredientMainMenu {
 
 				int selectedMenu = 0;
 				System.out.println("[재고관리 메뉴]");
-				System.out.println("[1]재고등록, [2]재고수정, [3]재고조회, [4]재고삭제, [5]재고목록, [6]이전");
+				System.out.println("[1]재고등록, [2]재고수정, [3]재고조회, [4]재고삭제, [5]재고목록, [6]재고주문, [7]이전");
 
 				System.out.print("메뉴선택 : ");
 				selectedMenu = keyboard.nextInt();
@@ -56,8 +56,12 @@ public class IngredientMainMenu {
 
 				}else if(selectedMenu == 6) {
 
-					MainController.getIngredientController().requestIngredientMainMenu();
+					MainController.getIngredientOrderController().requestIngredientOrderMainMenuView();
+					
+				}else if(selectedMenu == 7) {
 
+					MainController.getAdminController().requestMainMenuView();
+					
 				} else {
 
 					System.out.println("메뉴를 잘못 선택 하셨습니다.");

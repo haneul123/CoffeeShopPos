@@ -1,13 +1,5 @@
-/CoffeeShopPos.erm
-/admin/
-/ingredient/
-/login/
-/main/
 /mainController/
-/mainView/
-/product/
-/productOrder/
+/ingredientOrder/
 /productPayment/
 /productPaymentRepository/
-/salesManagement/
-/user/
+/ingredientPayment/
