@@ -91,8 +91,7 @@ public class IngredientController {
 	// 원재료 수정전 조회
 	public void requestIngredientUpdateNumber() {
 		
-		requestSearchIngredient();
-		
+		MainController.getIngredientController().requestSearchIngredient();	
 		UpdateIngredientView updateIngredientNum = new UpdateIngredientView();
 		updateIngredientNum.updateingredientNumberView();
 		
@@ -104,8 +103,7 @@ public class IngredientController {
 		
 		UpdateIngredientView updateIngredientInfo = new UpdateIngredientView();
 		updateIngredientInfo.updateProductInfo(selectedIngredientNumber);
-		
-		
+			
 	}
 	
 	
@@ -113,10 +111,8 @@ public class IngredientController {
 	public void requestUpdateIngredient(Ingredient updateingredient){
 
 		boolean success = ingredientDao.updateIngredient(updateingredient);
-
+		
 		AlertView alert = new AlertView();
-		
-		
 		if(success) {
 			alert.alert("수정성공");
 		} else {
@@ -129,11 +125,9 @@ public class IngredientController {
 	// 원재료 삭제 뷰 호출
 	public void requerstDeleteIngredientView() {
 
-		requestSearchIngredient();
-
+		MainController.getIngredientController().requestSearchIngredient();
 		IngredientDeleteView deleteIngredientGetNum = new IngredientDeleteView();
 		deleteIngredientGetNum.deleteIngredientNum();
-
 
 	}
 
@@ -141,11 +135,9 @@ public class IngredientController {
 	// 원재료 삭제
 	public void requestDeleteIngredient(int deleteIngredientGetNum) {
 		
-
 		boolean success = ingredientDao.deleteIngredient(deleteIngredientGetNum);
 		
 		AlertView alert = new AlertView();
-
 		if(success) {
 			alert.alert("삭제성공");
 		} else {

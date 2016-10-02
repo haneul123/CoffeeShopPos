@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 import ingredient.vo.Ingredient;
 import mainController.MainController;
-import mainView.AlertView;
 import productOrder.vo.ProductOrder;
 
 public class IngredientDao {
@@ -33,7 +32,6 @@ public class IngredientDao {
 			success = true;
 
 		} catch (SQLException e) {
-			new AlertView().alert("데이터베이스 연결에 실패 했습니다.");
 			e.printStackTrace();
 		} finally {
 			if(pstmt != null){try{pstmt.close();}catch(SQLException e){e.printStackTrace();}}
@@ -49,7 +47,6 @@ public class IngredientDao {
 	public ArrayList<Ingredient> searchIngredient(Ingredient getName){
 
 		ArrayList<Ingredient> ingredientList = new ArrayList<Ingredient>();
-
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
@@ -68,6 +65,7 @@ public class IngredientDao {
 				ingredient.setIngredient_Number(rs.getInt("ingredient_Number"));
 				ingredient.setIngredient_Name(rs.getString("Ingredient_Name"));
 				ingredient.setIngredient_Price(rs.getInt("Ingredient_Price"));
+				ingredient.setIngreient_Inventory(rs.getInt("Ingredient_Inventory"));
 				ingredient.setIngredient_Inventory_MAX(rs.getInt("Ingredient_Inventory_MAX"));
 				ingredient.setIngredient_unit(rs.getString("Ingredient_unit"));
 				ingredientList.add(ingredient);

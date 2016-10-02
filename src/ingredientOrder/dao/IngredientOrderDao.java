@@ -17,7 +17,7 @@ public class IngredientOrderDao {
 		boolean success = false;		
 		PreparedStatement pstmt1 = null;
 		PreparedStatement pstmt2 = null;
-		ResultSet rs = null;
+		ResultSet rs1 = null;
 		int adminNumber = 0;
 
 		try {
@@ -25,11 +25,11 @@ public class IngredientOrderDao {
 			String sql = "select admin_number from admin_list where admin_id = ?";
 			pstmt1 = MainController.getDbController().getConnection().prepareStatement(sql);
 			pstmt1.setString(1, orderIngredient.getAdminId());
-			rs = pstmt1.executeQuery();
+			rs1 = pstmt1.executeQuery();
 
-			if(rs.next()) {
+			if(rs1.next()) {
 
-				adminNumber = rs.getInt(1);
+				adminNumber = rs1.getInt(1);
 			}
 
 			sql = "insert into ingredient_order_list values(ingredient_order_number_seq.nextval, ?, ?, ?, sysdate)";
@@ -46,6 +46,7 @@ public class IngredientOrderDao {
 		} finally {
 
 			if(pstmt2 != null){try{pstmt2.close();} catch (SQLException e) {e.printStackTrace();}}
+			if(rs1 != null){try{rs1.close();} catch (SQLException e) {e.printStackTrace();}}
 			if(pstmt1 != null){try{pstmt1.close();} catch (SQLException e) {e.printStackTrace();}}
 
 		}
@@ -111,9 +112,7 @@ public class IngredientOrderDao {
 		}catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-
 			if(pstmt != null){try{pstmt.close();} catch (SQLException e){e.printStackTrace();}}
-
 		}
 
 		return success;
@@ -121,11 +120,3 @@ public class IngredientOrderDao {
 	}
 
 }
-
-
-
-
-
-
-
-
