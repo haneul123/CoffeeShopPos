@@ -13,8 +13,6 @@ import productOrder.vo.ProductOrder;
 
 public class IngredientDao {
 
-
-
 	// 재고관리_원재료 등록
 	public boolean addIngredient(Ingredient insertIngredients){
 
@@ -252,7 +250,7 @@ public class IngredientDao {
 				
 			}
 			
-			
+			// 현재 재고량과 최대 재고량의 차이를 비교
 			for(int i = 0; i<ingredientList.size(); i++){				
 				if(ingredientList.get(i).getIngreient_Inventory() < (ingredientList.get(i).getIngredient_Inventory_MAX() * 0.1)){				
 					statusNumber = 1;
