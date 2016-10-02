@@ -1,5 +1,7 @@
 package admin.vo;
 
+import java.sql.Date;
+
 public class Admin {
 
 	// variable
@@ -8,48 +10,80 @@ public class Admin {
 	private String adminPassword;
 	private String adminName;
 	private int authority;
-	
+	private int loginNumber;
+	private Date startTime;
+	private Date endTime;
+
 	// constructor
 	public Admin() {
-	
-		
+
+
 	}
 
+
+	//조회시 이름 찾기 
+	public Admin(String adminName) {
+		
+		this.adminName = adminName;
+
+	}
+
+	
 	// 로그인을 위한 admin 생성
 	public Admin(String adminId, String adminPassword){
-		
+
 		this.adminId = adminId;
 		this.adminPassword = adminPassword;
-		
+
 	}
-	
-	
+
+
 	// 관리자 가입을 위한 admin 생성
 	public Admin(String adminId, String adminPassword, String adminName, int authority){
-		
+
 		this.adminId = adminId;
 		this.adminPassword = adminPassword;
 		this.adminName = adminName;
 		this.authority = authority;
-		
+
 	}
-	
-	
+
+
 	// 관리자 정보 수정을 위한 admin 생성
 	public Admin(int adminNumber, String adminPassword, String adminName, int authority){
-		
+
 		this.adminNumber = adminNumber;
 		this.adminPassword = adminPassword;
 		this.adminName = adminName;
 		this.authority = authority;
-		
+
 	}
-	
-	
+
+
 	// getter and setter	
 	public int getAdminNumber() {
 		return adminNumber;
 	}
+
+	public Date getStartTime() {
+		return startTime;
+	}
+
+
+	public void setStartTime(Date startTime) {
+		this.startTime = startTime;
+	}
+
+
+	public Date getEndTime() {
+		return endTime;
+	}
+
+
+	public void setEndTime(Date endTime) {
+		this.endTime = endTime;
+	}
+
 
 	public void setAdminNumber(int adminNumber) {
 		this.adminNumber = adminNumber;
@@ -86,5 +120,15 @@ public class Admin {
 	public void setAuthority(int authority) {
 		this.authority = authority;
 	}
-		
+
+
+	public int getLoginNumber() {
+		return loginNumber;
+	}
+
+
+	public void setLoginNumber(int loginNumber) {
+		this.loginNumber = loginNumber;
+	}
+
 }

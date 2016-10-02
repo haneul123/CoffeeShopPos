@@ -2,6 +2,7 @@ package mainController;
 
 
 import admin.controller.AdminController;
+import adminSalary.controller.AdminSalaryController;
 import ingredient.controller.IngredientController;
 import ingredientOrder.controller.IngredientOrderController;
 import ingredientPayment.controller.IngredientPaymentController;
@@ -26,6 +27,7 @@ public class MainController {
 	private static ProductPaymentContoller productPaymentController;
 	private static IngredientOrderController ingredientOrderController;
 	private static IngredientPaymentController ingredientPaymentController;
+	private static AdminSalaryController adminSalaryController;
 	
 	//구조
 	public MainController() {
@@ -41,6 +43,7 @@ public class MainController {
 		productPaymentController = new ProductPaymentContoller();
 		ingredientOrderController = new IngredientOrderController();
 		ingredientPaymentController = new IngredientPaymentController();
+		adminSalaryController = new AdminSalaryController();
 		
 	}
 
@@ -98,6 +101,11 @@ public class MainController {
 
 	public static IngredientPaymentController getIngredientPaymentController() {
 		return ingredientPaymentController;
+	}
+
+
+	public static AdminSalaryController getAdminSalaryController() {
+		return adminSalaryController;
 	}
 
 

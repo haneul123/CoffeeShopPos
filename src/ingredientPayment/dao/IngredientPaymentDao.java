@@ -75,6 +75,9 @@ public class IngredientPaymentDao {
 				pstmt2.executeUpdate();
 
 			}
+			
+			 IngredientPayments.clear();
+			
 		}catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
