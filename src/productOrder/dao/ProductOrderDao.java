@@ -189,12 +189,6 @@ public class ProductOrderDao {
 			
 		return isSuccess;
 		
-	}
-
-
-	public int checkIngredient(ProductOrder orderProduct) {
-		// TODO Auto-generated method stub
-		return 0;
 	}	
 
 }

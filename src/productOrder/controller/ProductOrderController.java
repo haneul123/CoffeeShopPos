@@ -76,33 +76,6 @@ public class ProductOrderController {
 	}
 
 	
-	// 주문된 상품의 원재료가 적정량 남아 있는지 체크
-	public void requestCheckIngredient(ProductOrder orderProduct){
-		
-		int statusNumber = productOrderDao.checkIngredient(orderProduct);
-		AlertView alertView = new AlertView();
-		
-		// 만약 원재료 양이 최대 원재료 양의 10% 미만인 경우 주문을 중지하고 먼저 원재료 주문을 한다  
-		if(statusNumber == 1){
-			
-			alertView.alert("현재 남아있는 재고량이 10% 미만입니다. 원재료 주문을 먼저 한 후 재주문 바랍니다");
-			
-		// 만약 원재료 양이 최대 원재료 양의 30% 미만인 경우 경고 메시지를 출력한다.
-		} else if(statusNumber == 2) {
-				
-			alertView.alert("현재 남아있는 재고량이 최대 재고량의 30% 미만입니다. 추가 주문 바랍니다");
-			MainController.getProductOrderController().requestOrderProduct(orderProduct);
-		
-		// 원재료 양이 최대 원재료 양의 30% 이상인 경우 그대로 주문을 진행한다.
-		} else {
-			
-			MainController.getProductOrderController().requestOrderProduct(orderProduct);	
-			
-		}
-		
-	}
-	
-	
 	// 주문된 상품 주문 데이터베이스에 저장
 	public void requestOrderProduct(ProductOrder orderProduct) {
 
