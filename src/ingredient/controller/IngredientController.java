@@ -184,7 +184,7 @@ public class IngredientController {
 			MainController.getProductOrderController().requestOrderProduct(orderProduct);
 		
 		// 원재료 양이 최대 원재료 양의 30% 이상인 경우 그대로 주문을 진행한다.
-		} else {
+		} else if(statusNumber == 0){
 			
 			MainController.getProductOrderController().requestOrderProduct(orderProduct);	
 			

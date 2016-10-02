@@ -253,28 +253,19 @@ public class IngredientDao {
 			}
 			
 			
-			for(int i = 0; i<ingredientList.size(); i++){
-				
-				if(ingredientList.get(i).getIngreient_Inventory() < ingredientList.get(i).getIngredient_Inventory_MAX() * 0.1){
-					
+			for(int i = 0; i<ingredientList.size(); i++){				
+				if(ingredientList.get(i).getIngreient_Inventory() < (ingredientList.get(i).getIngredient_Inventory_MAX() * 0.1)){				
 					statusNumber = 1;
-					
-				} else if(ingredientList.get(i).getIngreient_Inventory() < ingredientList.get(i).getIngredient_Inventory_MAX() * 0.3){
-					
-					statusNumber = 2;
-					
-				} else {
-					
-					statusNumber = 0;
-					
-				}
-				
+				} else if(ingredientList.get(i).getIngreient_Inventory() < (ingredientList.get(i).getIngredient_Inventory_MAX() * 0.3)){					
+					statusNumber = 2;					
+				}		
 			}
 			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
+			if(rs != null){try {rs.close();} catch (SQLException e) {e.printStackTrace();}}
 			if(stmt != null){try {stmt.close();} catch (SQLException e) {e.printStackTrace();}}
 		}
 		

@@ -36,7 +36,7 @@ public class IngredientOrderDao {
 			pstmt2 = MainController.getDbController().getConnection().prepareStatement(sql);
 			pstmt2.setInt(1, adminNumber);
 			pstmt2.setInt(2, orderIngredient.getIngredientNumber());
-			pstmt2.setInt(3, orderIngredient.getOrderCount()); // 여기엔 주문 수량 칸임
+			pstmt2.setInt(3, orderIngredient.getOrderCount());
 
 			pstmt2.executeUpdate();
 			success = true;
