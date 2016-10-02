@@ -35,7 +35,7 @@ public class ProductOrderView {
 			
 			ProductOrder orderProduct = new ProductOrder(userNumber, productNumber, orderCount);
 
-			MainController.getProductOrderController().requestOrderProduct(orderProduct);
+			MainController.getProductOrderController().requestCheckIngredient(orderProduct);
 
 		}catch(InputMismatchException e){	
 			System.err.println("잘못입력하셨습니다. 다시 입력해 주십시오");		
