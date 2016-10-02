@@ -105,7 +105,7 @@ public class IngredientOrderDao {
 			String sql = "delete from ingredient_order_list where INGREDIENT_ORDER_NUMBER =?";
 			pstmt = MainController.getDbController().getConnection().prepareStatement(sql);
 			pstmt.setInt(1, deleteIngredientOrder);
-			pstmt.executeUpdate();
+
 			success = true;
 
 		}catch (SQLException e) {

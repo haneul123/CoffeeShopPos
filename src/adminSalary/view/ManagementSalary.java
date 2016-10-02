@@ -1,4 +1,4 @@
-package admin.view;
+package adminSalary.view;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -26,11 +26,13 @@ public class ManagementSalary {
 		
 		while(true){
 			
-			System.out.println("1. 급여 지급  2. 나가기");
+			System.out.println("[1]. 급여 지급  [2]. 나가기");
+			
 			try{
 				selectedMenu = keyboard.nextInt();	
 			} catch(InputMismatchException e){
 				System.out.println("잘못 입력하셨습니다");
+				MainController.getAdminController().requestAdminManagementView();
 			}
 			
 			if(selectedMenu == 1){
@@ -43,13 +45,14 @@ public class ManagementSalary {
 				}
 				
 				System.out.println("급여액을 입력하세요");
+				
 				try{
 					salary = keyboard.nextInt();	
 				} catch(InputMismatchException e){
 					System.out.println("잘못 입력하셨습니다");
 				}
 				
-				MainController.getAdminController().requestInputSalary(adminNumber, salary);
+				MainController.getAdminSalaryController().requestInputSalary(adminNumber, salary);
 				
 			} else if(selectedMenu == 2){
 				
