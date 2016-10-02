@@ -93,6 +93,9 @@ public class ProductDao {
 
 		try {
 
+			// 트랜잭션
+			MainController.getDbController().getConnection().setAutoCommit(false);
+			
 			// 등록하려는 상품 이름이 이미 존재하는 것인지 검토
 			String sql = "select * from product_list where product_Name = ?";
 			pstmt1 = MainController.getDbController().getConnection().prepareStatement(sql);
@@ -138,9 +141,16 @@ public class ProductDao {
 				}
 
 			}
+			
+			MainController.getDbController().getConnection().commit();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+			try {
+				MainController.getDbController().getConnection().rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 		} finally {
 
 			if(pstmt4 != null){try {pstmt4.close();} catch (SQLException e) {e.printStackTrace();}}
@@ -150,6 +160,13 @@ public class ProductDao {
 			if(rs1 != null){try {rs1.close();} catch (SQLException e) {e.printStackTrace();}}
 			if(pstmt1 != null){try {pstmt1.close();} catch (SQLException e) {e.printStackTrace();}}
 
+			try {
+				MainController.getDbController().getConnection().setAutoCommit(true);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		}
 
 		return success;

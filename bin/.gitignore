@@ -3,3 +3,8 @@
 /productPayment/
 /productPaymentRepository/
 /ingredientPayment/
+/admin/
+/ingredient/
+/product/
+/productOrder/
+/login/

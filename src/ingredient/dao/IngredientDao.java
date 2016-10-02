@@ -3,14 +3,15 @@ package ingredient.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+
 import ingredient.vo.Ingredient;
 import mainController.MainController;
 import mainView.AlertView;
+import productOrder.vo.ProductOrder;
 
 public class IngredientDao {
-
-
 
 	// 재고관리_원재료 등록
 	public boolean addIngredient(Ingredient insertIngredients){
@@ -218,6 +219,56 @@ public class IngredientDao {
 		}
 
 		return ingredients;
+	}
+
+
+	// 원재료 잔량 체크
+	public int checkIngredient(ProductOrder orderProduct) {
+	
+		int statusNumber = 0;
+		Statement stmt = null;
+		ResultSet rs = null;
+		ArrayList<Ingredient> ingredientList = new ArrayList<Ingredient>();
+		
+		try {
+			
+			String sql = "select distinct pol.PRODUCT_NUMBER, pui.INGREDIENT_NUMBER, ";
+			sql += "il.INGREDIENT_INVENTORY, il.INGREDIENT_INVENTORY_MAX ";
+			sql += "from product_order_list pol, product_use_ingredient pui, ingredient_list il ";
+			sql += "where pol.PRODUCT_NUMBER = pui.PRODUCT_NUMBER and pui.INGREDIENT_NUMBER = il.INGREDIENT_NUMBER ";
+			sql += "order by pol.PRODUCT_NUMBER";
+			stmt = MainController.getDbController().getConnection().createStatement();
+			rs = stmt.executeQuery(sql);
+			
+			while(rs.next()){
+				
+				Ingredient inventory = new Ingredient();
+				inventory.setIngredient_Number(rs.getInt(2));
+				inventory.setIngreient_Inventory(rs.getInt(3));
+				inventory.setIngredient_Inventory_MAX(rs.getInt(4));
+				ingredientList.add(inventory);
+				
+			}
+			
+			// 현재 재고량과 최대 재고량의 차이를 비교
+			for(int i = 0; i<ingredientList.size(); i++){				
+				if(ingredientList.get(i).getIngreient_Inventory() < (ingredientList.get(i).getIngredient_Inventory_MAX() * 0.1)){				
+					statusNumber = 1;
+				} else if(ingredientList.get(i).getIngreient_Inventory() < (ingredientList.get(i).getIngredient_Inventory_MAX() * 0.3)){					
+					statusNumber = 2;					
+				}		
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(rs != null){try {rs.close();} catch (SQLException e) {e.printStackTrace();}}
+			if(stmt != null){try {stmt.close();} catch (SQLException e) {e.printStackTrace();}}
+		}
+		
+		return statusNumber;
+		
 	}
 
 }

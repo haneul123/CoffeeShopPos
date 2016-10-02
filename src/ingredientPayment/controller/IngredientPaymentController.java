@@ -18,7 +18,7 @@ public class IngredientPaymentController {
 	//결제하기
 	public void ingredientPayment() {
 		
-		boolean success = ingredientPaymentDao.IngredientPayment();
+		ingredientPaymentDao.IngredientPayment();
 		
 		IngredientPaymentView ingredientPayment = new IngredientPaymentView();
 		ingredientPayment.ingredientOrderPay();

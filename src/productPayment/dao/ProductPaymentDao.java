@@ -37,6 +37,9 @@ public class ProductPaymentDao {
 
 		try {
 
+			// 트랜잭션 처리
+//			MainController.getDbController().getConnection().setAutoCommit(false);
+			
 			// 결제 처리가 안된 주문 데이터 가져오기
 			String sql = "select product_order_number, user_number from product_order_list where isAgreePaid = 1";
 			stmt1 = MainController.getDbController().getConnection().createStatement();
@@ -73,7 +76,7 @@ public class ProductPaymentDao {
 				sql = "select trunc((ul.coupon_count + pol.order_count) / 10, 0) as freecoupon,"; 
 				sql += " mod((ul.coupon_count + pol.order_count) , 10) as remaincoupon";
 				sql += " from user_list ul, product_order_list pol";
-				sql += " where ul.user_number = pol.user_number";
+				sql += " where ul.user_number = pol.user_number and isAgreePaid = 1";
 				stmt2 = MainController.getDbController().getConnection().createStatement();
 				rs2 = stmt2.executeQuery(sql);
 
@@ -108,11 +111,8 @@ public class ProductPaymentDao {
 					ProductOrderRepository.setTotalPrice(rs3.getInt(1));
 
 				}
-
-
 			}
-
-			
+	
 			// 주문 데이터 결제 상태로 변경하기
 			sql = "update product_order_list set isAgreePaid = 2 where isAgreePaid = 1";
 			stmt3 = MainController.getDbController().getConnection().createStatement();
@@ -135,7 +135,7 @@ public class ProductPaymentDao {
 
 			}
 
-
+		
 			// 원재료 감소 처리
 			for(int i=0; i<useAmountList.size(); i++){
 
@@ -156,9 +156,15 @@ public class ProductPaymentDao {
 			stmt5.executeUpdate(sql);
 			
 			isSuccess = true;
-
-		}catch (SQLException e) {
+//			MainController.getDbController().getConnection().commit();
+			
+		} catch (SQLException e) {
 			e.printStackTrace();
+//			try {
+//				MainController.getDbController().getConnection().rollback();
+//			} catch (SQLException e1) {
+//				e1.printStackTrace();
+//			}
 		} finally {
 			if(stmt5 != null){try {stmt5.close();} catch (SQLException e) {e.printStackTrace();}}
 			if(pstmt4 != null){try {pstmt4.close();} catch (SQLException e) {e.printStackTrace();}}
@@ -173,6 +179,13 @@ public class ProductPaymentDao {
 			if(stmt2 != null){try {stmt2.close();} catch (SQLException e) {e.printStackTrace();}}
 			if(rs1 != null){try {rs1.close();} catch (SQLException e) {e.printStackTrace();}}
 			if(stmt1 != null){try {stmt1.close();} catch (SQLException e) {e.printStackTrace();}}
+			
+//			try {
+//				MainController.getDbController().getConnection().setAutoCommit(true);
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//			}
+			
 		}
 
 		return isSuccess;
