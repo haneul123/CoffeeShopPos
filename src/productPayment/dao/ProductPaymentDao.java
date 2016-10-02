@@ -37,6 +37,9 @@ public class ProductPaymentDao {
 
 		try {
 
+			// 트랜잭션 처리
+			MainController.getDbController().getConnection().setAutoCommit(false);
+			
 			// 결제 처리가 안된 주문 데이터 가져오기
 			String sql = "select product_order_number, user_number from product_order_list where isAgreePaid = 1";
 			stmt1 = MainController.getDbController().getConnection().createStatement();
@@ -156,9 +159,15 @@ public class ProductPaymentDao {
 			stmt5.executeUpdate(sql);
 			
 			isSuccess = true;
-
+			MainController.getDbController().getConnection().commit();
+			
 		}catch (SQLException e) {
 			e.printStackTrace();
+			try {
+				MainController.getDbController().getConnection().rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 		} finally {
 			if(stmt5 != null){try {stmt5.close();} catch (SQLException e) {e.printStackTrace();}}
 			if(pstmt4 != null){try {pstmt4.close();} catch (SQLException e) {e.printStackTrace();}}
@@ -173,6 +182,13 @@ public class ProductPaymentDao {
 			if(stmt2 != null){try {stmt2.close();} catch (SQLException e) {e.printStackTrace();}}
 			if(rs1 != null){try {rs1.close();} catch (SQLException e) {e.printStackTrace();}}
 			if(stmt1 != null){try {stmt1.close();} catch (SQLException e) {e.printStackTrace();}}
+			
+			try {
+				MainController.getDbController().getConnection().setAutoCommit(true);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
 		}
 
 		return isSuccess;
