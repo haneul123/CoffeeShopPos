@@ -1,6 +1,5 @@
 package adminSalary.view;
 
-import java.util.MissingFormatArgumentException;
 import java.util.Scanner;
 
 import adminSalary.vo.AdminSalary;

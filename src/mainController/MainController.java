@@ -1,6 +1,5 @@
 package mainController;
 
-
 import admin.controller.AdminController;
 import adminSalary.controller.AdminSalaryController;
 import ingredient.controller.IngredientController;

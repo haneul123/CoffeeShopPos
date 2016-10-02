@@ -2,11 +2,14 @@ package ingredientPayment.view;
 
 import java.util.Scanner;
 
+import mainController.MainController;
+
 public class IngredientPaymentView {
 	
+	// variable
 	private Scanner keyboard;
 
-
+	// constructor
 	public IngredientPaymentView() {
 		
 		keyboard = new Scanner(System.in);
@@ -23,8 +26,10 @@ public class IngredientPaymentView {
 
 		if(seletedMenu == 1){
 
-			System.out.println("결제가 완료 되었슴니다.");
-		}else {
+			System.out.println("결제가 완료 되었습니다.");
+			MainController.getIngredientPaymentController().requestIngredientPayment();
+			
+		} else {
 
 			System.out.println("결제가 취소되었습니다.");
 			System.out.println("메인메뉴로 돌아갑니다.");

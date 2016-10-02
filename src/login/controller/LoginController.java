@@ -85,7 +85,7 @@ public class LoginController {
 	public void requestLogout(){
 		
 		Date date = new Date();
-		SimpleDateFormat nowDate = new SimpleDateFormat("yyyy-mm-dd, a hh:mm:ss");
+		SimpleDateFormat nowDate = new SimpleDateFormat("yyyy-MM-dd, a hh:mm:ss");
 		
 		Admin logoutAdmin = loginDao.Logout();
 		AlertView alertView = new AlertView();

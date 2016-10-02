@@ -7,7 +7,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import admin.vo.Admin;
-import adminSalary.vo.AdminSalary;
 import mainController.MainController;
 import mainView.AlertView;
 

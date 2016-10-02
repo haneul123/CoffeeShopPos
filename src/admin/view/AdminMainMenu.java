@@ -27,7 +27,7 @@ public class AdminMainMenu {
 
 				int selectedMenu = 0;
 				System.out.println("관리자 메인 메뉴 입니다");
-				String[] mainMenu = {"[1]상품관리, [2]주문관리, [3]재고관리, [4]재무관리, [5]회원관리, [6]직원관리, [7]로그아웃"};
+				String[] mainMenu = {"[1]상품관리  [2]주문관리  [3]재고관리  [4]재무관리  [5]회원관리  [6]직원관리  [7]로그아웃"};
 
 				// 메인메뉴 출력
 				for(int i=0; i<mainMenu.length; i++){

@@ -2,7 +2,6 @@ package adminSalary.view;
 
 import java.util.ArrayList;
 
-import admin.vo.Admin;
 import adminSalary.vo.AdminSalary;
 import mainController.MainController;
 

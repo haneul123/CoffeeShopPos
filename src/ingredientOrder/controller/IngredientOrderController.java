@@ -43,7 +43,7 @@ public class IngredientOrderController {
 	}
 
 
-	// 원재료주문  데이터베이스에 저장
+	// 원재료 주문 데이터베이스에 저장
 	public void requestOrderIngredient(IngredientOrder orderIngredient) {
 
 		boolean success = ingredientOrderDao.orderIngredientInsert(orderIngredient);
@@ -63,7 +63,7 @@ public class IngredientOrderController {
 	}
 
 
-	//원재료 주문 리스트 뷰
+	// 원재료 주문 리스트 뷰
 	public void requestOrderIngredientList() {
 		
 		ArrayList<IngredientOrder> ingredietnOrderList = ingredientOrderDao.orderInfredientList();
@@ -73,18 +73,17 @@ public class IngredientOrderController {
 	}
 
 
-	//원재료주문 리스트 삭제 뷰
+	// 원재료 주문 리스트 삭제 뷰
 	public void requestOrderIngredientDeleteView() {
 		
-		requestOrderIngredientList();
-	
+		requestOrderIngredientList();	
 		IngredientOrderListDelete ingredientOrderListDelete = new IngredientOrderListDelete();
 		ingredientOrderListDelete.ingredientOrderListDelete();
 		
 	}
 	
 	
-	//원재료주문 리스트 삭제 
+	// 원재료 주문 리스트 삭제 
 	public void requestOrderIngredientDelete(int deleteIngredientOrder) {
 		
 		boolean success = ingredientOrderDao.deleteIngredientOrder(deleteIngredientOrder);
@@ -95,9 +94,8 @@ public class IngredientOrderController {
 		}else {
 			alertView.alert("삭제실패");
 		}
-		
-		
-		
+			
 	}
+	
 }
 
