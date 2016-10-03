@@ -23,7 +23,7 @@ public class ProductPaymentView {
 		int selectedMenu = 0;
 		
 		System.out.println("해당 상품들을 결제하시겠습니까?");
-		System.out.println("1. 결제하기  2. 결제 취소하기");
+		System.out.println("[1] 결제하기  [2] 결제 취소하기");
 		
 		try{
 			selectedMenu = keyboard.nextInt();	

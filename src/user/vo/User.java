@@ -1,12 +1,17 @@
 package user.vo;
 
+import java.sql.Date;
+
 public class User {
 
 	// variable
 	private int userNumber;
 	private String userPhoneNumber;
 	private int couponCount;
-
+	private Date signUpDate;
+	private int isWithdrawUser;
+	private Date withdrawDate;
+	
 
 	// constructor
 	public User(){
@@ -59,6 +64,36 @@ public class User {
 
 	public void setCouponCount(int couponCount) {
 		this.couponCount = couponCount;
+	}
+
+
+	public Date getSignUpDate() {
+		return signUpDate;
+	}
+
+
+	public void setSignUpDate(Date signUpDate) {
+		this.signUpDate = signUpDate;
+	}
+
+
+	public int getIsWithdrawUser() {
+		return isWithdrawUser;
+	}
+
+
+	public void setIsWithdrawUser(int isWithdrawUser) {
+		this.isWithdrawUser = isWithdrawUser;
+	}
+
+
+	public Date getWithdrawDate() {
+		return withdrawDate;
+	}
+
+
+	public void setWithdrawDate(Date withdrawDate) {
+		this.withdrawDate = withdrawDate;
 	}
 
 }

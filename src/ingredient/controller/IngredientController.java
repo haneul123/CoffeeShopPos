@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import ingredient.dao.IngredientDao;
 import ingredient.view.AddIngredientView;
 import ingredient.view.GetKeywordView;
-import ingredient.view.IngredientDeleteView;
 import ingredient.view.IngredientMainMenu;
 import ingredient.view.SearchIngredientView;
 import ingredient.view.SearchListView;
@@ -122,29 +121,29 @@ public class IngredientController {
 	}
 
 
-	// 원재료 삭제 뷰 호출
-	public void requerstDeleteIngredientView() {
-
-		MainController.getIngredientController().requestSearchIngredient();
-		IngredientDeleteView deleteIngredientGetNum = new IngredientDeleteView();
-		deleteIngredientGetNum.deleteIngredientNum();
-
-	}
-
-
-	// 원재료 삭제
-	public void requestDeleteIngredient(int deleteIngredientGetNum) {
-		
-		boolean success = ingredientDao.deleteIngredient(deleteIngredientGetNum);
-		
-		AlertView alert = new AlertView();
-		if(success) {
-			alert.alert("삭제성공");
-		} else {
-			alert.alert("삭제실패");
-		}
-
-	}
+//	// 원재료 삭제 뷰 호출
+//	public void requerstDeleteIngredientView() {
+//
+//		MainController.getIngredientController().requestSearchIngredient();
+//		IngredientDeleteView deleteIngredientGetNum = new IngredientDeleteView();
+//		deleteIngredientGetNum.deleteIngredientNum();
+//
+//	}
+//
+//
+//	// 원재료 삭제
+//	public void requestDeleteIngredient(int deleteIngredientGetNum) {
+//		
+//		boolean success = ingredientDao.deleteIngredient(deleteIngredientGetNum);
+//		
+//		AlertView alert = new AlertView();
+//		if(success) {
+//			alert.alert("삭제성공");
+//		} else {
+//			alert.alert("삭제실패");
+//		}
+//
+//	}
 
 
 	// 원재료 목록

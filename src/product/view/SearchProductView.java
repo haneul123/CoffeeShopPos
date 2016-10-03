@@ -39,12 +39,19 @@ public class SearchProductView {
 
 	public void printProduct(Product searchProduct){
 
-		System.out.println("상품번호\t상품이름\t상품가격\t상품설명");
+		System.out.println("[상품번호]\t[상품이름]\t[상품가격]\t[상품설명]\t\t\t[판매여부]");
 
 		System.out.print(searchProduct.getProductNumber() + "\t" );
 		System.out.print(searchProduct.getProductName() + "\t");
 		System.out.print(searchProduct.getProductPrice() + "\t");
-		System.out.println(searchProduct.getProductComment());
+		System.out.print(searchProduct.getProductComment() + "\t");
+		
+		if(searchProduct.getIsDeleteProduct() == 1){
+			System.out.println("판매중");	
+		} else {
+			System.out.println("판매중단");
+		}
+		
 
 	}
 

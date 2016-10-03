@@ -38,14 +38,27 @@ public class AdminSignupView {
 
 		System.out.println("관리자 권한번호를 입력하세요 (1 = 점장, 2 = 직원)");
 		try{
-			authority = keyboard.nextInt();	
+			
+			authority = keyboard.nextInt();
+			
+			if(authority == 1 || authority == 2){
+				
+				Admin newAdmin = new Admin(adminId, adminPassword, adminName, authority);
+				MainController.getAdminController().requestSignUp(newAdmin);
+				
+			} else {
+				
+				System.out.println("1 또는 2만 입력하셔야 합니다");
+				MainController.mainMenuView();
+				
+			}
+			
 		} catch(InputMismatchException e){
+			
 			System.out.println("잘못입력하셨습니다. 다시 입력해주시기 바랍니다");
-			adminSignupView();
+			MainController.getAdminController().requestSignUpInfo();
+			
 		}
-
-		Admin newAdmin = new Admin(adminId, adminPassword, adminName, authority);
-		MainController.getAdminController().requestSignUp(newAdmin);
 
 	}
 

@@ -26,7 +26,7 @@ public class SelectPaymentMethodView {
 		int paymentMethod = 0;
 		
 		System.out.println("결제방법을 선택하십시오");
-		System.out.println("1. 카드로 결제  2. 현금으로 결제");
+		System.out.println("[1] 카드로 결제  [2] 현금으로 결제");
 		try{
 			paymentMethod = keyboard.nextInt();	
 		} catch(InputMismatchException e) {

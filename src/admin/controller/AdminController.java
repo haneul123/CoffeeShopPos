@@ -47,13 +47,15 @@ public class AdminController {
 
 		boolean success = adminDao.signUp(newAdmin);
 
+		AlertView alertView = new AlertView();
 		if(success){
-
-			requestMainMenuView();
-
+			
+			alertView.alert("회원가입이 완료되었습니다. 재로그인 바랍니다");
+			MainController.mainMenuView();
+			
 		} else {
 
-			System.out.println("회원가입에 실패하였습니다");
+			alertView.alert("회원가입에 실패하였습니다");
 			MainController.mainMenuView();
 
 		}

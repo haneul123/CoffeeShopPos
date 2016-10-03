@@ -26,7 +26,7 @@ public class UserManagementView {
 		while(true){
 			System.out.println("회원관리 모드입니다.");
 			System.out.println("원하시는 모드를 선택하세요");
-			System.out.println("1. 회원가입   2. 회원리스트 보기   3. 회원 정보 수정   4. 회원 정보 삭제   5. 나가기");
+			System.out.println("[1] 회원가입   [2] 회원리스트 보기   [3] 회원 정보 수정   [4] 회원 정보 삭제   [5] 나가기");
 
 			try{
 				selectedMenu = keyboard.nextInt();	

@@ -17,7 +17,7 @@ public class SearchListView {
 
 	public void SearchList(ArrayList<Ingredient> ingredientList) {
 
-		System.out.println("번호\t원재료명\t원가\t적재량\t최대적재량\t단위");
+		System.out.println("[번호]\t[원재료명]\t[원가]\t[적재량]\t[최대적재량]\t[단위]");
 		System.out.println("-------------------------------------------------------");
 
 		if(ingredientList.size() == 0) {
@@ -33,7 +33,7 @@ public class SearchListView {
 				System.out.print(ingredientList.get(i).getIngredient_Name() + "\t");
 				System.out.print(ingredientList.get(i).getIngredient_Price() + "\t");
 				System.out.print(ingredientList.get(i).getIngreient_Inventory() + "\t");
-				System.out.print(ingredientList.get(i).getIngredient_Inventory_MAX() + "\t");
+				System.out.print(ingredientList.get(i).getIngredient_Inventory_MAX() + "\t\t");
 				System.out.println(ingredientList.get(i).getIngredient_unit());
 				
 			}

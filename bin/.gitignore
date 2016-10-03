@@ -1,5 +1,17 @@
+<<<<<<< HEAD
 /CSP_UML.ucls
 /adminSalary/
 /ingredientOrder/
 /ingredientPayment/
 /productPaymentRepository/
+=======
+/admin/
+/user/
+/adminSalary/
+/product/
+/productOrder/
+/mainView/
+/ingredient/
+/ingredientOrder/
+/productPayment/
+>>>>>>> origin/master
