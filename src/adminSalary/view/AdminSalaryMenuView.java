@@ -28,7 +28,7 @@ public class AdminSalaryMenuView {
 
 			int selectedMenu = 0;
 			System.out.println("급여관리 메인 메뉴 입니다");
-			System.out.println("[1]급여조회, [2]급여지급 목록, [3]급여지급,  [4]이전");
+			System.out.println("[1]급여조회  [2]급여지급 목록  [3]급여지급  [4]이전");
 
 		
 			try{

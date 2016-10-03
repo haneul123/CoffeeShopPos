@@ -2,14 +2,17 @@ package product.vo;
 
 public class Product {
 	
+	// variable
 	private int productNumber;
 	private String productName;
 	private int productPrice;
 	private String productComment;
 	private int productIngredientNumber;
 	private int useAmount;
+	private int isDeleteProduct;
 	
 	
+	// constructor
 	public Product() {
 		
 	}
@@ -94,5 +97,15 @@ public class Product {
 	public void setUseAmount(int useAmount) {
 		this.useAmount = useAmount;
 	}
+
+
+	public int getIsDeleteProduct() {
+		return isDeleteProduct;
+	}
+
+
+	public void setIsDeleteProduct(int isDeleteProduct) {
+		this.isDeleteProduct = isDeleteProduct;
+	}	
 
 }

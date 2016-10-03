@@ -20,7 +20,7 @@ public class UserDao {
 		
 		try {
 			
-			String sql = "select * from user_list";
+			String sql = "select * from user_list order by user_number desc";
 			stmt = MainController.getDbController().getConnection().createStatement();
 			rs = stmt.executeQuery(sql);
 			

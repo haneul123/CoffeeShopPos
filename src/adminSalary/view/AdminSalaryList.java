@@ -15,7 +15,7 @@ public class AdminSalaryList {
 
 	public void adminSalarylist( ArrayList<AdminSalary> adminSalaryLists) {
 
-		System.out.println("번호\t관리자 이름\t급여지급액\t급여 지급 날짜");
+		System.out.println("[번호]\t[관리자 이름]\t[급여지급액]\t[급여 지급 날짜]");
 		System.out.println("-------------------------------------------------------");
 
 		if(adminSalaryLists.size() == 0) {
@@ -27,8 +27,8 @@ public class AdminSalaryList {
 			for(int i = 0; i < adminSalaryLists.size(); i++) {
 				
 				System.out.print(adminSalaryLists.get(i).getSalaryNumber() + "\t");
-				System.out.print(adminSalaryLists.get(i).getAdminName() + "\t");
-				System.out.print(adminSalaryLists.get(i).getSalary() + "\t");
+				System.out.print(adminSalaryLists.get(i).getAdminName() + "\t\t");
+				System.out.print(adminSalaryLists.get(i).getSalary() + "\t\t");
 				System.out.println(adminSalaryLists.get(i).getSalaryDate());
 			
 			}

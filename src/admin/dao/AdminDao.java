@@ -214,7 +214,8 @@ public class AdminDao {
 			
 		String sql = "select lr.login_number, al.admin_name, lr.START_TIME, lr.END_TIME  "
 				+ "from login_record lr, admin_list al "
-				+ "where al.admin_name LIKE '%'||?||'%' and lr.ADMIN_NUMBER = al.ADMIN_NUMBER";
+				+ "where al.admin_name LIKE '%'||?||'%' and lr.ADMIN_NUMBER = al.ADMIN_NUMBER "
+				+ "order by login_number desc";
 		
 		pstmt = MainController.getDbController().getConnection().prepareStatement(sql);
 		pstmt.setString(1, adminCommuteList.getAdminName());
