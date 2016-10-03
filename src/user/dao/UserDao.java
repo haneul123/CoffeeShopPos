@@ -30,6 +30,9 @@ public class UserDao {
 				user.setUserNumber(rs.getInt(1));
 				user.setCouponCount(rs.getInt(2));
 				user.setUserPhoneNumber(rs.getString(3));
+				user.setSignUpDate(rs.getDate(4));
+				user.setIsWithdrawUser(rs.getInt(5));
+				user.setWithdrawDate(rs.getDate(6));
 				userList.add(user);
 				
 			}
@@ -46,7 +49,7 @@ public class UserDao {
 	// 회원번호 체크
 	public boolean checkUser(int selectedNumber) {
 
-		boolean success = true;
+		boolean success = false;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
@@ -118,7 +121,7 @@ public class UserDao {
 		
 		try {
 			
-			String sql = "insert into user_list values(user_number_seq.nextval, 0, ?)";
+			String sql = "insert into user_list values(user_number_seq.nextval, 0, ?, sysdate, 1, null)";
 			pstmt = MainController.getDbController().getConnection().prepareStatement(sql);
 			pstmt.setString(1, newUser.getUserPhoneNumber());
 			pstmt.executeUpdate();
@@ -134,15 +137,25 @@ public class UserDao {
 	public boolean deleteUser(int selectedNumber) {
 
 		boolean success = false;
-		PreparedStatement pstmt = null;
-		
+		PreparedStatement pstmt1 = null;
+		PreparedStatement pstmt2 = null;
+		ResultSet rs = null;
 		
 		try {
 			
-			String sql = "delete from user_list where user_number = ?";
-			pstmt = MainController.getDbController().getConnection().prepareStatement(sql);
-			pstmt.setInt(1, selectedNumber);
-			pstmt.executeUpdate();
+			String sql = "select * from user_list where user_number = ? and is_withdraw_user = 2";
+			pstmt1 = MainController.getDbController().getConnection().prepareStatement(sql);
+			pstmt1.setInt(1, selectedNumber);
+			rs = pstmt1.executeQuery();
+			
+			if(rs.next()){
+				return success;
+			}
+			
+			sql = "update user_list set is_withdraw_user = 2, withdraw_date = sysdate where user_number = ? and is_withdraw_user = 1";
+			pstmt2 = MainController.getDbController().getConnection().prepareStatement(sql);
+			pstmt2.setInt(1, selectedNumber);
+			pstmt2.executeUpdate();
 			success = true;
 			
 		} catch (SQLException e) {
