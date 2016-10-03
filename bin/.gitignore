@@ -1,7 +1,5 @@
-/admin/
-/ingredientOrder/
-/mainController/
+/CSP_UML.ucls
 /adminSalary/
+/ingredientOrder/
 /ingredientPayment/
-/ingredient/
-/login/
+/productPaymentRepository/
