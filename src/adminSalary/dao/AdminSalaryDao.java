@@ -53,7 +53,8 @@ public class AdminSalaryDao {
 
 			String sql = "select sl.SALARY_NUMBER ,al.ADMIN_NAME, sl.SALARY, sl.SALARY_DATE "
 					+ "from salary sl, admin_list al "
-					+ "where sl.ADMIN_NUMBER = al.ADMIN_NUMBER";
+					+ "where sl.ADMIN_NUMBER = al.ADMIN_NUMBER "
+					+ "order by sl.salary_number desc";
 			stmt = MainController.getDbController().getConnection().createStatement();
 			rs = stmt.executeQuery(sql);
 

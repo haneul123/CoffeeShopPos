@@ -1,21 +1,17 @@
-/CoffeeShopPos.erm
-/admin/
-/ingredient/
+<<<<<<< HEAD
+/CSP_UML.ucls
+/adminSalary/
 /ingredientOrder/
 /ingredientPayment/
-/login/
-/main/
-/mainController/
-/mainView/
+/productPaymentRepository/
+=======
+/admin/
+/user/
+/adminSalary/
 /product/
 /productOrder/
+/mainView/
+/ingredient/
+/ingredientOrder/
 /productPayment/
-/productPaymentRepository/
-/salesManagement/
-/user/
-/controller/
-/dao/
-/view/
-/vo/
-/AdminSalary/
-/adminSalary/
+>>>>>>> origin/master

@@ -27,7 +27,7 @@ public class ChoiceGuestOrMember {
 		
 		System.out.println("입력하신 번호는 없는 번호 입니다");
 		System.out.println("원하시는 메뉴를 선택하여 주십시오");
-		System.out.println("1. 비회원 주문하기  2. 회원 가입하기");
+		System.out.println("[1] 비회원 주문하기  [2] 회원 가입하기");
 		
 		try{
 			selectedMenu = keyboard.nextInt();	

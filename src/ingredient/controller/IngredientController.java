@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import ingredient.dao.IngredientDao;
 import ingredient.view.AddIngredientView;
 import ingredient.view.GetKeywordView;
-import ingredient.view.IngredientDeleteView;
 import ingredient.view.IngredientMainMenu;
 import ingredient.view.SearchIngredientView;
 import ingredient.view.SearchListView;
@@ -91,8 +90,7 @@ public class IngredientController {
 	// 원재료 수정전 조회
 	public void requestIngredientUpdateNumber() {
 		
-		requestSearchIngredient();
-		
+		MainController.getIngredientController().requestSearchIngredient();	
 		UpdateIngredientView updateIngredientNum = new UpdateIngredientView();
 		updateIngredientNum.updateingredientNumberView();
 		
@@ -104,8 +102,7 @@ public class IngredientController {
 		
 		UpdateIngredientView updateIngredientInfo = new UpdateIngredientView();
 		updateIngredientInfo.updateProductInfo(selectedIngredientNumber);
-		
-		
+			
 	}
 	
 	
@@ -113,10 +110,8 @@ public class IngredientController {
 	public void requestUpdateIngredient(Ingredient updateingredient){
 
 		boolean success = ingredientDao.updateIngredient(updateingredient);
-
+		
 		AlertView alert = new AlertView();
-		
-		
 		if(success) {
 			alert.alert("수정성공");
 		} else {
@@ -126,33 +121,29 @@ public class IngredientController {
 	}
 
 
-	// 원재료 삭제 뷰 호출
-	public void requerstDeleteIngredientView() {
-
-		requestSearchIngredient();
-
-		IngredientDeleteView deleteIngredientGetNum = new IngredientDeleteView();
-		deleteIngredientGetNum.deleteIngredientNum();
-
-
-	}
-
-
-	// 원재료 삭제
-	public void requestDeleteIngredient(int deleteIngredientGetNum) {
-		
-
-		boolean success = ingredientDao.deleteIngredient(deleteIngredientGetNum);
-		
-		AlertView alert = new AlertView();
-
-		if(success) {
-			alert.alert("삭제성공");
-		} else {
-			alert.alert("삭제실패");
-		}
-
-	}
+//	// 원재료 삭제 뷰 호출
+//	public void requerstDeleteIngredientView() {
+//
+//		MainController.getIngredientController().requestSearchIngredient();
+//		IngredientDeleteView deleteIngredientGetNum = new IngredientDeleteView();
+//		deleteIngredientGetNum.deleteIngredientNum();
+//
+//	}
+//
+//
+//	// 원재료 삭제
+//	public void requestDeleteIngredient(int deleteIngredientGetNum) {
+//		
+//		boolean success = ingredientDao.deleteIngredient(deleteIngredientGetNum);
+//		
+//		AlertView alert = new AlertView();
+//		if(success) {
+//			alert.alert("삭제성공");
+//		} else {
+//			alert.alert("삭제실패");
+//		}
+//
+//	}
 
 
 	// 원재료 목록

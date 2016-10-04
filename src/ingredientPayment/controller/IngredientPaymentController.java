@@ -15,14 +15,20 @@ public class IngredientPaymentController {
 	}
 	
 	
-	//결제하기
-	public void ingredientPayment() {
+	// 결제 요청 뷰
+	public void requestIngredientPaymentView() {
+					
+		IngredientPaymentView ingredientPayment = new IngredientPaymentView();
+		ingredientPayment.ingredientOrderPay();
+			
+	}
+
+	
+	// 결제 요청
+	public void requestIngredientPayment(){
 		
 		ingredientPaymentDao.IngredientPayment();
 		
-		IngredientPaymentView ingredientPayment = new IngredientPaymentView();
-		ingredientPayment.ingredientOrderPay();
-		
 	}
-
+	
 }

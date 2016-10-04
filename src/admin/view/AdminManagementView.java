@@ -27,7 +27,7 @@ public class AdminManagementView {
 
 			System.out.println("직원관리 메뉴입니다");
 
-			System.out.println("[1]직원 계정 등록, [2]직원 리스트 보기, [3]직원 출퇴근 조회, [4]직원 계정 수정, [5]직원 계정 삭제, [6]급여 관리, [7]나가기");
+			System.out.println("[1]직원 계정 등록  [2]직원 리스트 보기  [3]직원 출퇴근 조회  [4]직원 계정 수정  [5]직원 계정 삭제  [6]급여 관리  [7]나가기");
 
 		
 			try{

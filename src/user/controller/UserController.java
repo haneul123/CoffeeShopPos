@@ -135,18 +135,17 @@ public class UserController {
 	
 	// 선택한 회원 번호의 회원 정보를 삭제
 	public void requestUserDelete(int selectedNumber){
-		
+				
 		boolean success = userDao.deleteUser(selectedNumber);
 		
-		AlertView alertView = new AlertView();
-		
+		AlertView alertView = new AlertView();		
 		if(success){
 		
 			alertView.alert("회원이 삭제되었습니다");
 			
 		} else {
 			
-			alertView.alert("회원삭제가 실패하였습니다");
+			alertView.alert("이미 탈퇴한 회원이거나 없는 회원번호입니다.");
 			
 		}
 		

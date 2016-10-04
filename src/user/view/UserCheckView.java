@@ -38,9 +38,9 @@ public class UserCheckView {
 	// 삭제할 회원번호 입력
 	public void selectDeleteUserNumber(){
 		
-		int selectedNumber = 0;
-		
+		int selectedNumber = 0;	
 		System.out.println("삭제 할 회원 번호를 입력하십시오");
+		
 		try{
 			selectedNumber = keyboard.nextInt();
 		} catch(InputMismatchException e) {	

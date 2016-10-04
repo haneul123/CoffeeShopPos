@@ -30,7 +30,6 @@ public class IngredientOrderView {
 			System.out.println("관리자의 아이디를 입력하세요.");
 			String adminId = keyboard.next();
 
-
 			System.out.println("주문하실 원재료의 번호를 입력하세요.");
 			ingredientNumber = keyboard.nextInt();
 

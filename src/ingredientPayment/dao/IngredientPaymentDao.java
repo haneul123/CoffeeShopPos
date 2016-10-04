@@ -17,17 +17,16 @@ public class IngredientPaymentDao {
 		boolean success = false;
 		Statement stmt1 = null;
 		Statement stmt2 = null;
+		Statement stmt3 = null;
 		PreparedStatement pstmt1 = null;
 		PreparedStatement pstmt2 = null;
 		ResultSet rs1 = null;
 		ResultSet rs2 = null;
 		ArrayList<IngredientPayment> IngredientPayments = new ArrayList<IngredientPayment>();
-		int ingredientOrderNumber = 0;
-		int ingredientOrderCount = 0;
-
 
 		try {
-
+		
+			// 주문 번호 저장
 			String sql = "select ingredient_order_number from ingredient_order_list";
 			stmt1 = MainController.getDbController().getConnection().createStatement();
 			rs1 = stmt1.executeQuery(sql);
@@ -40,9 +39,10 @@ public class IngredientPaymentDao {
 
 			}
 
+			
+			// 결제 테이블에 주문 정보 저장하기
 			for(int i = 0; i<IngredientPayments.size(); i++){
 
-				//결제 테이블에 주문 정보 저장하기
 				sql = "insert into ingredient_pay_list values(ingredient_pay_number_seq.nextval,?)";
 				pstmt1 = MainController.getDbController().getConnection().prepareStatement(sql);
 				pstmt1.setInt(1, IngredientPayments.get(i).getIngredientOrderNumber());
@@ -51,37 +51,46 @@ public class IngredientPaymentDao {
 
 			}
 			
-			sql = " select iol.INGREDIENT_ORDER_NUMBER,iol.ORDER_COUNT";
-			sql +=" from ingredient_order_list iol, ingredient_list il, INGREDIENT_PAY_LIST ipl";
-			sql +=" where iol.INGREDIENT_NUMBER = il.INGREDIENT_NUMBER and iol.INGREDIENT_order_NUMBER = ipl.INGREDIENT_ORDER_NUMBER";
+			
+			// 주문 번호와 주문 량 저장
+			sql =  "select iol.INGREDIENT_NUMBER, iol.ORDER_COUNT ";
+			sql += "from ingredient_order_list iol, ingredient_list il ";
+			sql += "where iol.INGREDIENT_NUMBER = il.INGREDIENT_NUMBER and iol.ISAGREEPAID = 1";
 			stmt2 = MainController.getDbController().getConnection().createStatement();
 			rs2 = stmt2.executeQuery(sql);
 
-			if(rs2.next()) {
+			while(rs2.next()) {
 
-				ingredientOrderNumber = rs2.getInt(1);
-				ingredientOrderCount = rs2.getInt(2);
+				IngredientPayment payment = new IngredientPayment(); 
+				payment.setIngredientNumber(rs2.getInt(1));
+				payment.setIngredientOrderCount(rs2.getInt(2));
+				IngredientPayments.add(payment);
 
 			}
-
+			
+	
+			// 주문한 만큼 재고량 증가 시키기
 			for(int i = 0; i<IngredientPayments.size(); i++){
 
 				sql =  "update ingredient_list ";
 				sql += "set ingredient_inventory = (ingredient_inventory + ?) ";
 				sql += "where ingredient_number = ?";
 				pstmt2 = MainController.getDbController().getConnection().prepareStatement(sql);
-				pstmt2.setInt(1, ingredientOrderCount);
-				pstmt2.setInt(2,ingredientOrderNumber);
+				pstmt2.setInt(1, IngredientPayments.get(i).getIngredientOrderCount());
+				pstmt2.setInt(2, IngredientPayments.get(i).getIngredientNumber());
 				pstmt2.executeUpdate();
 
 			}
+
 			
-			 IngredientPayments.clear();
+			// 결제가 완료된 리스트들의 isAgreePaid 정보를 1 에서 2로 변경
+			sql = "update ingredient_order_list set isAgreePaid = 2 where isAgreePaid = 1";
+			stmt3 = MainController.getDbController().getConnection().createStatement();
+			stmt3.executeUpdate(sql);
 			
-		}catch (SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-
 			if(pstmt2 != null){try {pstmt2.close();} catch (SQLException e) {e.printStackTrace();}}
 			if(rs2 != null){try {rs2.close();} catch (SQLException e) {e.printStackTrace();}}
 			if(stmt2 != null){try {stmt2.close();} catch (SQLException e) {e.printStackTrace();}}
@@ -92,4 +101,5 @@ public class IngredientPaymentDao {
 
 		return success;
 	}
+	
 }

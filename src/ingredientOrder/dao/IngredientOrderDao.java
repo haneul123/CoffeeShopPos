@@ -11,13 +11,13 @@ import mainController.MainController;
 public class IngredientOrderDao {
 
 
-	//주문상품을 주문 리스트에 넣기
+	// 주문 상품을 주문 리스트에 넣기
 	public boolean orderIngredientInsert(IngredientOrder orderIngredient) {
 
 		boolean success = false;		
 		PreparedStatement pstmt1 = null;
 		PreparedStatement pstmt2 = null;
-		ResultSet rs = null;
+		ResultSet rs1 = null;
 		int adminNumber = 0;
 
 		try {
@@ -25,19 +25,18 @@ public class IngredientOrderDao {
 			String sql = "select admin_number from admin_list where admin_id = ?";
 			pstmt1 = MainController.getDbController().getConnection().prepareStatement(sql);
 			pstmt1.setString(1, orderIngredient.getAdminId());
-			rs = pstmt1.executeQuery();
+			rs1 = pstmt1.executeQuery();
 
-			if(rs.next()) {
+			if(rs1.next()) {
 
-				adminNumber = rs.getInt(1);
+				adminNumber = rs1.getInt(1);
 			}
 
-			sql = "insert into ingredient_order_list values(ingredient_order_number_seq.nextval, ?, ?, ?, sysdate)";
+			sql = "insert into ingredient_order_list values(ingredient_order_number_seq.nextval, ?, ?, ?, sysdate, 1)";
 			pstmt2 = MainController.getDbController().getConnection().prepareStatement(sql);
 			pstmt2.setInt(1, adminNumber);
 			pstmt2.setInt(2, orderIngredient.getIngredientNumber());
 			pstmt2.setInt(3, orderIngredient.getOrderCount());
-
 			pstmt2.executeUpdate();
 			success = true;
 
@@ -46,6 +45,7 @@ public class IngredientOrderDao {
 		} finally {
 
 			if(pstmt2 != null){try{pstmt2.close();} catch (SQLException e) {e.printStackTrace();}}
+			if(rs1 != null){try{rs1.close();} catch (SQLException e) {e.printStackTrace();}}
 			if(pstmt1 != null){try{pstmt1.close();} catch (SQLException e) {e.printStackTrace();}}
 
 		}
@@ -64,7 +64,7 @@ public class IngredientOrderDao {
 
 		try {
 
-			String sql = "select * from ingredient_order_list_view";
+			String sql = "select * from ingredient_order_list_view where isAgreePaid = 1";
 			pstmt = MainController.getDbController().getConnection().prepareStatement(sql);
 			rs = pstmt.executeQuery();
 
@@ -85,7 +85,6 @@ public class IngredientOrderDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
-
 			if(rs != null){try{rs.close();}catch(SQLException e){e.printStackTrace();}}
 			if(pstmt != null){try{pstmt.close();}catch(SQLException e){e.printStackTrace();}}
 		}
@@ -105,15 +104,14 @@ public class IngredientOrderDao {
 			String sql = "delete from ingredient_order_list where INGREDIENT_ORDER_NUMBER =?";
 			pstmt = MainController.getDbController().getConnection().prepareStatement(sql);
 			pstmt.setInt(1, deleteIngredientOrder);
+			pstmt.executeUpdate();
 
 			success = true;
 
 		}catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-
 			if(pstmt != null){try{pstmt.close();} catch (SQLException e){e.printStackTrace();}}
-
 		}
 
 		return success;
@@ -121,11 +119,3 @@ public class IngredientOrderDao {
 	}
 
 }
-
-
-
-
-
-
-
-

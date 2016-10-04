@@ -32,6 +32,7 @@ public class ProductDao {
 				product.setProductName(rs.getString("product_Name"));
 				product.setProductPrice(rs.getInt("product_Price"));
 				product.setProductComment(rs.getString("product_Comment"));
+				product.setIsDeleteProduct(rs.getInt("is_delete_product"));
 				products.add(product);
 
 			}
@@ -109,7 +110,7 @@ public class ProductDao {
 			} else {
 
 				// 이미 존재하는 상품이 아니라면 상품 리스트에 추가
-				sql = "insert into product_list values(product_number_seq.nextval, ?, ?, ?)";
+				sql = "insert into product_list values(product_number_seq.nextval, ?, ?, ?, 1)";
 				pstmt2 = MainController.getDbController().getConnection().prepareStatement(sql);
 				pstmt2.setString(1, insertProduct.getProductName());
 				pstmt2.setInt(2, insertProduct.getProductPrice());
@@ -194,6 +195,7 @@ public class ProductDao {
 				searchProduct.setProductName(rs.getString(2));
 				searchProduct.setProductPrice(rs.getInt(3));
 				searchProduct.setProductComment(rs.getString(4));
+				searchProduct.setIsDeleteProduct(rs.getInt(5));
 
 			}
 
@@ -219,7 +221,7 @@ public class ProductDao {
 
 		try {
 
-			String sql = "delete from product_list where product_number = ?";
+			String sql = "update product_list set is_delete_product = 2 where product_number = ? and is_delete_product = 1";
 			pstmt = MainController.getDbController().getConnection().prepareStatement(sql);
 			pstmt.setInt(1, deleteProductNumber);
 			pstmt.executeUpdate();

@@ -17,12 +17,18 @@ public class AdminListView {
 
 		} else {
 
-			System.out.println("관리자 번호\t관리자 권한\t관리자 아이디\t관리자 패스워드\t관리자 이름");
+			System.out.println("[관리자 번호]\t[권한]\t[아이디]\t[패스워드]\t[관리자 이름]");
 
 			for(int i=0; i<adminList.size(); i++){
 
-				System.out.print(adminList.get(i).getAdminNumber() + "\t");
-				System.out.print(adminList.get(i).getAuthority() + "\t");
+				System.out.print(adminList.get(i).getAdminNumber() + "\t\t");
+				
+				if(adminList.get(i).getAuthority() == 1){
+					System.out.print("관리자\t");	
+				} else {
+					System.out.print("직원\t");
+				}
+				
 				System.out.print(adminList.get(i).getAdminId() + "\t");
 				System.out.print(adminList.get(i).getAdminPassword() + "\t");
 				System.out.println(adminList.get(i).getAdminName() + "\t");

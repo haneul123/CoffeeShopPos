@@ -26,7 +26,7 @@ public class ManagementSalary {
 		
 		while(true){
 			
-			System.out.println("[1]. 급여 지급  [2]. 나가기");
+			System.out.println("[1] 급여 지급  [2] 나가기");
 			
 			try{
 				selectedMenu = keyboard.nextInt();	
