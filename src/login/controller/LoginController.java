@@ -35,8 +35,9 @@ public class LoginController {
 	public void requestLogin(Admin admin){
 		
 		Admin loginAdmin = loginDao.Login(admin);
+		
 		Date date = new Date();
-		SimpleDateFormat nowDate = new SimpleDateFormat("yyyy-mm-dd, a hh:mm:ss");
+		SimpleDateFormat nowDate = new SimpleDateFormat("yyyy-MM-dd, a hh:mm:ss");
 		AlertView alertView = new AlertView();
 		
 		if(loginAdmin != null){

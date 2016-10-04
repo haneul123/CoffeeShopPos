@@ -27,12 +27,9 @@ public class AdminManagementView {
 
 			System.out.println("직원관리 메뉴입니다");
 
-			String[] mgmMenu = {"1. 직원 계정 등록", "2. 직원 리스트 보기", "3. 직원 계정 수정", "4. 직원 계정 삭제", "5. 급여 관리", "6. 나가기"};
+			System.out.println("[1]직원 계정 등록, [2]직원 리스트 보기, [3]직원 출퇴근 조회, [4]직원 계정 수정, [5]직원 계정 삭제, [6]급여 관리, [7]나가기");
 
-			for(int i=0; i<mgmMenu.length; i++){
-				System.out.println(mgmMenu[i]);
-			}
-
+		
 			try{
 
 				selectedMenu = keyboard.nextInt();
@@ -54,19 +51,23 @@ public class AdminManagementView {
 
 			} else if(selectedMenu == 3) {
 
-				MainController.getAdminController().requestUpdateView();
+				MainController.getAdminController().adminCommuteSearchView();
 
 			} else if(selectedMenu == 4) {
 
+				MainController.getAdminController().requestUpdateView();
+
+			} else if(selectedMenu == 5) {
+
 				MainController.getAdminController().requestDelete();
 
-			} else if(selectedMenu == 5){
-				
-				MainController.getAdminController().requestManagementSalary();
-				
 			} else if(selectedMenu == 6){
+				
+				MainController.getAdminSalaryController().requestAdminSalaryMenuView();
+				
+			} else if(selectedMenu == 7){
 
-				break;
+				MainController.getAdminController().requestMainMenuView();
 
 			} else {
 
